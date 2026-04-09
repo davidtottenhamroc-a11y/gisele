@@ -1,10 +1,43 @@
 {
   "name": "prontuario-medico-mamanguape",
   "version": 2,
+  "buildCommand": null,
+  "devCommand": null,
+  "installCommand": null,
+  "framework": null,
+  "outputDirectory": ".",
   "routes": [
     {
+      "src": "/img/(.*)",
+      "dest": "/img/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "prontuario/prontuario.html"
+      "dest": "/prontuario.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html; charset=UTF-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }
