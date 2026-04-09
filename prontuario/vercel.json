@@ -1,0 +1,10 @@
+{
+  "name": "prontuario-medico-mamanguape",
+  "version": 2,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/prontuario.html"
+    }
+  ]
+}
