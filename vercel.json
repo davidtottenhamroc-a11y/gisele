@@ -1,0 +1,31 @@
+{
+  "name": "prontuario-medico-mamanguape",
+  "version": 2,
+  "builds": [
+    {
+      "src": "prontuario.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/prontuario.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html; charset=UTF-8"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    }
+  ]
+}
