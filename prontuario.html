@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Prontuário Médico - Prefeitura de Mamanguape | 2 Vias - 1 Folha</title>
+    <title>Prontuário Médico - Prefeitura de Mamanguape</title>
     <style>
         * {
             margin: 0;
@@ -29,15 +29,14 @@
             padding: 10px 15px 15px 15px;
         }
 
-        /* BARRA DE FERRAMENTAS - NÃO IMPRIME */
         .toolbar {
             background: #f1f5f9;
-            padding: 6px 12px;
+            padding: 8px 15px;
             border-radius: 50px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 10px;
             align-items: center;
             justify-content: space-between;
             border: 1px solid #cbd5e1;
@@ -45,17 +44,17 @@
         }
         .btn-group {
             display: flex;
-            gap: 5px;
+            gap: 8px;
             flex-wrap: wrap;
         }
         .btn {
             background: white;
             border: 1px solid #1e3a5f;
-            padding: 3px 8px;
+            padding: 5px 12px;
             border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             transition: 0.2s;
         }
         .btn-primary {
@@ -65,107 +64,84 @@
         .btn-primary:hover {
             background: #0f2c44;
         }
-        select, .file-label {
+        select {
             background: white;
             border: 1px solid #94a3b8;
-            padding: 3px 6px;
+            padding: 5px 10px;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 0.65rem;
-        }
-        .file-label {
-            display: inline-block;
-            background: #eef2ff;
-        }
-        #logoInput {
-            display: none;
+            font-size: 0.7rem;
         }
 
-        /* ESTILO DOS DOCUMENTOS */
         .documento {
             font-family: 'Times New Roman', Times, serif;
         }
 
-        /* CABEÇALHO OFICIAL - COMPACTO */
         .header-via {
             text-align: center;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             border-bottom: 2px solid #0b3b2f;
-            padding-bottom: 4px;
+            padding-bottom: 5px;
         }
         .logo-area-via {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
         .logo-img-via {
-            max-height: 38px;
-            max-width: 55px;
+            max-height: 55px;
+            max-width: 75px;
             object-fit: contain;
         }
-        .placeholder-logo-via {
-            width: 38px;
-            height: 38px;
-            background: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 5px;
-        }
         .pref-text-via {
-            line-height: 1.05;
+            line-height: 1.15;
         }
         .pref-name-via {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             font-weight: bold;
         }
         .secretaria-via {
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             font-weight: 600;
         }
         .cnpj-via {
-            font-size: 0.5rem;
+            font-size: 0.6rem;
             color: #2d3e50;
         }
         .unidade-via {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             font-weight: bold;
-            margin-top: 2px;
+            margin-top: 4px;
             text-transform: uppercase;
             background: #fef3c7;
             display: inline-block;
-            padding: 1px 6px;
+            padding: 2px 12px;
             border-radius: 30px;
         }
 
-        /* TÍTULO DO DOCUMENTO DENTRO DE CADA VIA */
         .doc-title-via {
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: bold;
-            margin: 3px 0 5px 0;
+            margin: 5px 0 8px 0;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        /* LAYOUT DAS DUAS VIAS - LADO A LADO */
         .two-ways {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             flex-wrap: nowrap;
-            margin: 3px 0;
+            margin: 5px 0;
         }
         .way {
             flex: 1;
             min-width: 0;
             border: 1px solid #a3b8d4;
             background: #ffffff;
-            padding: 6px;
+            padding: 10px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
@@ -174,25 +150,24 @@
             background: #e9edf2;
             text-align: center;
             font-weight: bold;
-            padding: 2px;
-            margin-bottom: 5px;
-            font-size: 0.7rem;
+            padding: 4px;
+            margin-bottom: 8px;
+            font-size: 0.75rem;
             border-bottom: 1px solid #b9c8e0;
         }
 
-        /* CAMPOS */
         .campo {
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         .campo label {
             font-weight: 700;
             display: block;
-            font-size: 0.6rem;
-            margin-bottom: 1px;
+            font-size: 0.65rem;
+            margin-bottom: 2px;
         }
         .campo-inline {
             display: flex;
-            gap: 5px;
+            gap: 8px;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -202,252 +177,126 @@
         }
         input, textarea, select {
             width: 100%;
-            padding: 2px 3px;
+            padding: 4px 6px;
             border: 1px solid #8f9eb2;
             font-family: 'Times New Roman', Times, serif;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             background: #fff;
             border-radius: 3px;
         }
         textarea {
             resize: vertical;
         }
-        .assinatura-box {
-            margin-top: 6px;
-            border-top: 1px dashed #9aaec9;
-            padding-top: 4px;
-            text-align: center;
-            font-size: 0.55rem;
-        }
 
-        /* EXAMES GRADE - 4 COLUNAS PARA MAIOR APROVEITAMENTO */
         .exames-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2px 6px;
-            margin: 5px 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px 8px;
+            margin: 8px 0;
             background: #fefcf5;
-            padding: 4px;
+            padding: 8px;
             border: 1px solid #e2e8f0;
-            font-size: 0.55rem;
-            max-height: 180px;
+            font-size: 0.65rem;
+            max-height: 200px;
             overflow-y: auto;
         }
         .exames-grid label {
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
             font-weight: normal;
             cursor: pointer;
-            font-size: 0.55rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
         .exames-grid input[type="checkbox"] {
-            width: 10px;
-            height: 10px;
-            margin: 0;
-            flex-shrink: 0;
+            width: 12px;
+            height: 12px;
         }
 
-        /* TABELA PRESCRIÇÃO MÉDICA */
         .presc-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 3px 0;
+            margin: 6px 0;
         }
         .presc-table th, .presc-table td {
             border: 1px solid #1f2e44;
-            padding: 2px;
+            padding: 4px;
             vertical-align: top;
-            font-size: 0.55rem;
+            font-size: 0.65rem;
         }
         .presc-table th {
             background: #eef2f5;
-            font-size: 0.55rem;
-        }
-        .presc-table textarea {
-            font-size: 0.55rem;
-            padding: 2px;
-            min-height: 32px;
-            width: 100%;
-        }
-        .presc-table input {
-            font-size: 0.55rem;
-            padding: 2px;
-            width: 100%;
         }
 
-        /* RECEITA SIMPLES */
-        .receita-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .receita-content .campo-medicamento {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 4px;
-        }
-        .receita-content .campo-medicamento textarea {
-            flex: 1;
-            min-height: 180px;
-        }
-
-        /* LAUDO MÉDICO */
-        .laudo-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .laudo-content .campo-descricao {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 4px;
-        }
-        .laudo-content .campo-descricao textarea {
-            flex: 1;
-            min-height: 130px;
-        }
-
-        /* EVOLUÇÃO CLÍNICA */
-        .evolucao-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .evolucao-content .campo-evolucao {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 4px;
-        }
-        .evolucao-content .campo-evolucao textarea {
-            flex: 1;
-            min-height: 220px;
-        }
-
-        /* ASSINATURA COMPONENTE */
         .assinatura-container {
-            margin-top: 5px;
+            margin-top: 10px;
         }
         .assinatura-container .print-hide-text {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             font-weight: bold;
             text-align: center;
         }
         .assinatura-container .print-show-line {
             text-align: center;
-            margin-top: 2px;
+            margin-top: 5px;
         }
         .assinatura-container .print-show-line div {
             display: inline-block;
             width: 80%;
             border-bottom: 1px solid #000;
-            margin-top: 2px;
         }
         .print-show-line {
             display: none;
         }
 
-        /* EMITENTE BOX */
         .emitente-box {
             background: #f9fafb;
             border: 1px solid #cbd5e1;
-            padding: 3px;
-            margin-bottom: 5px;
+            padding: 6px;
+            margin-bottom: 10px;
             text-align: center;
         }
-        .emitente-box h4 {
-            font-size: 0.6rem;
-            margin-bottom: 2px;
-            color: #1e3a5f;
-        }
-        .emitente-box div {
-            font-size: 0.55rem;
-        }
 
-        /* COMPRADOR/FORNECEDOR */
         .comprador-fornecedor {
             display: flex;
-            gap: 6px;
-            margin-top: 5px;
+            gap: 10px;
+            margin-top: 8px;
             flex-wrap: wrap;
         }
         .card-comprador, .card-fornecedor {
             flex: 1;
             border: 1px solid #b9c8e0;
-            padding: 3px;
+            padding: 6px;
             background: #fefefe;
         }
         .card-title {
             background: #eef2fa;
-            padding: 2px;
-            margin-bottom: 3px;
-            font-size: 0.6rem;
+            padding: 4px;
+            margin-bottom: 6px;
+            font-size: 0.7rem;
             font-weight: bold;
             text-align: center;
         }
-        .assinatura-data {
-            margin-top: 3px;
-            font-size: 0.55rem;
-            text-align: center;
-            border-top: 1px dotted #ccc;
-            padding-top: 3px;
-        }
 
-        /* RADIO GROUP */
         .radio-group {
             display: flex;
-            gap: 5px;
+            gap: 10px;
             align-items: center;
         }
         .radio-group label {
             display: flex;
             align-items: center;
-            gap: 2px;
+            gap: 3px;
             font-weight: normal;
-            font-size: 0.55rem;
-        }
-        hr {
-            margin: 2px 0;
+            font-size: 0.65rem;
         }
 
-        /* IMPRESSÃO - UMA ÚNICA FOLHA PAISAGEM */
         @media print {
             @page {
                 size: A4 landscape;
-                margin: 0.2cm;
+                margin: 0.3cm;
             }
-            body {
-                background: white;
-                padding: 0;
-                margin: 0;
-            }
-            .toolbar, .no-print, .btn-group, .btn, select, .file-label, #printBtn {
+            .toolbar, .no-print, .btn-group, .btn, select, #printBtn {
                 display: none !important;
-            }
-            .sheet {
-                box-shadow: none;
-                padding: 0;
-                max-width: 100%;
-                margin: 0;
-            }
-            .two-ways {
-                gap: 10px;
-            }
-            .way {
-                break-inside: avoid;
-                page-break-inside: avoid;
-                display: flex;
-                flex-direction: column;
-            }
-            input, textarea {
-                border: 1px solid #aaa !important;
-                background: white !important;
             }
             .print-hide-text {
                 display: none !important;
@@ -455,18 +304,9 @@
             .print-show-line {
                 display: block !important;
             }
-            .presc-table textarea {
-                min-height: 30px;
-            }
             .exames-grid {
                 max-height: none;
                 overflow-y: visible;
-            }
-            .receita-content .campo-medicamento textarea,
-            .laudo-content .campo-descricao textarea,
-            .evolucao-content .campo-evolucao textarea {
-                min-height: auto;
-                height: 100%;
             }
         }
     </style>
@@ -487,26 +327,20 @@
                 <option value="exames">🔬 Solicitação de Exames</option>
                 <option value="evolucao">📝 Evolução Clínica</option>
             </select>
-            <button id="printBtn" class="btn btn-primary">🖨️ IMPRIMIR (1 FOLHA)</button>
-        </div>
-        <div>
-            <label class="file-label">🏥 Logo <input type="file" id="logoInput" accept="image/*"></label>
+            <button id="printBtn" class="btn btn-primary">🖨️ IMPRIMIR</button>
         </div>
     </div>
-
     <div id="documentoRender" class="documento"></div>
 </div>
 
 <script>
     let currentDoc = "exames";
     let currentUnidade = "AME";
-    let logoBase64 = "";
 
     const docContainer = document.getElementById("documentoRender");
     const unidadeSelect = document.getElementById("unidadeSelect");
     const docSelector = document.getElementById("docSelector");
     const printBtn = document.getElementById("printBtn");
-    const logoInput = document.getElementById("logoInput");
 
     function getDataAtual() {
         const hoje = new Date();
@@ -519,9 +353,9 @@
     function getAssinaturaComponent(texto) {
         return `
             <div class="assinatura-container">
-                <div class="print-hide-text" style="font-size:0.6rem; font-weight:bold; text-align:center;">${texto}</div>
-                <div class="print-show-line" style="text-align:center; margin-top:2px;">
-                    <div style="display:inline-block; width:80%; border-bottom:1px solid #000; margin-top:2px;"></div>
+                <div class="print-hide-text" style="font-size:0.7rem; font-weight:bold; text-align:center;">${texto}</div>
+                <div class="print-show-line" style="text-align:center; margin-top:5px;">
+                    <div style="display:inline-block; width:80%; border-bottom:1px solid #000;"></div>
                 </div>
             </div>
         `;
@@ -531,13 +365,15 @@
         const unidadeNome = currentUnidade === "AME" 
             ? "AMBULATÓRIO DE ESPECIALIDADES - AME" 
             : "CAPS AD III REGIONAL VALE DO MAMANGUAPE";
-        const logoHtml = logoBase64 
-            ? `<img src="${logoBase64}" class="logo-img-via" alt="Logo">` 
-            : `<div class="placeholder-logo-via">🏥</div>`;
+        
+        // Logo fixa da pasta img/imagem1.png
+        const logoSrc = "img/imagem1.png";
+        
         return `
             <div class="header-via">
                 <div class="logo-area-via">
-                    ${logoHtml}
+                    <img src="${logoSrc}" class="logo-img-via" alt="Logo Prefeitura" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-logo-via" style="display:none;">🏥</div>
                     <div class="pref-text-via">
                         <div class="pref-name-via">PREFEITURA MUNICIPAL DE MAMANGUAPE</div>
                         <div class="secretaria-via">SECRETARIA MUNICIPAL DE SAÚDE</div>
@@ -550,13 +386,12 @@
         `;
     }
 
-    // ======================= SOLICITAÇÃO DE EXAMES (LISTA COMPLETA) =======================
+    // SOLICITAÇÃO DE EXAMES
     function renderSolicitacaoExames() {
         const dataAtual = getDataAtual();
         const headerVia = renderHeaderVia();
         const titulo = "SOLICITAÇÃO DE EXAMES LABORATORIAIS";
         
-        // LISTA COMPLETA DE EXAMES (53 exames como no modelo original)
         const examesLista = [
             "Hemograma", "Coagulograma", "Tipagem Sanguínea", "Sódio e Potássio", "Ureia", "Creatinina",
             "Glicemia de Jejum", "Teste de Tolerância a Glicose", "Hemoglobina Glicada", "Colesterol Total e Frações",
@@ -572,8 +407,7 @@
         function gerarCheckboxes(suffix) {
             let grid = '<div class="exames-grid">';
             examesLista.forEach(exame => {
-                let idSanitized = exame.replace(/[^a-zA-Z0-9]/g, '_');
-                grid += `<label><input type="checkbox" class="exame-cb-${suffix}" data-exame="${exame}"> ${exame}</label>`;
+                grid += `<label><input type="checkbox" class="exame-cb-${suffix}"> ${exame}</label>`;
             });
             grid += '</div>';
             return grid;
@@ -584,31 +418,29 @@
                 ${headerVia}
                 <div class="doc-title-via">${titulo}</div>
                 <div class="way-title">${viaNome}</div>
-                <div class="campo"><label>Unidade de Saúde:</label><input type="text" id="unidade_${suffix}" placeholder="Unidade solicitante"></div>
-                <div class="campo"><label>Nº Cartão do SUS:</label><input type="text" id="sus_${suffix}" placeholder="Número do Cartão SUS"></div>
-                <div class="campo"><label>Nome do Usuário:</label><input type="text" id="nome_${suffix}" placeholder="Nome completo"></div>
+                <div class="campo"><label>Unidade de Saúde:</label><input type="text" id="unidade_${suffix}"></div>
+                <div class="campo"><label>Nº Cartão do SUS:</label><input type="text" id="sus_${suffix}"></div>
+                <div class="campo"><label>Nome do Usuário:</label><input type="text" id="nome_${suffix}"></div>
                 <div class="campo-inline">
-                    <div class="campo"><label>Data de Nascimento:</label><input type="text" id="nasc_${suffix}" placeholder="dd/mm/aaaa"></div>
+                    <div class="campo"><label>Data Nasc.:</label><input type="text" id="nasc_${suffix}"></div>
                     <div class="campo"><label>Sexo:</label><div class="radio-group"><label><input type="radio" name="sexo_${suffix}" value="MAS"> MAS</label><label><input type="radio" name="sexo_${suffix}" value="FEM"> FEM</label></div></div>
-                    <div class="campo"><label>Telefone:</label><input type="text" id="telefone_${suffix}" placeholder="(83) 9xxxx-xxxx"></div>
+                    <div class="campo"><label>Telefone:</label><input type="text" id="telefone_${suffix}"></div>
                 </div>
-                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}" placeholder="Rua, nº, bairro"></div>
-                <div class="campo"><label>Dados Clínicos:</label><textarea rows="2" id="clinicos_${suffix}" placeholder="Queixas, hipóteses diagnósticas, comorbidades..."></textarea></div>
-                <div class="campo"><label>Material a Examinar (ex.: urina, sangue):</label><input type="text" id="material_${suffix}" placeholder="Tipo de material"></div>
+                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}"></div>
+                <div class="campo"><label>Dados Clínicos:</label><textarea rows="2" id="clinicos_${suffix}"></textarea></div>
+                <div class="campo"><label>Material a Examinar:</label><input type="text" id="material_${suffix}"></div>
                 ${gerarCheckboxes(suffix)}
-                <div class="campo"><label>Outros exames não listados:</label><textarea rows="2" id="outros_${suffix}" placeholder="Especificar outros exames solicitados..."></textarea></div>
+                <div class="campo"><label>Outros exames:</label><textarea rows="2" id="outros_${suffix}"></textarea></div>
                 <div class="assinatura-box">
-                    <div class="campo"><label>Médico Solicitante / CRM:</label><input type="text" id="medico_${suffix}" placeholder="Nome e CRM"></div>
-                    <div>Data da solicitação: <input type="text" id="dataExames_${suffix}" value="${dataAtual}" style="width:100px; display:inline-block;"></div>
+                    <div class="campo"><label>Médico Solicitante:</label><input type="text" id="medico_${suffix}"></div>
+                    <div>Data: <input type="text" id="dataExames_${suffix}" value="${dataAtual}" style="width:100px"></div>
                     ${getAssinaturaComponent("Carimbo e Assinatura")}
                 </div>
             </div>
         `;
         
-        const html = `<div class="two-ways">${viaContent("1ª VIA - Laboratório / Paciente", "via1")}${viaContent("2ª VIA - Prontuário / Unidade", "via2")}</div>`;
-        docContainer.innerHTML = html;
+        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Laboratório / Paciente", "via1")}${viaContent("2ª VIA - Prontuário / Unidade", "via2")}</div>`;
         
-        // Replicação de campos de texto
         const campos = ['unidade', 'sus', 'nome', 'nasc', 'telefone', 'endereco', 'clinicos', 'material', 'outros', 'medico', 'dataExames'];
         campos.forEach(campo => {
             const src = document.getElementById(`${campo}_via1`);
@@ -616,54 +448,20 @@
             if (src && tgt) src.addEventListener('input', () => { tgt.value = src.value; });
         });
         
-        // Replicação de radios de sexo
         const radios1 = document.querySelectorAll('input[name="sexo_via1"]');
         const radios2 = document.querySelectorAll('input[name="sexo_via2"]');
         radios1.forEach(r => r.addEventListener('change', () => { radios2.forEach(r2 => { if(r2.value === r.value) r2.checked = true; }); }));
         radios2.forEach(r => r.addEventListener('change', () => { radios1.forEach(r1 => { if(r1.value === r.value) r1.checked = true; }); }));
         
-        // Replicação de checkboxes de exames
         const cb1 = document.querySelectorAll('.exame-cb-via1');
         const cb2 = document.querySelectorAll('.exame-cb-via2');
-        if(cb1.length === cb2.length && cb1.length > 0) {
-            cb1.forEach((cb, idx) => {
-                cb.addEventListener('change', () => { cb2[idx].checked = cb.checked; });
-                cb2[idx].addEventListener('change', () => { cb.checked = cb2[idx].checked; });
-            });
+        if(cb1.length === cb2.length) {
+            cb1.forEach((cb, i) => cb.addEventListener('change', () => cb2[i].checked = cb.checked));
+            cb2.forEach((cb, i) => cb.addEventListener('change', () => cb1[i].checked = cb.checked));
         }
     }
 
-    // ======================= EVOLUÇÃO CLÍNICA =======================
-    function renderEvolucao() {
-        const dataAtual = getDataAtual();
-        const headerVia = renderHeaderVia();
-        const titulo = "EVOLUÇÃO CLÍNICA E PSIQUIÁTRICA";
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}
-                <div class="doc-title-via">${titulo}</div>
-                <div class="way-title">${viaNome}</div>
-                <div class="evolucao-content" style="flex:1; display:flex; flex-direction:column;">
-                    <div class="campo"><label>Paciente / Prontuário:</label><input type="text" id="paciente_${suffix}" placeholder="Nome completo e prontuário"></div>
-                    <div class="campo"><label>Data da Evolução:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
-                    <div class="campo-evolucao" style="flex:1; display:flex; flex-direction:column;">
-                        <label>Descrição (Evolução, queixas, exame psíquico, conduta):</label>
-                        <textarea id="descricao_${suffix}" placeholder="Registro detalhado da evolução clínica e psiquiátrica..." style="flex:1; min-height:200px;"></textarea>
-                    </div>
-                </div>
-                ${getAssinaturaComponent("Carimbo e Assinatura do Profissional")}
-            </div>
-        `;
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Prontuário", "via1")}${viaContent("2ª VIA - Controle", "via2")}</div>`;
-        ['paciente', 'data', 'descricao'].forEach(f => {
-            const src = document.getElementById(`${f}_via1`);
-            const tgt = document.getElementById(`${f}_via2`);
-            if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
-        });
-    }
-
-    // ======================= CONTROLE ESPECIAL =======================
+    // CONTROLE ESPECIAL
     function renderControleEspecial() {
         const dataAtual = getDataAtual();
         const headerVia = renderHeaderVia();
@@ -676,14 +474,14 @@
                     <div class="campo"><label>Nome:</label><input type="text" id="comp_nome_${suffix}"></div>
                     <div class="campo-inline"><div class="campo"><label>Identificação:</label><input type="text" id="comp_ident_${suffix}"></div><div class="campo"><label>Órgão Emissor:</label><input type="text" id="comp_orgao_${suffix}"></div></div>
                     <div class="campo"><label>Endereço:</label><input type="text" id="comp_end_${suffix}"></div>
-                    <div class="campo-inline"><div class="campo"><label>Cidade:</label><input type="text" id="comp_cidade_${suffix}"></div><div class="campo"><label>UF:</label><input type="text" id="comp_uf_${suffix}" style="width:40px"></div><div class="campo"><label>Telefone:</label><input type="text" id="comp_tel_${suffix}"></div></div>
+                    <div class="campo-inline"><div class="campo"><label>Cidade:</label><input type="text" id="comp_cidade_${suffix}"></div><div class="campo"><label>UF:</label><input type="text" id="comp_uf_${suffix}" style="width:50px"></div><div class="campo"><label>Telefone:</label><input type="text" id="comp_tel_${suffix}"></div></div>
                 </div>
                 <div class="card-fornecedor">
                     <div class="card-title">IDENTIFICAÇÃO DO FORNECEDOR</div>
                     <div class="campo"><label>Nome / Razão Social:</label><input type="text" id="forn_nome_${suffix}"></div>
                     <div class="campo-inline"><div class="campo"><label>CNPJ:</label><input type="text" id="forn_cnpj_${suffix}"></div><div class="campo"><label>CRF:</label><input type="text" id="forn_crf_${suffix}"></div></div>
                     <div class="campo"><label>Endereço:</label><input type="text" id="forn_end_${suffix}"></div>
-                    <div class="assinatura-data">Assinatura Farmacêutico: _________________<br>Data: <input type="text" id="forn_data_${suffix}" value="${dataAtual}" style="width:80px"></div>
+                    <div>Data: <input type="text" id="forn_data_${suffix}" value="${dataAtual}" style="width:90px"></div>
                 </div>
             </div>
         `;
@@ -701,6 +499,7 @@
                 ${compradorFornecedorHTML(suffix)}
             </div>
         `;
+        
         docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
         
         const textFields = ['paciente', 'endereco', 'prescricao', 'quant', 'data'];
@@ -709,7 +508,7 @@
         compFields.forEach(f => { const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`); if(s&&t) s.addEventListener('input',()=>t.value=s.value); });
     }
 
-    // ======================= PRESCRIÇÃO MÉDICA =======================
+    // PRESCRIÇÃO MÉDICA
     function renderPrescricao() {
         const dataAtual = getDataAtual();
         const headerVia = renderHeaderVia();
@@ -717,7 +516,9 @@
         
         const tabelaVia = (suffix) => {
             let rows = '';
-            for (let i = 0; i < 6; i++) rows += `<tr><td style="width:70%;"><textarea rows="2" placeholder="Medicamento / Via / Posologia" id="med_${suffix}_${i}"></textarea></td><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${dataAtual}" id="data_${suffix}_${i}"></td></tr>`;
+            for (let i = 0; i < 6; i++) {
+                rows += `<tr><td style="width:70%;"><textarea rows="2" placeholder="Medicamento / Via / Posologia" id="med_${suffix}_${i}"></textarea></td><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${dataAtual}" id="data_${suffix}_${i}"></td></tr>`;
+            }
             return `<table class="presc-table"><thead><tr><th>MEDICAMENTO / VIA / POSOLOGIA</th><th>DATA</th></tr></thead><tbody>${rows}</tbody></table>`;
         };
         
@@ -729,6 +530,7 @@
                 ${getAssinaturaComponent("Carimbo e Assinatura do Médico")}
             </div>
         `;
+        
         docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Farmácia", "via1")}${viaContent("2ª VIA - Prontuário / Unidade", "via2")}</div>`;
         
         for (let i = 0; i < 6; i++) {
@@ -741,7 +543,7 @@
         if (sAnot && tAnot) sAnot.addEventListener('input', () => tAnot.value = sAnot.value);
     }
 
-    // ======================= RECEITA SIMPLES =======================
+    // RECEITA SIMPLES
     function renderReceitaSimples() {
         const dataAtual = getDataAtual();
         const headerVia = renderHeaderVia();
@@ -750,15 +552,14 @@
         const viaContent = (viaNome, suffix) => `
             <div class="way">
                 ${headerVia}<div class="doc-title-via">${titulo}</div><div class="way-title">${viaNome}</div>
-                <div class="receita-content" style="flex:1; display:flex; flex-direction:column;">
-                    <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
-                    <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}"></div>
-                    <div class="campo-medicamento" style="flex:1; display:flex; flex-direction:column;"><label>Medicamento(s) / Descrição:</label><textarea id="medicamento_${suffix}" style="flex:1; min-height:180px;"></textarea></div>
-                    <div class="campo-inline"><div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div><div class="campo"><label>Validade:</label><input type="text" id="validade_${suffix}"></div></div>
-                    ${getAssinaturaComponent("Carimbo e Assinatura do Médico")}
-                </div>
+                <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
+                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}"></div>
+                <div class="campo"><label>Medicamento(s):</label><textarea rows="5" id="medicamento_${suffix}"></textarea></div>
+                <div class="campo-inline"><div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div><div class="campo"><label>Validade:</label><input type="text" id="validade_${suffix}"></div></div>
+                ${getAssinaturaComponent("Carimbo e Assinatura do Médico")}
             </div>
         `;
+        
         docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente", "via1")}${viaContent("2ª VIA - Unidade", "via2")}</div>`;
         ['paciente', 'endereco', 'medicamento', 'data', 'validade'].forEach(f => {
             const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`);
@@ -766,7 +567,7 @@
         });
     }
 
-    // ======================= LAUDO MÉDICO =======================
+    // LAUDO MÉDICO
     function renderLaudo() {
         const dataAtual = getDataAtual();
         const headerVia = renderHeaderVia();
@@ -775,18 +576,40 @@
         const viaContent = (viaNome, suffix) => `
             <div class="way">
                 ${headerVia}<div class="doc-title-via">${titulo}</div><div class="way-title">${viaNome}</div>
-                <div class="laudo-content" style="flex:1; display:flex; flex-direction:column;">
-                    <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
-                    <div class="campo"><label>Data Nascimento:</label><input type="text" id="nascimento_${suffix}"></div>
-                    <div class="campo"><label>CID:</label><input type="text" id="cid_${suffix}"></div>
-                    <div class="campo-descricao" style="flex:1; display:flex; flex-direction:column;"><label>Descrição do Laudo:</label><textarea id="descricao_${suffix}" style="flex:1; min-height:130px;"></textarea></div>
-                    <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
-                    ${getAssinaturaComponent("Médico Responsável / CRM")}
-                </div>
+                <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
+                <div class="campo"><label>Data Nascimento:</label><input type="text" id="nascimento_${suffix}"></div>
+                <div class="campo"><label>CID:</label><input type="text" id="cid_${suffix}"></div>
+                <div class="campo"><label>Descrição:</label><textarea rows="5" id="descricao_${suffix}"></textarea></div>
+                <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
+                ${getAssinaturaComponent("Médico Responsável / CRM")}
             </div>
         `;
+        
         docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Laudo / Paciente", "via1")}${viaContent("2ª VIA - Prontuário", "via2")}</div>`;
         ['paciente', 'nascimento', 'cid', 'descricao', 'data'].forEach(f => {
+            const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`);
+            if (s && t) s.addEventListener('input', () => t.value = s.value);
+        });
+    }
+
+    // EVOLUÇÃO CLÍNICA
+    function renderEvolucao() {
+        const dataAtual = getDataAtual();
+        const headerVia = renderHeaderVia();
+        const titulo = "EVOLUÇÃO CLÍNICA E PSIQUIÁTRICA";
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}<div class="doc-title-via">${titulo}</div><div class="way-title">${viaNome}</div>
+                <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
+                <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
+                <div class="campo"><label>Evolução:</label><textarea rows="8" id="descricao_${suffix}"></textarea></div>
+                ${getAssinaturaComponent("Assinatura do Profissional")}
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Prontuário", "via1")}${viaContent("2ª VIA - Controle", "via2")}</div>`;
+        ['paciente', 'data', 'descricao'].forEach(f => {
             const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`);
             if (s && t) s.addEventListener('input', () => t.value = s.value);
         });
@@ -807,10 +630,7 @@
     unidadeSelect.addEventListener("change", () => { currentUnidade = unidadeSelect.value; renderizar(); });
     docSelector.addEventListener("change", () => { currentDoc = docSelector.value; renderizar(); });
     printBtn.addEventListener("click", () => window.print());
-    logoInput.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if(file) { const reader = new FileReader(); reader.onload = (ev) => { logoBase64 = ev.target.result; renderizar(); }; reader.readAsDataURL(file); }
-    });
+    
     renderizar();
 </script>
 </body>
