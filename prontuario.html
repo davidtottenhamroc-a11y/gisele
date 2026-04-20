@@ -167,11 +167,11 @@
             border-bottom: 1px solid #b9c8e0;
         }
 
-        /* Via única para Evolução (vertical) */
+        /* Via única para documentos verticais */
         .single-way {
             border: 1px solid #a3b8d4;
             background: #ffffff;
-            padding: 10px;
+            padding: 20px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
@@ -326,7 +326,86 @@
             font-size: 0.55rem;
         }
 
-        /* ======================== IMPRESSÃO ======================== */
+        /* ======================== ESTILOS DO ATESTADO ======================== */
+        .atestado-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .atestado-content {
+            font-family: 'Times New Roman', Times, serif;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .atestado-content h1 {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 10px 0 20px 0;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .atestado-texto {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            text-align: justify;
+            flex: 1;
+        }
+        .atestado-texto p {
+            margin-bottom: 15px;
+        }
+        .atestado-texto .campo-inline-texto {
+            display: inline-block;
+            margin: 0 5px;
+        }
+        .atestado-texto input[type="text"] {
+            display: inline-block;
+            width: auto;
+            min-width: 200px;
+            border: none;
+            border-bottom: 1px solid #000;
+            border-radius: 0;
+            padding: 4px 0;
+            font-size: 0.9rem;
+            background: transparent;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .atestado-texto input[type="text"]:focus {
+            outline: none;
+            border-bottom-color: #1e3a5f;
+        }
+        .atestado-texto input[type="text"].small-input {
+            min-width: 70px;
+            width: 70px;
+            text-align: center;
+        }
+        .atestado-texto input[type="text"].rg-input {
+            min-width: 130px;
+            width: 130px;
+        }
+        .atestado-texto input[type="text"].cpf-input {
+            min-width: 140px;
+            width: 140px;
+        }
+        .atestado-texto strong {
+            font-weight: bold;
+        }
+        .atestado-assinatura {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .atestado-assinatura p {
+            margin-bottom: 10px;
+        }
+        .atestado-rodape {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.7rem;
+            border-top: 1px solid #ccc;
+            padding-top: 12px;
+            line-height: 1.4;
+        }
+
+        /* IMPRESSÃO */
         @media print {
             .toolbar, .no-print, .btn-group, .btn, select, #printBtn {
                 display: none !important;
@@ -364,36 +443,46 @@
                 min-height: 30px;
             }
             
-            /* Receita Simples - campo de medicamento limitado para caber em 1 folha */
+            /* Receita Simples */
             .receita-content .campo-medicamento textarea {
                 min-height: 180px !important;
                 height: auto !important;
                 max-height: 220px !important;
             }
             
-            /* Laudo Médico - OTIMIZADO PARA CABER EM 1 PÁGINA COMPLETA */
-            .laudo-page {
-                max-width: 100%;
-                margin: 0;
-                padding: 0;
-            }
+            /* Laudo Médico */
             .laudo-content .campo-descricao textarea {
                 min-height: 180px !important;
                 height: auto !important;
                 max-height: 220px !important;
             }
-            .laudo-content .campo {
-                margin-bottom: 3px;
+            
+            /* Atestado - ocupa página inteira vertical com conteúdo no topo */
+            .single-way {
+                min-height: 27.5cm;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+            .atestado-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            .atestado-texto {
+                flex: 1;
+            }
+            .atestado-texto input[type="text"] {
+                border-bottom: 1px solid #000 !important;
+            }
+            .atestado-assinatura {
+                margin-top: 20px;
+            }
+            .atestado-rodape {
+                margin-top: 20px;
             }
         }
         
-        /* Estilos específicos para Evolução (modo retrato) */
-        .evolucao-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        /* Receita Simples - campo expandido na tela (não na impressão) */
         .receita-content {
             flex: 1;
             display: flex;
@@ -410,12 +499,15 @@
             min-height: 120px;
         }
         
-        /* Laudo - campo na tela */
         .laudo-content .campo-descricao textarea {
             min-height: 100px;
         }
         
-        /* Estilos para impressão da evolução */
+        .evolucao-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
         .evolucao-print .single-way {
             max-width: 100%;
             min-height: 27cm;
@@ -453,6 +545,7 @@
                 <option value="laudo">📑 Laudo Médico</option>
                 <option value="exames">🔬 Solicitação de Exames</option>
                 <option value="evolucao">📝 Evolução Clínica</option>
+                <option value="atestado">📋 Atestado Médico</option>
             </select>
             <button id="printBtn" class="btn btn-primary">🖨️ IMPRIMIR</button>
         </div>
@@ -461,8 +554,8 @@
 </div>
 
 <script>
-    let currentDoc = "exames";
-    let currentUnidade = "AME";
+    let currentDoc = "atestado";
+    let currentUnidade = "CAPS";
 
     const docContainer = document.getElementById("documentoRender");
     const unidadeSelect = document.getElementById("unidadeSelect");
@@ -474,15 +567,21 @@
         const dia = String(hoje.getDate()).padStart(2, '0');
         const mes = String(hoje.getMonth() + 1).padStart(2, '0');
         const ano = hoje.getFullYear();
-        return `${dia}/${mes}/${ano}`;
+        const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+        return {
+            dataNumerica: `${dia}/${mes}/${ano}`,
+            dia: parseInt(dia),
+            mesExtenso: meses[hoje.getMonth()],
+            ano: ano
+        };
     }
 
     function getAssinaturaComponent(texto) {
         return `
             <div class="assinatura-container">
-                <div class="print-hide-text" style="font-size:0.6rem; font-weight:bold; text-align:center;">${texto}</div>
-                <div class="print-show-line" style="text-align:center; margin-top:3px;">
-                    <div style="display:inline-block; width:80%; border-bottom:1px solid #000;"></div>
+                <div class="print-hide-text" style="font-size:0.8rem; font-weight:bold; text-align:center;">${texto}</div>
+                <div class="print-show-line" style="text-align:center; margin-top:5px;">
+                    <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
                 </div>
             </div>
         `;
@@ -512,9 +611,47 @@
         `;
     }
 
-    // ======================= LAUDO MÉDICO (OTIMIZADO PARA 1 PÁGINA) =======================
+    // ======================= ATESTADO MÉDICO (FORMATO CORRETO - CONTEÚDO NO TOPO) =======================
+    function renderAtestado() {
+        const data = getDataAtual();
+        const headerVia = renderHeaderVia();
+        
+        const html = `
+            <div class="atestado-container">
+                <div class="single-way">
+                    ${headerVia}
+                    <div class="atestado-content">
+                        <h1>ATESTADO MÉDICO</h1>
+                        
+                        <div class="atestado-texto">
+                            <p>Atesto para os devidos fins que o(a) Sr.(a)</p>
+                            <p><input type="text" id="nome_paciente" placeholder="Nome completo do paciente" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:0.9rem; padding:5px 0;"></p>
+                            <p>portador(a) do RG nº <input type="text" id="rg_paciente" placeholder="RG" class="rg-input" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:0.9rem; padding:4px 0;"> e CPF nº <input type="text" id="cpf_paciente" placeholder="CPF" class="cpf-input" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:0.9rem; padding:4px 0;"></p>
+                            <p>compareceu a consulta médica nesta data, permanecendo sob atendimento.</p>
+                            <p>Em decorrência de avaliação clínica, foi necessário(a) o(a) afastamento de suas atividades habituais por <input type="text" id="dias_afastamento" placeholder="___" class="small-input" style="display:inline-block; width:60px; text-align:center; border:none; border-bottom:1px solid #000; border-radius:0; font-size:0.9rem; padding:4px 0;"> dia(s), a contar desta data, por motivo de saúde.</p>
+                            <p>Declaro que, durante o período mencionado, o(a) paciente encontra-se <strong>temporariamente inapto(a)</strong> para o exercício de suas atividades, devendo retornar após o prazo estabelecido ou mediante nova avaliação médica.</p>
+                        </div>
+                        
+                        <div class="atestado-assinatura">
+                            <p>Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
+                            ${getAssinaturaComponent("Assinatura/Carimbo")}
+                        </div>
+                        
+                        <div class="atestado-rodape">
+                            <p><strong>CAPS AD III REGIONAL VALE DO MAMANGUAPE</strong></p>
+                            <p>Rua Fátio Barbosa Vaz, Campo, Mamanguape/PB, 58280-000</p>
+                            <p>capsad3mamanguape@outlook.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
+    }
+
+    // ======================= LAUDO MÉDICO =======================
     function renderLaudo() {
-        const dataAtual = getDataAtual();
+        const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
         const titulo = "LAUDO MÉDICO";
         
@@ -547,9 +684,9 @@
         });
     }
 
-    // ======================= EVOLUÇÃO CLÍNICA (APENAS 1 VIA, VERTICAL) =======================
+    // ======================= EVOLUÇÃO CLÍNICA =======================
     function renderEvolucao() {
-        const dataAtual = getDataAtual();
+        const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
         const titulo = "EVOLUÇÃO CLÍNICA E PSIQUIÁTRICA";
         
@@ -576,9 +713,9 @@
         document.body.classList.add('evolucao-print');
     }
 
-    // ======================= RECEITA SIMPLES (2 VIAS) =======================
+    // ======================= RECEITA SIMPLES =======================
     function renderReceitaSimples() {
-        const dataAtual = getDataAtual();
+        const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
         const titulo = "RECEITA SIMPLES";
         
@@ -613,9 +750,9 @@
         });
     }
 
-    // ======================= CONTROLE ESPECIAL (SEM CAMPO QUANTIDADE) =======================
+    // ======================= CONTROLE ESPECIAL =======================
     function renderControleEspecial() {
-        const dataAtual = getDataAtual();
+        const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
         const titulo = "RECEITUÁRIO DE CONTROLE ESPECIAL";
         
@@ -661,7 +798,7 @@
 
     // ======================= SOLICITAÇÃO DE EXAMES =======================
     function renderSolicitacaoExames() {
-        const dataAtual = getDataAtual();
+        const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
         const titulo = "SOLICITAÇÃO DE EXAMES LABORATORIAIS";
         
@@ -736,7 +873,7 @@
 
     // ======================= PRESCRIÇÃO MÉDICA =======================
     function renderPrescricao() {
-        const dataAtual = getDataAtual();
+        const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
         const titulo = "PRESCRIÇÃO MÉDICA";
         
@@ -779,7 +916,8 @@
             case "laudo": renderLaudo(); break;
             case "exames": renderSolicitacaoExames(); break;
             case "evolucao": renderEvolucao(); break;
-            default: renderSolicitacaoExames();
+            case "atestado": renderAtestado(); break;
+            default: renderAtestado();
         }
     }
 
@@ -788,6 +926,13 @@
             const style = document.createElement('style');
             style.id = 'print-orientation';
             style.textContent = `@page { size: A4 portrait; margin: 0.3cm; }`;
+            document.head.appendChild(style);
+            window.print();
+            style.remove();
+        } else if (currentDoc === "atestado") {
+            const style = document.createElement('style');
+            style.id = 'print-orientation';
+            style.textContent = `@page { size: A4 portrait; margin: 0.5cm; }`;
             document.head.appendChild(style);
             window.print();
             style.remove();
