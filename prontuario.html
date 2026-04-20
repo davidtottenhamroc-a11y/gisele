@@ -167,6 +167,18 @@
             border-bottom: 1px solid #b9c8e0;
         }
 
+        /* Via única para Evolução (vertical) */
+        .single-way {
+            border: 1px solid #a3b8d4;
+            background: #ffffff;
+            padding: 10px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .campo {
             margin-bottom: 4px;
         }
@@ -314,17 +326,8 @@
             font-size: 0.55rem;
         }
 
-        /* IMPRESSÃO - UMA ÚNICA FOLHA A4 PAISAGEM */
+        /* ======================== IMPRESSÃO ======================== */
         @media print {
-            @page {
-                size: A4 landscape;
-                margin: 0.2cm;
-            }
-            body {
-                background: white;
-                padding: 0;
-                margin: 0;
-            }
             .toolbar, .no-print, .btn-group, .btn, select, #printBtn {
                 display: none !important;
             }
@@ -360,9 +363,78 @@
             .presc-table textarea {
                 min-height: 30px;
             }
-            .campo-medicamento textarea, .campo-descricao textarea, .campo-evolucao textarea {
-                min-height: 80px;
+            
+            /* Receita Simples - campo de medicamento limitado para caber em 1 folha */
+            .receita-content .campo-medicamento textarea {
+                min-height: 180px !important;
+                height: auto !important;
+                max-height: 220px !important;
             }
+            
+            /* Laudo Médico - OTIMIZADO PARA CABER EM 1 PÁGINA COMPLETA */
+            .laudo-page {
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .laudo-content .campo-descricao textarea {
+                min-height: 180px !important;
+                height: auto !important;
+                max-height: 220px !important;
+            }
+            .laudo-content .campo {
+                margin-bottom: 3px;
+            }
+        }
+        
+        /* Estilos específicos para Evolução (modo retrato) */
+        .evolucao-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Receita Simples - campo expandido na tela (não na impressão) */
+        .receita-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .receita-content .campo-medicamento {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 4px;
+        }
+        .receita-content .campo-medicamento textarea {
+            flex: 1;
+            min-height: 120px;
+        }
+        
+        /* Laudo - campo na tela */
+        .laudo-content .campo-descricao textarea {
+            min-height: 100px;
+        }
+        
+        /* Estilos para impressão da evolução */
+        .evolucao-print .single-way {
+            max-width: 100%;
+            min-height: 27cm;
+            display: flex;
+            flex-direction: column;
+        }
+        .evolucao-print .evolucao-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .evolucao-print .campo-evolucao {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .evolucao-print .campo-evolucao textarea {
+            min-height: 18cm !important;
+            height: auto !important;
         }
     </style>
 </head>
@@ -421,7 +493,7 @@
             ? "AMBULATÓRIO DE ESPECIALIDADES - AME" 
             : "CAPS AD III REGIONAL VALE DO MAMANGUAPE";
         
-        const logoSrc = "img/imagem1.png";
+        const logoSrc = "img/Imagem1.png";
         
         return `
             <div class="header-via">
@@ -440,7 +512,154 @@
         `;
     }
 
-    // SOLICITAÇÃO DE EXAMES
+    // ======================= LAUDO MÉDICO (OTIMIZADO PARA 1 PÁGINA) =======================
+    function renderLaudo() {
+        const dataAtual = getDataAtual();
+        const headerVia = renderHeaderVia();
+        const titulo = "LAUDO MÉDICO";
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}
+                <div class="doc-title-via">${titulo}</div>
+                <div class="way-title">${viaNome}</div>
+                <div class="laudo-content" style="display:flex; flex-direction:column;">
+                    <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}" placeholder="Nome completo"></div>
+                    <div class="campo"><label>Data de Nascimento:</label><input type="text" id="nascimento_${suffix}" placeholder="dd/mm/aaaa"></div>
+                    <div class="campo"><label>Diagnóstico / CID:</label><input type="text" id="cid_${suffix}" placeholder="CID-10"></div>
+                    <div class="campo-descricao">
+                        <label>Descrição do Laudo:</label>
+                        <textarea id="descricao_${suffix}" placeholder="Justificativa clínica, evolução, parecer técnico, conclusão..." rows="8"></textarea>
+                    </div>
+                    <div class="campo"><label>Data do Laudo:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
+                    ${getAssinaturaComponent("Médico Responsável / CRM")}
+                </div>
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways laudo-page">${viaContent("1ª VIA - Laudo / Paciente", "via1")}${viaContent("2ª VIA - Prontuário / Unidade", "via2")}</div>`;
+        
+        const campos = ['paciente', 'nascimento', 'cid', 'descricao', 'data'];
+        campos.forEach(campo => {
+            const src = document.getElementById(`${campo}_via1`);
+            const tgt = document.getElementById(`${campo}_via2`);
+            if (src && tgt) src.addEventListener('input', () => { tgt.value = src.value; });
+        });
+    }
+
+    // ======================= EVOLUÇÃO CLÍNICA (APENAS 1 VIA, VERTICAL) =======================
+    function renderEvolucao() {
+        const dataAtual = getDataAtual();
+        const headerVia = renderHeaderVia();
+        const titulo = "EVOLUÇÃO CLÍNICA E PSIQUIÁTRICA";
+        
+        const html = `
+            <div class="evolucao-container">
+                <div class="single-way">
+                    ${headerVia}
+                    <div class="doc-title-via">${titulo}</div>
+                    <div class="evolucao-content" style="display:flex; flex-direction:column;">
+                        <div class="campo"><label>Paciente / Prontuário:</label><input type="text" id="paciente_evolucao" placeholder="Nome completo e número do prontuário"></div>
+                        <div class="campo"><label>Data da Evolução:</label><input type="text" id="data_evolucao" value="${dataAtual}"></div>
+                        <div class="campo-evolucao" style="flex:1; display:flex; flex-direction:column;">
+                            <label>Descrição (Evolução, queixas, exame psíquico, conduta):</label>
+                            <textarea id="descricao_evolucao" placeholder="Registro detalhado da evolução clínica e psiquiátrica, sintomas, ajustes de medicação, encaminhamentos, intercorrências, plano terapêutico..." style="min-height:250px; flex:1;"></textarea>
+                        </div>
+                        ${getAssinaturaComponent("Carimbo e Assinatura do Profissional")}
+                        <div style="margin-top:10px; text-align:center;">_________________________________</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
+        
+        document.body.classList.add('evolucao-print');
+    }
+
+    // ======================= RECEITA SIMPLES (2 VIAS) =======================
+    function renderReceitaSimples() {
+        const dataAtual = getDataAtual();
+        const headerVia = renderHeaderVia();
+        const titulo = "RECEITA SIMPLES";
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}
+                <div class="doc-title-via">${titulo}</div>
+                <div class="way-title">${viaNome}</div>
+                <div class="receita-content" style="display:flex; flex-direction:column;">
+                    <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}" placeholder="Nome completo"></div>
+                    <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}" placeholder="Rua, número, bairro, cidade"></div>
+                    <div class="campo-medicamento" style="display:flex; flex-direction:column;">
+                        <label>Medicamento(s) / Descrição:</label>
+                        <textarea id="medicamento_${suffix}" placeholder="Descrever medicamentos, posologia, duração do tratamento, orientações importantes..." rows="6"></textarea>
+                    </div>
+                    <div class="campo-inline">
+                        <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
+                        <div class="campo"><label>Validade:</label><input type="text" id="validade_${suffix}" placeholder="__/__/____"></div>
+                    </div>
+                    ${getAssinaturaComponent("Carimbo e Assinatura do Médico")}
+                </div>
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente", "via1")}${viaContent("2ª VIA - Unidade / Arquivo", "via2")}</div>`;
+        
+        const campos = ['paciente', 'endereco', 'medicamento', 'data', 'validade'];
+        campos.forEach(campo => {
+            const src = document.getElementById(`${campo}_via1`);
+            const tgt = document.getElementById(`${campo}_via2`);
+            if (src && tgt) src.addEventListener('input', () => { tgt.value = src.value; });
+        });
+    }
+
+    // ======================= CONTROLE ESPECIAL (SEM CAMPO QUANTIDADE) =======================
+    function renderControleEspecial() {
+        const dataAtual = getDataAtual();
+        const headerVia = renderHeaderVia();
+        const titulo = "RECEITUÁRIO DE CONTROLE ESPECIAL";
+        
+        const compradorFornecedorHTML = (suffix) => `
+            <div class="comprador-fornecedor">
+                <div class="card-comprador">
+                    <div class="card-title">IDENTIFICAÇÃO DO COMPRADOR</div>
+                    <div class="campo"><label>Nome:</label><input type="text" id="comp_nome_${suffix}"></div>
+                    <div class="campo-inline"><div class="campo"><label>Identificação:</label><input type="text" id="comp_ident_${suffix}"></div><div class="campo"><label>Órgão Emissor:</label><input type="text" id="comp_orgao_${suffix}"></div></div>
+                    <div class="campo"><label>Endereço:</label><input type="text" id="comp_end_${suffix}"></div>
+                    <div class="campo-inline"><div class="campo"><label>Cidade:</label><input type="text" id="comp_cidade_${suffix}"></div><div class="campo"><label>UF:</label><input type="text" id="comp_uf_${suffix}" style="width:40px"></div><div class="campo"><label>Telefone:</label><input type="text" id="comp_tel_${suffix}"></div></div>
+                </div>
+                <div class="card-fornecedor">
+                    <div class="card-title">IDENTIFICAÇÃO DO FORNECEDOR</div>
+                    <div class="campo"><label>Nome / Razão Social:</label><input type="text" id="forn_nome_${suffix}"></div>
+                    <div class="campo-inline"><div class="campo"><label>CNPJ:</label><input type="text" id="forn_cnpj_${suffix}"></div><div class="campo"><label>CRF:</label><input type="text" id="forn_crf_${suffix}"></div></div>
+                    <div class="campo"><label>Endereço:</label><input type="text" id="forn_end_${suffix}"></div>
+                    <div>Data: <input type="text" id="forn_data_${suffix}" value="${dataAtual}" style="width:80px"></div>
+                </div>
+            </div>
+        `;
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}<div class="doc-title-via">${titulo}</div><div class="way-title">${viaNome}</div>
+                <div class="emitente-box"><h4>IDENTIFICAÇÃO DO EMITENTE</h4><div><strong>PREFEITURA MUNICIPAL DE MAMANGUAPE</strong></div><div>SECRETARIA MUNICIPAL DE SAÚDE</div><div>CNPJ: 08.674.396/0001-64</div>${getAssinaturaComponent("CARIMBO E ASSINATURA DO MÉDICO(A)")}</div>
+                <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
+                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}"></div>
+                <div class="campo"><label>Prescrição:</label><textarea rows="2" id="prescricao_${suffix}" placeholder="Medicamento, dosagem, posologia..."></textarea></div>
+                <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
+                ${getAssinaturaComponent("CARIMBO E ASSINATURA DO MÉDICO(A)")}
+                ${compradorFornecedorHTML(suffix)}
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const textFields = ['paciente', 'endereco', 'prescricao', 'data'];
+        textFields.forEach(f => { const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`); if(s&&t) s.addEventListener('input',()=>t.value=s.value); });
+        const compFields = ['comp_nome', 'comp_ident', 'comp_orgao', 'comp_end', 'comp_cidade', 'comp_uf', 'comp_tel', 'forn_nome', 'forn_cnpj', 'forn_crf', 'forn_end', 'forn_data'];
+        compFields.forEach(f => { const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`); if(s&&t) s.addEventListener('input',()=>t.value=s.value); });
+    }
+
+    // ======================= SOLICITAÇÃO DE EXAMES =======================
     function renderSolicitacaoExames() {
         const dataAtual = getDataAtual();
         const headerVia = renderHeaderVia();
@@ -515,54 +734,7 @@
         }
     }
 
-    // CONTROLE ESPECIAL
-    function renderControleEspecial() {
-        const dataAtual = getDataAtual();
-        const headerVia = renderHeaderVia();
-        const titulo = "RECEITUÁRIO DE CONTROLE ESPECIAL";
-        
-        const compradorFornecedorHTML = (suffix) => `
-            <div class="comprador-fornecedor">
-                <div class="card-comprador">
-                    <div class="card-title">IDENTIFICAÇÃO DO COMPRADOR</div>
-                    <div class="campo"><label>Nome:</label><input type="text" id="comp_nome_${suffix}"></div>
-                    <div class="campo-inline"><div class="campo"><label>Identificação:</label><input type="text" id="comp_ident_${suffix}"></div><div class="campo"><label>Órgão Emissor:</label><input type="text" id="comp_orgao_${suffix}"></div></div>
-                    <div class="campo"><label>Endereço:</label><input type="text" id="comp_end_${suffix}"></div>
-                    <div class="campo-inline"><div class="campo"><label>Cidade:</label><input type="text" id="comp_cidade_${suffix}"></div><div class="campo"><label>UF:</label><input type="text" id="comp_uf_${suffix}" style="width:40px"></div><div class="campo"><label>Telefone:</label><input type="text" id="comp_tel_${suffix}"></div></div>
-                </div>
-                <div class="card-fornecedor">
-                    <div class="card-title">IDENTIFICAÇÃO DO FORNECEDOR</div>
-                    <div class="campo"><label>Nome / Razão Social:</label><input type="text" id="forn_nome_${suffix}"></div>
-                    <div class="campo-inline"><div class="campo"><label>CNPJ:</label><input type="text" id="forn_cnpj_${suffix}"></div><div class="campo"><label>CRF:</label><input type="text" id="forn_crf_${suffix}"></div></div>
-                    <div class="campo"><label>Endereço:</label><input type="text" id="forn_end_${suffix}"></div>
-                    <div>Data: <input type="text" id="forn_data_${suffix}" value="${dataAtual}" style="width:80px"></div>
-                </div>
-            </div>
-        `;
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}<div class="doc-title-via">${titulo}</div><div class="way-title">${viaNome}</div>
-                <div class="emitente-box"><h4>IDENTIFICAÇÃO DO EMITENTE</h4><div><strong>PREFEITURA MUNICIPAL DE MAMANGUAPE</strong></div><div>SECRETARIA MUNICIPAL DE SAÚDE</div><div>CNPJ: 08.674.396/0001-64</div>${getAssinaturaComponent("CARIMBO E ASSINATURA DO MÉDICO(A)")}</div>
-                <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
-                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}"></div>
-                <div class="campo"><label>Prescrição:</label><textarea rows="2" id="prescricao_${suffix}"></textarea></div>
-                <div class="campo"><label>Quantidade:</label><input type="text" id="quant_${suffix}"></div>
-                <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
-                ${getAssinaturaComponent("CARIMBO E ASSINATURA DO MÉDICO(A)")}
-                ${compradorFornecedorHTML(suffix)}
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
-        
-        const textFields = ['paciente', 'endereco', 'prescricao', 'quant', 'data'];
-        textFields.forEach(f => { const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`); if(s&&t) s.addEventListener('input',()=>t.value=s.value); });
-        const compFields = ['comp_nome', 'comp_ident', 'comp_orgao', 'comp_end', 'comp_cidade', 'comp_uf', 'comp_tel', 'forn_nome', 'forn_cnpj', 'forn_crf', 'forn_end', 'forn_data'];
-        compFields.forEach(f => { const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`); if(s&&t) s.addEventListener('input',()=>t.value=s.value); });
-    }
-
-    // PRESCRIÇÃO MÉDICA
+    // ======================= PRESCRIÇÃO MÉDICA =======================
     function renderPrescricao() {
         const dataAtual = getDataAtual();
         const headerVia = renderHeaderVia();
@@ -597,79 +769,9 @@
         if (sAnot && tAnot) sAnot.addEventListener('input', () => tAnot.value = sAnot.value);
     }
 
-    // RECEITA SIMPLES
-    function renderReceitaSimples() {
-        const dataAtual = getDataAtual();
-        const headerVia = renderHeaderVia();
-        const titulo = "RECEITA SIMPLES";
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}<div class="doc-title-via">${titulo}</div><div class="way-title">${viaNome}</div>
-                <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
-                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}"></div>
-                <div class="campo"><label>Medicamento(s):</label><textarea rows="4" id="medicamento_${suffix}"></textarea></div>
-                <div class="campo-inline"><div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div><div class="campo"><label>Validade:</label><input type="text" id="validade_${suffix}"></div></div>
-                ${getAssinaturaComponent("Carimbo e Assinatura do Médico")}
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente", "via1")}${viaContent("2ª VIA - Unidade", "via2")}</div>`;
-        ['paciente', 'endereco', 'medicamento', 'data', 'validade'].forEach(f => {
-            const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`);
-            if (s && t) s.addEventListener('input', () => t.value = s.value);
-        });
-    }
-
-    // LAUDO MÉDICO
-    function renderLaudo() {
-        const dataAtual = getDataAtual();
-        const headerVia = renderHeaderVia();
-        const titulo = "LAUDO MÉDICO";
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}<div class="doc-title-via">${titulo}</div><div class="way-title">${viaNome}</div>
-                <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
-                <div class="campo"><label>Data Nascimento:</label><input type="text" id="nascimento_${suffix}"></div>
-                <div class="campo"><label>CID:</label><input type="text" id="cid_${suffix}"></div>
-                <div class="campo"><label>Descrição:</label><textarea rows="4" id="descricao_${suffix}"></textarea></div>
-                <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
-                ${getAssinaturaComponent("Médico Responsável / CRM")}
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Laudo / Paciente", "via1")}${viaContent("2ª VIA - Prontuário", "via2")}</div>`;
-        ['paciente', 'nascimento', 'cid', 'descricao', 'data'].forEach(f => {
-            const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`);
-            if (s && t) s.addEventListener('input', () => t.value = s.value);
-        });
-    }
-
-    // EVOLUÇÃO CLÍNICA
-    function renderEvolucao() {
-        const dataAtual = getDataAtual();
-        const headerVia = renderHeaderVia();
-        const titulo = "EVOLUÇÃO CLÍNICA E PSIQUIÁTRICA";
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}<div class="doc-title-via">${titulo}</div><div class="way-title">${viaNome}</div>
-                <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
-                <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
-                <div class="campo"><label>Evolução:</label><textarea rows="6" id="descricao_${suffix}"></textarea></div>
-                ${getAssinaturaComponent("Assinatura do Profissional")}
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Prontuário", "via1")}${viaContent("2ª VIA - Controle", "via2")}</div>`;
-        ['paciente', 'data', 'descricao'].forEach(f => {
-            const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`);
-            if (s && t) s.addEventListener('input', () => t.value = s.value);
-        });
-    }
-
     function renderizar() {
+        document.body.classList.remove('evolucao-print');
+        
         switch(currentDoc) {
             case "controleEspecial": renderControleEspecial(); break;
             case "prescricao": renderPrescricao(); break;
@@ -681,9 +783,34 @@
         }
     }
 
+    function handlePrint() {
+        if (currentDoc === "evolucao") {
+            const style = document.createElement('style');
+            style.id = 'print-orientation';
+            style.textContent = `@page { size: A4 portrait; margin: 0.3cm; }`;
+            document.head.appendChild(style);
+            window.print();
+            style.remove();
+        } else if (currentDoc === "laudo") {
+            const style = document.createElement('style');
+            style.id = 'print-orientation';
+            style.textContent = `@page { size: A4 landscape; margin: 0.2cm; }`;
+            document.head.appendChild(style);
+            window.print();
+            style.remove();
+        } else {
+            const style = document.createElement('style');
+            style.id = 'print-orientation';
+            style.textContent = `@page { size: A4 landscape; margin: 0.3cm; }`;
+            document.head.appendChild(style);
+            window.print();
+            style.remove();
+        }
+    }
+
     unidadeSelect.addEventListener("change", () => { currentUnidade = unidadeSelect.value; renderizar(); });
     docSelector.addEventListener("change", () => { currentDoc = docSelector.value; renderizar(); });
-    printBtn.addEventListener("click", () => window.print());
+    printBtn.addEventListener("click", handlePrint);
     
     renderizar();
 </script>
