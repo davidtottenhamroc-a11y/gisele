@@ -141,6 +141,7 @@
             text-transform: uppercase;
         }
 
+        /* Layout para 2 vias */
         .two-ways {
             display: flex;
             gap: 12px;
@@ -167,11 +168,22 @@
             border-bottom: 1px solid #b9c8e0;
         }
 
-        /* Via única para documentos verticais */
+        /* Layout para 1 via (horizontal) */
+        .single-way-horizontal {
+            border: 1px solid #a3b8d4;
+            background: #ffffff;
+            padding: 15px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* Layout para 1 via vertical */
         .single-way {
             border: 1px solid #a3b8d4;
             background: #ffffff;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
@@ -203,7 +215,8 @@
             padding: 3px 4px;
             border: 1px solid #8f9eb2;
             font-family: 'Times New Roman', Times, serif;
-            font-size: 0.6rem;
+            font-size: 12pt;
+            font-weight: bold;
             background: #fff;
             border-radius: 3px;
         }
@@ -213,7 +226,8 @@
             padding: 3px 4px;
             border: 1px solid #8f9eb2;
             font-family: 'Times New Roman', Times, serif;
-            font-size: 0.6rem;
+            font-size: 12pt;
+            font-weight: bold;
             background: #fff;
             border-radius: 3px;
             resize: vertical;
@@ -262,7 +276,8 @@
             background: #eef2f5;
         }
         .presc-table textarea {
-            font-size: 0.55rem;
+            font-size: 10pt;
+            font-weight: bold;
             padding: 2px;
             min-height: 35px;
             max-height: 100px;
@@ -324,6 +339,10 @@
             font-weight: bold;
             text-align: center;
         }
+        .card-comprador input, .card-fornecedor input {
+            font-size: 10pt;
+            font-weight: bold;
+        }
 
         .radio-group {
             display: flex;
@@ -338,7 +357,7 @@
             font-size: 0.55rem;
         }
 
-        /* ======================== ESTILOS DO MAIS VIDA ======================== */
+        /* Estilos para Mais Vida */
         .maisvida-container {
             max-width: 800px;
             margin: 0 auto;
@@ -373,7 +392,8 @@
             min-height: 350px;
             padding: 12px;
             font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
+            font-size: 11pt;
+            font-weight: bold;
             line-height: 1.6;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -408,65 +428,94 @@
             padding-top: 12px;
             line-height: 1.4;
         }
+        .maisvida-content input {
+            font-size: 12pt;
+            font-weight: bold;
+        }
 
-        /* Estilos para o Atestado Mais Vida */
-        .maisvida-atestado-content {
-            font-size: 1rem;
-            line-height: 1.8;
+        /* Estilos para as receitas de Nicotina (2 vias) */
+        .receita-nicotina {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
         }
-        .maisvida-atestado-texto {
-            margin: 25px 0;
-            text-align: justify;
+        .receita-nicotina .header-receita {
+            text-align: center;
+            margin-bottom: 10px;
         }
-        .maisvida-atestado-texto p {
-            margin-bottom: 20px;
+        .receita-nicotina .header-receita h1 {
+            font-size: 11pt;
+            font-weight: bold;
+            text-transform: uppercase;
         }
-        .maisvida-atestado-texto .paciente-linha {
-            margin: 15px 0;
+        .receita-nicotina .header-receita h2 {
+            font-size: 10pt;
+            font-weight: normal;
         }
-        .maisvida-atestado-texto input {
+        .receita-nicotina .header-receita h3 {
+            font-size: 11pt;
+            font-weight: bold;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+        .receita-nicotina .paciente-linha {
+            margin: 10px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .receita-nicotina .paciente-linha label {
+            font-weight: bold;
+            font-size: 11pt;
+        }
+        .receita-nicotina .paciente-linha input {
+            flex: 1;
             border: none;
             border-bottom: 1px solid #000;
             border-radius: 0;
-            padding: 6px 0;
-            font-size: 1rem;
+            padding: 5px 0;
+            font-size: 12pt;
+            font-weight: bold;
             font-family: 'Times New Roman', Times, serif;
             background: transparent;
-            width: auto;
-            display: inline-block;
         }
-        .maisvida-atestado-texto input.paciente-input {
-            width: 100%;
-            max-width: 500px;
+        .receita-nicotina .medicamento {
+            margin: 15px 0;
+            font-size: 11pt;
+            line-height: 1.4;
         }
-        .maisvida-atestado-texto input.dias-input {
-            width: 70px;
-            text-align: center;
-        }
-        .maisvida-atestado-texto input.cid-input {
-            width: 120px;
-        }
-        .maisvida-atestado-data {
-            text-align: left;
-            margin: 30px 0 20px 0;
-            font-size: 1rem;
-        }
-        .maisvida-atestado-assinatura {
-            margin: 25px 0;
-            text-align: left;
-            font-size: 1rem;
-        }
-        .maisvida-atestado-assinatura p {
+        .receita-nicotina .medicamento p {
             margin-bottom: 5px;
+        }
+        .receita-nicotina .orientacoes {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .receita-nicotina .orientacoes p {
+            margin-bottom: 3px;
+        }
+        .receita-nicotina .assinatura {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .receita-nicotina .assinatura .linha {
+            width: 200px;
+            border-bottom: 1px solid #000;
+            margin: 8px 0;
+        }
+        .receita-nicotina .data {
+            margin: 15px 0;
+        }
+        .receita-nicotina .rodape {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 8pt;
+            border-top: 1px solid #ccc;
+            padding-top: 8px;
         }
 
         /* IMPRESSÃO */
         @media print {
-            @page {
-                size: A4;
-                margin: 0.5cm;
-            }
-            
             .toolbar, .no-print, .btn-group, .btn, select, #printBtn {
                 display: none !important;
             }
@@ -483,7 +532,11 @@
                 break-inside: avoid;
                 page-break-inside: avoid;
             }
-            input, textarea, select {
+            .single-way-horizontal {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            input, textarea {
                 border: 1px solid #aaa !important;
                 background: white !important;
             }
@@ -499,29 +552,55 @@
                 gap: 2px 4px !important;
                 overflow: visible !important;
             }
-            
-            textarea {
-                max-height: 180px !important;
-                overflow: auto !important;
-            }
-            
             .presc-table textarea {
-                max-height: 60px !important;
+                min-height: 30px;
             }
             
-            .maisvida-prescricao textarea {
-                max-height: 450px !important;
+            .receita-content .campo-medicamento textarea {
+                min-height: 180px !important;
+                height: auto !important;
+                max-height: 220px !important;
+            }
+            
+            .laudo-content .campo-descricao textarea {
+                min-height: 180px !important;
+                height: auto !important;
+                max-height: 220px !important;
             }
             
             .single-way {
-                min-height: 27cm;
+                min-height: 27.5cm;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
             }
+            .single-way-horizontal {
+                min-height: auto;
+            }
+            .atestado-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            .atestado-texto {
+                flex: 1;
+            }
+            .maisvida-prescricao textarea {
+                max-height: 450px !important;
+            }
+            .evolucao-content .campo-evolucao textarea {
+                max-height: 350px !important;
+            }
+            .way .campo textarea {
+                max-height: 80px !important;
+            }
             
-            .maisvida-atestado-texto input {
+            .receita-nicotina .paciente-linha input {
                 border-bottom: 1px solid #000 !important;
+            }
+            input, textarea {
+                font-size: 12pt !important;
+                font-weight: bold !important;
             }
         }
         
@@ -574,15 +653,18 @@
             </select>
             <select id="docSelector">
                 <option value="controleEspecial">📋 Controle Especial</option>
-                <option value="prescricao">💊 Prescrição Médica (Padrão)</option>
+                <option value="prescricao">💊 Prescrição Médica</option>
                 <option value="receitaSimples">📄 Receita Simples</option>
                 <option value="laudo">📑 Laudo Médico</option>
                 <option value="exames">🔬 Solicitação de Exames</option>
                 <option value="evolucao">📝 Evolução Clínica</option>
-                <option value="atestado">📋 Atestado Médico (CAPS/AME)</option>
+                <option value="atestado">📋 Atestado Médico</option>
                 <option value="maisvida">🏥 Mais Vida - Receituário</option>
                 <option value="maisvidaPrescricao">🏥 Mais Vida - Prescrição Médica</option>
                 <option value="maisvidaAtestado">📋 Mais Vida - Atestado Médico</option>
+                <option value="nicotina7mg">🚬 Nicotina Adesivo 7mg</option>
+                <option value="nicotina14mg">🚬 Nicotina Adesivo 14mg</option>
+                <option value="nicotina21mg">🚬 Nicotina Adesivo 21mg</option>
             </select>
             <button id="printBtn" class="btn btn-primary">🖨️ IMPRIMIR</button>
         </div>
@@ -591,8 +673,8 @@
 </div>
 
 <script>
-    let currentDoc = "maisvidaPrescricao";
-    let currentUnidade = "MAISVIDA";
+    let currentDoc = "prescricao";
+    let currentUnidade = "AME";
 
     const docContainer = document.getElementById("documentoRender");
     const unidadeSelect = document.getElementById("unidadeSelect");
@@ -669,171 +751,187 @@
         `;
     }
 
-    // ======================= MAIS VIDA - PRESCRIÇÃO MÉDICA (CAMPO ÚNICO COM FUNDO VERDE) =======================
-    function renderMaisVidaPrescricao() {
+    function getEnderecoPorUnidade() {
+        if (currentUnidade === "MAISVIDA") {
+            return "Rua Professor Arnaldo de Berros Barro Moreira nº 193, Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608";
+        } else {
+            return "Rua Fábio Barbosa Vaz, Campo, Mamanguape – PB, CEP: 58.280-000 - capsad3mamanguape@outlook.com";
+        }
+    }
+
+    function getNomeUnidade() {
+        if (currentUnidade === "AME") {
+            return "AMBULATÓRIO DE ESPECIALIDADES - AME";
+        } else if (currentUnidade === "CAPS") {
+            return "CAPS AD III REGIONAL VALE DO MAMANGUAPE";
+        } else {
+            return "MAIS VIDA - SERVIÇOS MÉDICOS EIRELLI";
+        }
+    }
+
+    // ======================= RECEITA NICOTINA 7mg (2 VIAS - PAISAGEM) =======================
+    function renderNicotina7mg() {
         const data = getDataAtual();
+        const endereco = getEnderecoPorUnidade();
+        const nomeUnidade = getNomeUnidade();
         
-        const textoPadrao = `Solicito:
-
-Hemograma completo, vitamina D,
-vitamina B12, magnesio, ferro serico,
-ferritina, saturacao de transferrina, sodio,
-potassio
-
-HD: Rotina / rastreamento`;
-        
-        const html = `
-            <div class="maisvida-container">
-                <div class="single-way">
-                    <div class="maisvida-content">
-                        <div class="maisvida-header">
-                            <h1>MAIS VIDA</h1>
-                            <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
-                            <h3>PRESCRIÇÃO MÉDICA</h3>
-                        </div>
-                        
-                        <div class="campo" style="margin-bottom: 20px;">
-                            <label style="font-size: 0.85rem; font-weight: bold;">PACIENTE:</label>
-                            <input type="text" id="paciente_maisvida_presc" placeholder="VALDECI PAIVA DA SILVA" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 0.9rem; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
-                        </div>
-                        
-                        <div class="maisvida-prescricao">
-                            <label style="font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; display: block;">DESCRIÇÃO:</label>
-                            <textarea id="prescricao_maisvida_presc" rows="12" style="background: #e8f5e9; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">${textoPadrao}</textarea>
-                        </div>
-                        
-                        <div class="maisvida-data">
-                            <p>${data.cidade}, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
-                        </div>
-                        
-                        <div class="maisvida-assinatura">
-                            <div class="assinatura-linha"></div>
-                            <p><strong>Dra. Gisele Lima</strong></p>
-                            <p>CRM 13564</p>
-                        </div>
-                        
-                        <div class="maisvida-endereco">
-                            <p>Endereço: Rua Professor Arnaldo de Berros Barro Moreira n° 193,</p>
-                            <p>Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608</p>
-                        </div>
-                    </div>
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                <div class="header-receita">
+                    <h1>PREFEITURA MUNICIPAL DE MAMANGUAPE</h1>
+                    <h2>SECRETARIA MUNICIPAL DE SAÚDE</h2>
+                    <h2>${nomeUnidade}</h2>
+                    <h3>RECEITUÁRIO</h3>
+                </div>
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>NOME DO PACIENTE:</label>
+                    <input type="text" id="paciente_nicotina7_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>RECEITUÁRIO</strong></p>
+                    <p><strong>1. Nicotina Adesivo Transdérmico 07mg</strong> ______ 30Un</p>
+                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
+                </div>
+                
+                <div class="orientacoes">
+                    <p><strong>ORIENTAÇÕES:</strong></p>
+                    <p>- Não fumar durante o uso do adesivo</p>
+                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
+                    <p>- Não cortar o adesivo</p>
+                </div>
+                
+                <div class="assinatura">
+                    <p>Assinatura / Carimbo</p>
+                    <div class="linha"></div>
+                    <p class="data">Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}</p>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${nomeUnidade}</p>
+                    <p>${endereco}</p>
                 </div>
             </div>
         `;
-        docContainer.innerHTML = html;
+        
+        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const src = document.getElementById('paciente_nicotina7_via1');
+        const tgt = document.getElementById('paciente_nicotina7_via2');
+        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
     }
 
-    // ======================= MAIS VIDA - RECEITUÁRIO =======================
-    function renderMaisVida() {
+    // ======================= RECEITA NICOTINA 14mg (2 VIAS - PAISAGEM) =======================
+    function renderNicotina14mg() {
         const data = getDataAtual();
+        const endereco = getEnderecoPorUnidade();
+        const nomeUnidade = getNomeUnidade();
         
-        const textoPadrao = `RX
-
-VIA ORAL
-
-FORXIGA 10 MG ______01 CX
-1 comprimido/dia
-
-ATENOLOL 25MG ______01 CX
-
-BESILATO DE ANLODIPINO 5MG ______01 CX
-
-GLIFAGE XR 500MG ______01 CX
-1 comprimido a noite
-
-Outro medicamento ______
-
-Outro medicamento ______`;
-        
-        const html = `
-            <div class="maisvida-container">
-                <div class="single-way">
-                    <div class="maisvida-content">
-                        <div class="maisvida-header">
-                            <h1>MAIS VIDA</h1>
-                            <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
-                            <h3>RECEITA</h3>
-                        </div>
-                        
-                        <div class="campo" style="margin-bottom: 20px;">
-                            <label style="font-size: 0.85rem; font-weight: bold;">PACIENTE:</label>
-                            <input type="text" id="paciente_maisvida" placeholder="Nome do paciente" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 0.9rem; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
-                        </div>
-                        
-                        <div class="maisvida-prescricao">
-                            <label style="font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; display: block;">PRESCRIÇÃO:</label>
-                            <textarea id="prescricao_maisvida" rows="18" style="background: #e8f5e9; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">${textoPadrao}</textarea>
-                        </div>
-                        
-                        <div class="maisvida-data">
-                            <p>${data.cidade}, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
-                        </div>
-                        
-                        <div class="assinatura-container" style="margin: 15px 0;">
-                            <div class="print-hide-text" style="font-size:0.8rem; font-weight:bold; text-align:center;">Assinatura/Carimbo</div>
-                            <div class="print-show-line" style="text-align:center; margin-top:5px;">
-                                <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="maisvida-endereco">
-                            <p>Endereço: Rua Professor Arnaldo de Berros Barro Moreira n° 193,</p>
-                            <p>Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608</p>
-                        </div>
-                    </div>
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                <div class="header-receita">
+                    <h1>PREFEITURA MUNICIPAL DE MAMANGUAPE</h1>
+                    <h2>SECRETARIA MUNICIPAL DE SAÚDE</h2>
+                    <h2>${nomeUnidade}</h2>
+                    <h3>RECEITUÁRIO</h3>
+                </div>
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>NOME DO PACIENTE:</label>
+                    <input type="text" id="paciente_nicotina14_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>RECEITUÁRIO</strong></p>
+                    <p><strong>1. Nicotina Adesivo Transdérmico 14mg</strong> ______ 30Un</p>
+                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
+                </div>
+                
+                <div class="orientacoes">
+                    <p><strong>ORIENTAÇÕES:</strong></p>
+                    <p>- Não fumar durante o uso do adesivo</p>
+                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
+                    <p>- Não cortar o adesivo</p>
+                </div>
+                
+                <div class="assinatura">
+                    <p>Assinatura / Carimbo</p>
+                    <div class="linha"></div>
+                    <p class="data">Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}</p>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${nomeUnidade}</p>
+                    <p>${endereco}</p>
                 </div>
             </div>
         `;
-        docContainer.innerHTML = html;
+        
+        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const src = document.getElementById('paciente_nicotina14_via1');
+        const tgt = document.getElementById('paciente_nicotina14_via2');
+        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
     }
 
-    // ======================= MAIS VIDA - ATESTADO MÉDICO =======================
-    function renderMaisVidaAtestado() {
+    // ======================= RECEITA NICOTINA 21mg (2 VIAS - PAISAGEM) =======================
+    function renderNicotina21mg() {
         const data = getDataAtual();
+        const endereco = getEnderecoPorUnidade();
+        const nomeUnidade = getNomeUnidade();
         
-        const html = `
-            <div class="maisvida-container">
-                <div class="single-way">
-                    <div class="maisvida-content">
-                        <div class="maisvida-header">
-                            <h1>MAIS VIDA</h1>
-                            <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
-                            <h3>ATESTADO MÉDICO</h3>
-                        </div>
-                        
-                        <div class="maisvida-atestado-content">
-                            <div class="maisvida-atestado-texto">
-                                <p>Declaro para os devidos fins, que a paciente</p>
-                                <div class="paciente-linha">
-                                    <input type="text" id="paciente_atestado_mv" placeholder="David Lucas" class="paciente-input" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 1rem; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
-                                </div>
-                                <p>esteve em consulta médica, necessitando afastar-se de suas atividades laborais por <input type="text" id="dias_atestado_mv" placeholder="1" class="dias-input" style="width: 70px; text-align: center; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 1rem; padding: 6px 0;"> (um) dia.</p>
-                                <p>CID: <input type="text" id="cid_atestado_mv" placeholder="M50" class="cid-input" style="width: 120px; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 1rem; padding: 6px 0;"></p>
-                            </div>
-                            
-                            <div class="maisvida-atestado-data">
-                                <p>${data.cidade}, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
-                            </div>
-                            
-                            <div class="maisvida-atestado-assinatura">
-                                <div class="assinatura-linha"></div>
-                                <p><strong>Dra. Gisele Lima</strong></p>
-                                <p>CRM 13564</p>
-                            </div>
-                        </div>
-                        
-                        <div class="maisvida-endereco">
-                            <p>Endereço: Rua Professor Arnaldo de Berros Barro Moreira n° 193,</p>
-                            <p>Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608</p>
-                        </div>
-                    </div>
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                <div class="header-receita">
+                    <h1>PREFEITURA MUNICIPAL DE MAMANGUAPE</h1>
+                    <h2>SECRETARIA MUNICIPAL DE SAÚDE</h2>
+                    <h2>${nomeUnidade}</h2>
+                    <h3>RECEITUÁRIO</h3>
+                </div>
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>NOME DO PACIENTE:</label>
+                    <input type="text" id="paciente_nicotina21_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>RECEITUÁRIO</strong></p>
+                    <p><strong>1. Nicotina Adesivo Transdérmico 21mg</strong> ______ 30Un</p>
+                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
+                </div>
+                
+                <div class="orientacoes">
+                    <p><strong>ORIENTAÇÕES:</strong></p>
+                    <p>- Não fumar durante o uso do adesivo</p>
+                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
+                    <p>- Não cortar o adesivo</p>
+                </div>
+                
+                <div class="assinatura">
+                    <p>Assinatura / Carimbo</p>
+                    <div class="linha"></div>
+                    <p class="data">Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}</p>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${nomeUnidade}</p>
+                    <p>${endereco}</p>
                 </div>
             </div>
         `;
-        docContainer.innerHTML = html;
+        
+        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const src = document.getElementById('paciente_nicotina21_via1');
+        const tgt = document.getElementById('paciente_nicotina21_via2');
+        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
     }
 
-    // ======================= CONTROLE ESPECIAL =======================
+    // ======================= CONTROLE ESPECIAL (2 VIAS - PAISAGEM) =======================
     function renderControleEspecial() {
         const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
@@ -879,42 +977,39 @@ Outro medicamento ______`;
         compFields.forEach(f => { const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`); if(s&&t) s.addEventListener('input',()=>t.value=s.value); });
     }
 
-    // ======================= PRESCRIÇÃO MÉDICA (PADRÃO) =======================
+    // ======================= PRESCRIÇÃO MÉDICA (1 VIA - HORIZONTAL) COM CPF E DATA =======================
     function renderPrescricao() {
         const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
         const titulo = "PRESCRIÇÃO MÉDICA";
         
-        const tabelaVia = (suffix) => {
+        const tabelaPrescricao = () => {
             let rows = '';
-            for (let i = 0; i < 5; i++) {
-                rows += `<tr><td style="width:70%;"><textarea rows="2" placeholder="Medicamento / Via / Posologia" id="med_${suffix}_${i}"></textarea></td><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${dataAtual}" id="data_${suffix}_${i}"></td></tr>`;
+            for (let i = 0; i < 6; i++) {
+                rows += `<tr><td style="width:70%;"><textarea rows="2" placeholder="Medicamento / Via / Posologia" id="med_${i}"></textarea></td><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${dataAtual}" id="data_${i}"></textarea></td></tr>`;
             }
             return `<table class="presc-table"><thead><tr><th>MEDICAMENTO / VIA / POSOLOGIA</th><th>DATA</th></tr></thead><tbody>${rows}</tbody></table>`;
         };
         
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}<div class="doc-title-via">${titulo}</div><div class="way-title">${viaNome}</div>
-                ${tabelaVia(suffix)}
-                <div class="campo"><label>Anotações:</label><textarea rows="2" id="anotacoes_${suffix}" placeholder="Informações adicionais..."></textarea></div>
+        const html = `
+            <div class="single-way-horizontal">
+                ${headerVia}
+                <div class="doc-title-via">${titulo}</div>
+                <div class="campo-inline">
+                    <div class="campo" style="flex: 2;"><label>PACIENTE:</label><input type="text" id="paciente_presc" placeholder="Nome completo do paciente"></div>
+                    <div class="campo" style="flex: 1;"><label>CPF:</label><input type="text" id="cpf_presc" placeholder="000.000.000-00"></div>
+                </div>
+                <div class="campo"><label>DATA:</label><input type="text" id="data_presc" value="${dataAtual}"></div>
+                ${tabelaPrescricao()}
+                <div class="campo"><label>Anotações / Observações:</label><textarea rows="2" id="anotacoes_presc" placeholder="Informações adicionais..."></textarea></div>
                 ${getAssinaturaComponent("Carimbo e Assinatura do Médico")}
             </div>
         `;
         
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Farmácia", "via1")}${viaContent("2ª VIA - Prontuário / Unidade", "via2")}</div>`;
-        
-        for (let i = 0; i < 5; i++) {
-            const sMed = document.getElementById(`med_via1_${i}`), tMed = document.getElementById(`med_via2_${i}`);
-            const sData = document.getElementById(`data_via1_${i}`), tData = document.getElementById(`data_via2_${i}`);
-            if (sMed && tMed) sMed.addEventListener('input', () => tMed.value = sMed.value);
-            if (sData && tData) sData.addEventListener('input', () => tData.value = sData.value);
-        }
-        const sAnot = document.getElementById('anotacoes_via1'), tAnot = document.getElementById('anotacoes_via2');
-        if (sAnot && tAnot) sAnot.addEventListener('input', () => tAnot.value = sAnot.value);
+        docContainer.innerHTML = html;
     }
 
-    // ======================= RECEITA SIMPLES =======================
+    // ======================= RECEITA SIMPLES (2 VIAS - PAISAGEM) =======================
     function renderReceitaSimples() {
         const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
@@ -951,7 +1046,7 @@ Outro medicamento ______`;
         });
     }
 
-    // ======================= LAUDO MÉDICO =======================
+    // ======================= LAUDO MÉDICO (2 VIAS - PAISAGEM) =======================
     function renderLaudo() {
         const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
@@ -986,75 +1081,7 @@ Outro medicamento ______`;
         });
     }
 
-    // ======================= EVOLUÇÃO CLÍNICA =======================
-    function renderEvolucao() {
-        const dataAtual = getDataAtual().dataNumerica;
-        const headerVia = renderHeaderVia();
-        const titulo = "EVOLUÇÃO CLÍNICA E PSIQUIÁTRICA";
-        
-        const html = `
-            <div class="evolucao-container">
-                <div class="single-way">
-                    ${headerVia}
-                    <div class="doc-title-via">${titulo}</div>
-                    <div class="evolucao-content" style="display:flex; flex-direction:column;">
-                        <div class="campo"><label>Paciente / Prontuário:</label><input type="text" id="paciente_evolucao" placeholder="Nome completo e número do prontuário"></div>
-                        <div class="campo"><label>Data da Evolução:</label><input type="text" id="data_evolucao" value="${dataAtual}"></div>
-                        <div class="campo-evolucao" style="flex:1; display:flex; flex-direction:column;">
-                            <label>Descrição (Evolução, queixas, exame psíquico, conduta):</label>
-                            <textarea id="descricao_evolucao" placeholder="Registro detalhado da evolução clínica e psiquiátrica, sintomas, ajustes de medicação, encaminhamentos, intercorrências, plano terapêutico..." rows="10"></textarea>
-                        </div>
-                        ${getAssinaturaComponent("Carimbo e Assinatura do Profissional")}
-                        <div style="margin-top:10px; text-align:center;">_________________________________</div>
-                    </div>
-                </div>
-            </div>
-        `;
-        docContainer.innerHTML = html;
-        
-        document.body.classList.add('evolucao-print');
-    }
-
-    // ======================= ATESTADO MÉDICO (CAPS/AME) =======================
-    function renderAtestado() {
-        const data = getDataAtual();
-        const headerVia = renderHeaderVia();
-        
-        const html = `
-            <div class="atestado-container">
-                <div class="single-way">
-                    ${headerVia}
-                    <div class="atestado-content">
-                        <h1 style="text-align:center; font-size:1.3rem; margin:10px 0 20px 0; text-transform:uppercase;">ATESTADO MÉDICO</h1>
-                        
-                        <div class="atestado-texto" style="font-size:0.9rem; line-height:1.8; text-align:justify;">
-                            <p>Atesto para os devidos fins que o(a) Sr.(a)</p>
-                            <p><input type="text" id="nome_paciente" placeholder="Nome completo do paciente" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:0.9rem; padding:5px 0;"></p>
-                            <p>portador(a) do RG nº <input type="text" id="rg_paciente" placeholder="RG" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:0.9rem; padding:4px 0;"> e CPF nº <input type="text" id="cpf_paciente" placeholder="CPF" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:0.9rem; padding:4px 0;"></p>
-                            <p>compareceu a consulta médica nesta data, permanecendo sob atendimento.</p>
-                            <p>Em decorrência de avaliação clínica, foi necessário(a) o(a) afastamento de suas atividades habituais por <input type="text" id="dias_afastamento" placeholder="___" style="display:inline-block; width:60px; text-align:center; border:none; border-bottom:1px solid #000; border-radius:0; font-size:0.9rem; padding:4px 0;"> dia(s), a contar desta data, por motivo de saúde.</p>
-                            <p>CID: <input type="text" id="cid_atestado" placeholder="CID-10" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:0.9rem; padding:4px 0;"></p>
-                            <p>Declaro que, durante o período mencionado, o(a) paciente encontra-se <strong>temporariamente inapto(a)</strong> para o exercício de suas atividades, devendo retornar após o prazo estabelecido ou mediante nova avaliação médica.</p>
-                        </div>
-                        
-                        <div class="atestado-assinatura" style="margin-top:40px; text-align:center;">
-                            <p>Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
-                            ${getAssinaturaComponent("Assinatura/Carimbo")}
-                        </div>
-                        
-                        <div class="atestado-rodape" style="margin-top:30px; text-align:center; font-size:0.7rem; border-top:1px solid #ccc; padding-top:12px;">
-                            <p><strong>CAPS AD III REGIONAL VALE DO MAMANGUAPE</strong></p>
-                            <p>Rua Fátio Barbosa Vaz, Campo, Mamanguape/PB, 58280-000</p>
-                            <p>capsad3mamanguape@outlook.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        docContainer.innerHTML = html;
-    }
-
-    // ======================= SOLICITAÇÃO DE EXAMES =======================
+    // ======================= SOLICITAÇÃO DE EXAMES (2 VIAS - PAISAGEM) =======================
     function renderSolicitacaoExames() {
         const dataAtual = getDataAtual().dataNumerica;
         const headerVia = renderHeaderVia();
@@ -1129,9 +1156,236 @@ Outro medicamento ______`;
         }
     }
 
-    function renderizar() {
-        document.body.classList.remove('evolucao-print');
+    // ======================= EVOLUÇÃO CLÍNICA (1 VIA - RETRATO) =======================
+    function renderEvolucao() {
+        const dataAtual = getDataAtual().dataNumerica;
+        const headerVia = renderHeaderVia();
+        const titulo = "EVOLUÇÃO CLÍNICA E PSIQUIÁTRICA";
         
+        const html = `
+            <div class="evolucao-container">
+                <div class="single-way">
+                    ${headerVia}
+                    <div class="doc-title-via">${titulo}</div>
+                    <div class="evolucao-content" style="display:flex; flex-direction:column;">
+                        <div class="campo"><label>Paciente / Prontuário:</label><input type="text" id="paciente_evolucao" placeholder="Nome completo e número do prontuário"></div>
+                        <div class="campo"><label>Data da Evolução:</label><input type="text" id="data_evolucao" value="${dataAtual}"></div>
+                        <div class="campo-evolucao" style="flex:1; display:flex; flex-direction:column;">
+                            <label>Descrição (Evolução, queixas, exame psíquico, conduta):</label>
+                            <textarea id="descricao_evolucao" placeholder="Registro detalhado da evolução clínica e psiquiátrica, sintomas, ajustes de medicação, encaminhamentos, intercorrências, plano terapêutico..." rows="10"></textarea>
+                        </div>
+                        ${getAssinaturaComponent("Carimbo e Assinatura do Profissional")}
+                        <div style="margin-top:10px; text-align:center;">_________________________________</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
+    }
+
+    // ======================= ATESTADO MÉDICO (1 VIA - RETRATO) =======================
+    function renderAtestado() {
+        const data = getDataAtual();
+        const headerVia = renderHeaderVia();
+        
+        const html = `
+            <div class="atestado-container">
+                <div class="single-way">
+                    ${headerVia}
+                    <div class="atestado-content">
+                        <h1 style="text-align:center; font-size:1.3rem; margin:10px 0 20px 0; text-transform:uppercase;">ATESTADO MÉDICO</h1>
+                        
+                        <div class="atestado-texto" style="font-size:0.9rem; line-height:1.8; text-align:justify;">
+                            <p>Atesto para os devidos fins que o(a) Sr.(a)</p>
+                            <p><input type="text" id="nome_paciente" placeholder="Nome completo do paciente" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:12pt; font-weight:bold; padding:5px 0;"></p>
+                            <p>portador(a) do RG nº <input type="text" id="rg_paciente" placeholder="RG" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:12pt; font-weight:bold; padding:4px 0;"> e CPF nº <input type="text" id="cpf_paciente" placeholder="CPF" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:12pt; font-weight:bold; padding:4px 0;"></p>
+                            <p>compareceu a consulta médica nesta data, permanecendo sob atendimento.</p>
+                            <p>Em decorrência de avaliação clínica, foi necessário(a) o(a) afastamento de suas atividades habituais por <input type="text" id="dias_afastamento" placeholder="___" style="display:inline-block; width:60px; text-align:center; border:none; border-bottom:1px solid #000; border-radius:0; font-size:12pt; font-weight:bold; padding:4px 0;"> dia(s), a contar desta data, por motivo de saúde.</p>
+                            <p>CID: <input type="text" id="cid_atestado" placeholder="CID-10" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:12pt; font-weight:bold; padding:4px 0;"></p>
+                            <p>Declaro que, durante o período mencionado, o(a) paciente encontra-se <strong>temporariamente inapto(a)</strong> para o exercício de suas atividades, devendo retornar após o prazo estabelecido ou mediante nova avaliação médica.</p>
+                        </div>
+                        
+                        <div class="atestado-assinatura" style="margin-top:40px; text-align:center;">
+                            <p>Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
+                            ${getAssinaturaComponent("Assinatura/Carimbo")}
+                        </div>
+                        
+                        <div class="atestado-rodape" style="margin-top:30px; text-align:center; font-size:0.7rem; border-top:1px solid #ccc; padding-top:12px;">
+                            <p><strong>CAPS AD III REGIONAL VALE DO MAMANGUAPE</strong></p>
+                            <p>Rua Fátio Barbosa Vaz, Campo, Mamanguape/PB, 58280-000</p>
+                            <p>capsad3mamanguape@outlook.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
+    }
+
+    // ======================= MAIS VIDA - RECEITUÁRIO (1 VIA - RETRATO) =======================
+    function renderMaisVida() {
+        const data = getDataAtual();
+        
+        const textoPadrao = `RX
+
+VIA ORAL
+
+FORXIGA 10 MG ______01 CX
+1 comprimido/dia
+
+ATENOLOL 25MG ______01 CX
+
+BESILATO DE ANLODIPINO 5MG ______01 CX
+
+GLIFAGE XR 500MG ______01 CX
+1 comprimido a noite
+
+Outro medicamento ______
+
+Outro medicamento ______`;
+        
+        const html = `
+            <div class="maisvida-container">
+                <div class="single-way">
+                    <div class="maisvida-content">
+                        <div class="maisvida-header">
+                            <h1>MAIS VIDA</h1>
+                            <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
+                            <h3>RECEITA</h3>
+                        </div>
+                        
+                        <div class="campo" style="margin-bottom: 20px;">
+                            <label style="font-size: 0.85rem; font-weight: bold;">PACIENTE:</label>
+                            <input type="text" id="paciente_maisvida" placeholder="Nome do paciente" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
+                        </div>
+                        
+                        <div class="maisvida-prescricao">
+                            <label style="font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; display: block;">PRESCRIÇÃO:</label>
+                            <textarea id="prescricao_maisvida" rows="18" style="background: #e8f5e9; font-family: 'Courier New', monospace; font-size: 11pt; font-weight: bold; line-height: 1.6;">${textoPadrao}</textarea>
+                        </div>
+                        
+                        <div class="maisvida-data">
+                            <p>JOÃO PESSOA, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
+                        </div>
+                        
+                        <div class="maisvida-assinatura">
+                            <div class="assinatura-linha"></div>
+                            <p><strong>Dra. Gisele Lima</strong></p>
+                            <p>CRM 13564</p>
+                        </div>
+                        
+                        <div class="maisvida-endereco">
+                            <p>Rua Professor Arnaldo de Berros Barro Moreira nº 193,</p>
+                            <p>Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
+    }
+
+    // ======================= MAIS VIDA - PRESCRIÇÃO MÉDICA (1 VIA - RETRATO) =======================
+    function renderMaisVidaPrescricao() {
+        const data = getDataAtual();
+        
+        const textoPadrao = `Solicito:
+
+Hemograma completo, vitamina D,
+vitamina B12, magnesio, ferro serico,
+ferritina, saturacao de transferrina, sodio,
+potassio
+
+HD: Rotina / rastreamento`;
+        
+        const html = `
+            <div class="maisvida-container">
+                <div class="single-way">
+                    <div class="maisvida-content">
+                        <div class="maisvida-header">
+                            <h1>MAIS VIDA</h1>
+                            <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
+                            <h3>PRESCRIÇÃO MÉDICA</h3>
+                        </div>
+                        
+                        <div class="campo" style="margin-bottom: 20px;">
+                            <label style="font-size: 0.85rem; font-weight: bold;">PACIENTE:</label>
+                            <input type="text" id="paciente_maisvida_presc" placeholder="VALDECI PAIVA DA SILVA" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
+                        </div>
+                        
+                        <div class="maisvida-prescricao">
+                            <label style="font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; display: block;">DESCRIÇÃO:</label>
+                            <textarea id="prescricao_maisvida_presc" rows="12" style="background: #e8f5e9; font-family: 'Courier New', monospace; font-size: 11pt; font-weight: bold; line-height: 1.6;">${textoPadrao}</textarea>
+                        </div>
+                        
+                        <div class="maisvida-assinatura">
+                            <div class="assinatura-linha"></div>
+                            <p><strong>Dra. Gisele Lima</strong></p>
+                            <p>CRM 13564</p>
+                        </div>
+                        
+                        <div class="maisvida-endereco">
+                            <p>Rua Professor Arnaldo de Berros Barro Moreira nº 193,</p>
+                            <p>Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
+    }
+
+    // ======================= MAIS VIDA - ATESTADO MÉDICO (1 VIA - RETRATO) =======================
+    function renderMaisVidaAtestado() {
+        const data = getDataAtual();
+        
+        const html = `
+            <div class="maisvida-container">
+                <div class="single-way">
+                    <div class="maisvida-content">
+                        <div class="maisvida-header">
+                            <h1>MAIS VIDA</h1>
+                            <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
+                            <h3>ATESTADO MÉDICO</h3>
+                        </div>
+                        
+                        <div class="campo" style="margin-bottom: 20px;">
+                            <label style="font-size: 0.85rem; font-weight: bold;">PACIENTE:</label>
+                            <input type="text" id="paciente_atestado_mv" placeholder="David Lucas" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
+                        </div>
+                        
+                        <div class="campo" style="margin-bottom: 20px;">
+                            <label style="font-size: 0.85rem; font-weight: bold;">CID:</label>
+                            <input type="text" id="cid_atestado_mv" placeholder="M50" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
+                        </div>
+                        
+                        <div class="campo" style="margin-bottom: 20px;">
+                            <label style="font-size: 0.85rem; font-weight: bold;">DIAS DE AFASTAMENTO:</label>
+                            <input type="text" id="dias_atestado_mv" placeholder="1" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
+                        </div>
+                        
+                        <div class="maisvida-data">
+                            <p>JOÃO PESSOA, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
+                        </div>
+                        
+                        <div class="maisvida-assinatura">
+                            <div class="assinatura-linha"></div>
+                            <p><strong>Dra. Gisele Lima</strong></p>
+                            <p>CRM 13564</p>
+                        </div>
+                        
+                        <div class="maisvida-endereco">
+                            <p>Rua Professor Arnaldo de Berros Barro Moreira nº 193,</p>
+                            <p>Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
+    }
+
+    function renderizar() {
         switch(currentDoc) {
             case "controleEspecial": renderControleEspecial(); break;
             case "prescricao": renderPrescricao(); break;
@@ -1143,42 +1397,27 @@ Outro medicamento ______`;
             case "maisvida": renderMaisVida(); break;
             case "maisvidaPrescricao": renderMaisVidaPrescricao(); break;
             case "maisvidaAtestado": renderMaisVidaAtestado(); break;
-            default: renderMaisVidaPrescricao();
+            case "nicotina7mg": renderNicotina7mg(); break;
+            case "nicotina14mg": renderNicotina14mg(); break;
+            case "nicotina21mg": renderNicotina21mg(); break;
+            default: renderPrescricao();
         }
     }
 
+    // Função de impressão com orientação correta
     function handlePrint() {
-        if (currentDoc === "evolucao") {
+        // Documentos de 1 via vertical (retrato)
+        const documentosRetrato = ["evolucao", "atestado", "maisvida", "maisvidaPrescricao", "maisvidaAtestado"];
+        
+        if (documentosRetrato.includes(currentDoc)) {
             const style = document.createElement('style');
-            style.id = 'print-orientation';
-            style.textContent = `@page { size: A4 portrait; margin: 0.3cm; }`;
-            document.head.appendChild(style);
-            window.print();
-            style.remove();
-        } else if (currentDoc === "atestado") {
-            const style = document.createElement('style');
-            style.id = 'print-orientation';
             style.textContent = `@page { size: A4 portrait; margin: 0.5cm; }`;
-            document.head.appendChild(style);
-            window.print();
-            style.remove();
-        } else if (currentDoc === "maisvida" || currentDoc === "maisvidaPrescricao" || currentDoc === "maisvidaAtestado") {
-            const style = document.createElement('style');
-            style.id = 'print-orientation';
-            style.textContent = `@page { size: A4 portrait; margin: 0.5cm; }`;
-            document.head.appendChild(style);
-            window.print();
-            style.remove();
-        } else if (currentDoc === "laudo") {
-            const style = document.createElement('style');
-            style.id = 'print-orientation';
-            style.textContent = `@page { size: A4 landscape; margin: 0.2cm; }`;
             document.head.appendChild(style);
             window.print();
             style.remove();
         } else {
+            // Todos os outros (2 vias ou prescrição padrão) - paisagem
             const style = document.createElement('style');
-            style.id = 'print-orientation';
             style.textContent = `@page { size: A4 landscape; margin: 0.3cm; }`;
             document.head.appendChild(style);
             window.print();
