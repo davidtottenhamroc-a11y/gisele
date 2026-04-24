@@ -77,6 +77,7 @@
             font-family: 'Times New Roman', Times, serif;
         }
 
+        /* CABEÇALHO - Mantém o estilo original */
         .header-via {
             text-align: center;
             margin-bottom: 5px;
@@ -191,14 +192,15 @@
             margin: 0 auto;
         }
 
+        /* CAMPOS - Todos com fonte 12pt em negrito */
         .campo {
             margin-bottom: 4px;
         }
         .campo label {
             font-weight: 700;
             display: block;
-            font-size: 0.55rem;
-            margin-bottom: 1px;
+            font-size: 12pt;
+            margin-bottom: 2px;
         }
         .campo-inline {
             display: flex;
@@ -212,7 +214,7 @@
         }
         input, select {
             width: 100%;
-            padding: 3px 4px;
+            padding: 4px 6px;
             border: 1px solid #8f9eb2;
             font-family: 'Times New Roman', Times, serif;
             font-size: 12pt;
@@ -223,7 +225,7 @@
         
         textarea {
             width: 100%;
-            padding: 3px 4px;
+            padding: 4px 6px;
             border: 1px solid #8f9eb2;
             font-family: 'Times New Roman', Times, serif;
             font-size: 12pt;
@@ -244,19 +246,19 @@
             background: #fefcf5;
             padding: 4px;
             border: 1px solid #e2e8f0;
-            font-size: 0.55rem;
+            font-size: 11pt;
         }
         .exames-grid label {
             display: flex;
             align-items: center;
             gap: 3px;
-            font-weight: normal;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 0.55rem;
+            font-size: 11pt;
         }
         .exames-grid input[type="checkbox"] {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             margin: 0;
             flex-shrink: 0;
         }
@@ -268,15 +270,16 @@
         }
         .presc-table th, .presc-table td {
             border: 1px solid #1f2e44;
-            padding: 3px;
+            padding: 4px;
             vertical-align: top;
-            font-size: 0.55rem;
+            font-size: 11pt;
         }
         .presc-table th {
             background: #eef2f5;
+            font-weight: bold;
         }
         .presc-table textarea {
-            font-size: 10pt;
+            font-size: 11pt;
             font-weight: bold;
             padding: 2px;
             min-height: 35px;
@@ -287,7 +290,7 @@
             margin-top: 6px;
         }
         .assinatura-container .print-hide-text {
-            font-size: 0.55rem;
+            font-size: 11pt;
             font-weight: bold;
             text-align: center;
         }
@@ -312,11 +315,12 @@
             text-align: center;
         }
         .emitente-box h4 {
-            font-size: 0.55rem;
+            font-size: 10pt;
             margin-bottom: 2px;
+            font-weight: bold;
         }
         .emitente-box div {
-            font-size: 0.5rem;
+            font-size: 9pt;
         }
 
         .comprador-fornecedor {
@@ -335,12 +339,12 @@
             background: #eef2fa;
             padding: 2px;
             margin-bottom: 4px;
-            font-size: 0.55rem;
+            font-size: 10pt;
             font-weight: bold;
             text-align: center;
         }
         .card-comprador input, .card-fornecedor input {
-            font-size: 10pt;
+            font-size: 11pt;
             font-weight: bold;
         }
 
@@ -353,8 +357,8 @@
             display: flex;
             align-items: center;
             gap: 2px;
-            font-weight: normal;
-            font-size: 0.55rem;
+            font-weight: bold;
+            font-size: 11pt;
         }
 
         /* Estilos para Mais Vida */
@@ -392,7 +396,7 @@
             min-height: 350px;
             padding: 12px;
             font-family: 'Courier New', monospace;
-            font-size: 11pt;
+            font-size: 12pt;
             font-weight: bold;
             line-height: 1.6;
             border: 1px solid #ccc;
@@ -405,12 +409,12 @@
         .maisvida-data {
             text-align: right;
             margin: 25px 0 15px 0;
-            font-size: 0.9rem;
+            font-size: 11pt;
         }
         .maisvida-assinatura {
             margin: 20px 0;
             text-align: left;
-            font-size: 0.9rem;
+            font-size: 11pt;
         }
         .maisvida-assinatura p {
             margin-bottom: 5px;
@@ -422,7 +426,7 @@
         }
         .maisvida-endereco {
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 9pt;
             margin-top: 30px;
             border-top: 1px solid #ccc;
             padding-top: 12px;
@@ -434,28 +438,8 @@
         }
 
         /* Estilos para as receitas de Nicotina (2 vias) */
-        .receita-nicotina {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 11pt;
-        }
-        .receita-nicotina .header-receita {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .receita-nicotina .header-receita h1 {
-            font-size: 11pt;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .receita-nicotina .header-receita h2 {
-            font-size: 10pt;
-            font-weight: normal;
-        }
-        .receita-nicotina .header-receita h3 {
-            font-size: 11pt;
-            font-weight: bold;
-            margin-top: 5px;
-            text-transform: uppercase;
+        .receita-nicotina .way {
+            padding: 10px;
         }
         .receita-nicotina .paciente-linha {
             margin: 10px 0;
@@ -466,7 +450,7 @@
         }
         .receita-nicotina .paciente-linha label {
             font-weight: bold;
-            font-size: 11pt;
+            font-size: 12pt;
         }
         .receita-nicotina .paciente-linha input {
             flex: 1;
@@ -481,7 +465,7 @@
         }
         .receita-nicotina .medicamento {
             margin: 15px 0;
-            font-size: 11pt;
+            font-size: 12pt;
             line-height: 1.4;
         }
         .receita-nicotina .medicamento p {
@@ -509,7 +493,7 @@
         .receita-nicotina .rodape {
             margin-top: 20px;
             text-align: center;
-            font-size: 8pt;
+            font-size: 9pt;
             border-top: 1px solid #ccc;
             padding-top: 8px;
         }
@@ -602,6 +586,10 @@
                 font-size: 12pt !important;
                 font-weight: bold !important;
             }
+            .campo label {
+                font-size: 12pt !important;
+                font-weight: bold !important;
+            }
         }
         
         .receita-content {
@@ -673,7 +661,7 @@
 </div>
 
 <script>
-    let currentDoc = "prescricao";
+    let currentDoc = "controleEspecial";
     let currentUnidade = "AME";
 
     const docContainer = document.getElementById("documentoRender");
@@ -700,7 +688,7 @@
     function getAssinaturaComponent(texto) {
         return `
             <div class="assinatura-container">
-                <div class="print-hide-text" style="font-size:0.8rem; font-weight:bold; text-align:center;">${texto}</div>
+                <div class="print-hide-text" style="font-size:11pt; font-weight:bold; text-align:center;">${texto}</div>
                 <div class="print-show-line" style="text-align:center; margin-top:5px;">
                     <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
                 </div>
@@ -769,168 +757,6 @@
         }
     }
 
-    // ======================= RECEITA NICOTINA 7mg (2 VIAS - PAISAGEM) =======================
-    function renderNicotina7mg() {
-        const data = getDataAtual();
-        const endereco = getEnderecoPorUnidade();
-        const nomeUnidade = getNomeUnidade();
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                <div class="header-receita">
-                    <h1>PREFEITURA MUNICIPAL DE MAMANGUAPE</h1>
-                    <h2>SECRETARIA MUNICIPAL DE SAÚDE</h2>
-                    <h2>${nomeUnidade}</h2>
-                    <h3>RECEITUÁRIO</h3>
-                </div>
-                <div class="way-title">${viaNome}</div>
-                
-                <div class="paciente-linha">
-                    <label>NOME DO PACIENTE:</label>
-                    <input type="text" id="paciente_nicotina7_${suffix}" placeholder="_________________________">
-                </div>
-                
-                <div class="medicamento">
-                    <p><strong>RECEITUÁRIO</strong></p>
-                    <p><strong>1. Nicotina Adesivo Transdérmico 07mg</strong> ______ 30Un</p>
-                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
-                </div>
-                
-                <div class="orientacoes">
-                    <p><strong>ORIENTAÇÕES:</strong></p>
-                    <p>- Não fumar durante o uso do adesivo</p>
-                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
-                    <p>- Não cortar o adesivo</p>
-                </div>
-                
-                <div class="assinatura">
-                    <p>Assinatura / Carimbo</p>
-                    <div class="linha"></div>
-                    <p class="data">Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}</p>
-                </div>
-                
-                <div class="rodape">
-                    <p>RECEITUÁRIO – ${nomeUnidade}</p>
-                    <p>${endereco}</p>
-                </div>
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
-        
-        const src = document.getElementById('paciente_nicotina7_via1');
-        const tgt = document.getElementById('paciente_nicotina7_via2');
-        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
-    }
-
-    // ======================= RECEITA NICOTINA 14mg (2 VIAS - PAISAGEM) =======================
-    function renderNicotina14mg() {
-        const data = getDataAtual();
-        const endereco = getEnderecoPorUnidade();
-        const nomeUnidade = getNomeUnidade();
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                <div class="header-receita">
-                    <h1>PREFEITURA MUNICIPAL DE MAMANGUAPE</h1>
-                    <h2>SECRETARIA MUNICIPAL DE SAÚDE</h2>
-                    <h2>${nomeUnidade}</h2>
-                    <h3>RECEITUÁRIO</h3>
-                </div>
-                <div class="way-title">${viaNome}</div>
-                
-                <div class="paciente-linha">
-                    <label>NOME DO PACIENTE:</label>
-                    <input type="text" id="paciente_nicotina14_${suffix}" placeholder="_________________________">
-                </div>
-                
-                <div class="medicamento">
-                    <p><strong>RECEITUÁRIO</strong></p>
-                    <p><strong>1. Nicotina Adesivo Transdérmico 14mg</strong> ______ 30Un</p>
-                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
-                </div>
-                
-                <div class="orientacoes">
-                    <p><strong>ORIENTAÇÕES:</strong></p>
-                    <p>- Não fumar durante o uso do adesivo</p>
-                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
-                    <p>- Não cortar o adesivo</p>
-                </div>
-                
-                <div class="assinatura">
-                    <p>Assinatura / Carimbo</p>
-                    <div class="linha"></div>
-                    <p class="data">Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}</p>
-                </div>
-                
-                <div class="rodape">
-                    <p>RECEITUÁRIO – ${nomeUnidade}</p>
-                    <p>${endereco}</p>
-                </div>
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
-        
-        const src = document.getElementById('paciente_nicotina14_via1');
-        const tgt = document.getElementById('paciente_nicotina14_via2');
-        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
-    }
-
-    // ======================= RECEITA NICOTINA 21mg (2 VIAS - PAISAGEM) =======================
-    function renderNicotina21mg() {
-        const data = getDataAtual();
-        const endereco = getEnderecoPorUnidade();
-        const nomeUnidade = getNomeUnidade();
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                <div class="header-receita">
-                    <h1>PREFEITURA MUNICIPAL DE MAMANGUAPE</h1>
-                    <h2>SECRETARIA MUNICIPAL DE SAÚDE</h2>
-                    <h2>${nomeUnidade}</h2>
-                    <h3>RECEITUÁRIO</h3>
-                </div>
-                <div class="way-title">${viaNome}</div>
-                
-                <div class="paciente-linha">
-                    <label>NOME DO PACIENTE:</label>
-                    <input type="text" id="paciente_nicotina21_${suffix}" placeholder="_________________________">
-                </div>
-                
-                <div class="medicamento">
-                    <p><strong>RECEITUÁRIO</strong></p>
-                    <p><strong>1. Nicotina Adesivo Transdérmico 21mg</strong> ______ 30Un</p>
-                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
-                </div>
-                
-                <div class="orientacoes">
-                    <p><strong>ORIENTAÇÕES:</strong></p>
-                    <p>- Não fumar durante o uso do adesivo</p>
-                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
-                    <p>- Não cortar o adesivo</p>
-                </div>
-                
-                <div class="assinatura">
-                    <p>Assinatura / Carimbo</p>
-                    <div class="linha"></div>
-                    <p class="data">Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}</p>
-                </div>
-                
-                <div class="rodape">
-                    <p>RECEITUÁRIO – ${nomeUnidade}</p>
-                    <p>${endereco}</p>
-                </div>
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
-        
-        const src = document.getElementById('paciente_nicotina21_via1');
-        const tgt = document.getElementById('paciente_nicotina21_via2');
-        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
-    }
-
     // ======================= CONTROLE ESPECIAL (2 VIAS - PAISAGEM) =======================
     function renderControleEspecial() {
         const dataAtual = getDataAtual().dataNumerica;
@@ -986,7 +812,7 @@
         const tabelaPrescricao = () => {
             let rows = '';
             for (let i = 0; i < 6; i++) {
-                rows += `<tr><td style="width:70%;"><textarea rows="2" placeholder="Medicamento / Via / Posologia" id="med_${i}"></textarea></td><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${dataAtual}" id="data_${i}"></textarea></td></tr>`;
+                rows += `<tr><td style="width:70%;"><textarea rows="2" placeholder="Medicamento / Via / Posologia" id="med_${i}"></textarea></td><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${dataAtual}" id="data_${i}"></input></td></tr>`;
             }
             return `<table class="presc-table"><thead><tr><th>MEDICAMENTO / VIA / POSOLOGIA</th><th>DATA</th></tr></thead><tbody>${rows}</tbody></table>`;
         };
@@ -1195,7 +1021,7 @@
                     <div class="atestado-content">
                         <h1 style="text-align:center; font-size:1.3rem; margin:10px 0 20px 0; text-transform:uppercase;">ATESTADO MÉDICO</h1>
                         
-                        <div class="atestado-texto" style="font-size:0.9rem; line-height:1.8; text-align:justify;">
+                        <div class="atestado-texto" style="font-size:11pt; line-height:1.8; text-align:justify;">
                             <p>Atesto para os devidos fins que o(a) Sr.(a)</p>
                             <p><input type="text" id="nome_paciente" placeholder="Nome completo do paciente" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:12pt; font-weight:bold; padding:5px 0;"></p>
                             <p>portador(a) do RG nº <input type="text" id="rg_paciente" placeholder="RG" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:12pt; font-weight:bold; padding:4px 0;"> e CPF nº <input type="text" id="cpf_paciente" placeholder="CPF" style="display:inline-block; width:150px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:12pt; font-weight:bold; padding:4px 0;"></p>
@@ -1210,7 +1036,7 @@
                             ${getAssinaturaComponent("Assinatura/Carimbo")}
                         </div>
                         
-                        <div class="atestado-rodape" style="margin-top:30px; text-align:center; font-size:0.7rem; border-top:1px solid #ccc; padding-top:12px;">
+                        <div class="atestado-rodape" style="margin-top:30px; text-align:center; font-size:9pt; border-top:1px solid #ccc; padding-top:12px;">
                             <p><strong>CAPS AD III REGIONAL VALE DO MAMANGUAPE</strong></p>
                             <p>Rua Fátio Barbosa Vaz, Campo, Mamanguape/PB, 58280-000</p>
                             <p>capsad3mamanguape@outlook.com</p>
@@ -1255,13 +1081,13 @@ Outro medicamento ______`;
                         </div>
                         
                         <div class="campo" style="margin-bottom: 20px;">
-                            <label style="font-size: 0.85rem; font-weight: bold;">PACIENTE:</label>
+                            <label style="font-size: 12pt; font-weight: bold;">PACIENTE:</label>
                             <input type="text" id="paciente_maisvida" placeholder="Nome do paciente" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
                         </div>
                         
                         <div class="maisvida-prescricao">
-                            <label style="font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; display: block;">PRESCRIÇÃO:</label>
-                            <textarea id="prescricao_maisvida" rows="18" style="background: #e8f5e9; font-family: 'Courier New', monospace; font-size: 11pt; font-weight: bold; line-height: 1.6;">${textoPadrao}</textarea>
+                            <label style="font-size: 12pt; font-weight: bold; margin-bottom: 8px; display: block;">PRESCRIÇÃO:</label>
+                            <textarea id="prescricao_maisvida" rows="18" style="background: #e8f5e9; font-family: 'Courier New', monospace; font-size: 12pt; font-weight: bold; line-height: 1.6;">${textoPadrao}</textarea>
                         </div>
                         
                         <div class="maisvida-data">
@@ -1309,13 +1135,13 @@ HD: Rotina / rastreamento`;
                         </div>
                         
                         <div class="campo" style="margin-bottom: 20px;">
-                            <label style="font-size: 0.85rem; font-weight: bold;">PACIENTE:</label>
+                            <label style="font-size: 12pt; font-weight: bold;">PACIENTE:</label>
                             <input type="text" id="paciente_maisvida_presc" placeholder="VALDECI PAIVA DA SILVA" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
                         </div>
                         
                         <div class="maisvida-prescricao">
-                            <label style="font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; display: block;">DESCRIÇÃO:</label>
-                            <textarea id="prescricao_maisvida_presc" rows="12" style="background: #e8f5e9; font-family: 'Courier New', monospace; font-size: 11pt; font-weight: bold; line-height: 1.6;">${textoPadrao}</textarea>
+                            <label style="font-size: 12pt; font-weight: bold; margin-bottom: 8px; display: block;">DESCRIÇÃO:</label>
+                            <textarea id="prescricao_maisvida_presc" rows="12" style="background: #e8f5e9; font-family: 'Courier New', monospace; font-size: 12pt; font-weight: bold; line-height: 1.6;">${textoPadrao}</textarea>
                         </div>
                         
                         <div class="maisvida-assinatura">
@@ -1350,17 +1176,17 @@ HD: Rotina / rastreamento`;
                         </div>
                         
                         <div class="campo" style="margin-bottom: 20px;">
-                            <label style="font-size: 0.85rem; font-weight: bold;">PACIENTE:</label>
+                            <label style="font-size: 12pt; font-weight: bold;">PACIENTE:</label>
                             <input type="text" id="paciente_atestado_mv" placeholder="David Lucas" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
                         </div>
                         
                         <div class="campo" style="margin-bottom: 20px;">
-                            <label style="font-size: 0.85rem; font-weight: bold;">CID:</label>
+                            <label style="font-size: 12pt; font-weight: bold;">CID:</label>
                             <input type="text" id="cid_atestado_mv" placeholder="M50" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
                         </div>
                         
                         <div class="campo" style="margin-bottom: 20px;">
-                            <label style="font-size: 0.85rem; font-weight: bold;">DIAS DE AFASTAMENTO:</label>
+                            <label style="font-size: 12pt; font-weight: bold;">DIAS DE AFASTAMENTO:</label>
                             <input type="text" id="dias_atestado_mv" placeholder="1" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 12pt; font-weight: bold; padding: 6px 0; font-family: 'Times New Roman', Times, serif;">
                         </div>
                         
@@ -1385,6 +1211,156 @@ HD: Rotina / rastreamento`;
         docContainer.innerHTML = html;
     }
 
+    // ======================= RECEITA NICOTINA 7mg (2 VIAS - PAISAGEM) =======================
+    function renderNicotina7mg() {
+        const data = getDataAtual();
+        const endereco = getEnderecoPorUnidade();
+        const headerVia = renderHeaderVia();
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}
+                <div class="doc-title-via">RECEITUÁRIO</div>
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>NOME DO PACIENTE:</label>
+                    <input type="text" id="paciente_nicotina7_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>RECEITUÁRIO</strong></p>
+                    <p><strong>1. Nicotina Adesivo Transdérmico 07mg</strong> ______ 30Un</p>
+                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
+                </div>
+                
+                <div class="orientacoes">
+                    <p><strong>ORIENTAÇÕES:</strong></p>
+                    <p>- Não fumar durante o uso do adesivo</p>
+                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
+                    <p>- Não cortar o adesivo</p>
+                </div>
+                
+                <div class="assinatura">
+                    <p>Assinatura / Carimbo</p>
+                    <div class="linha"></div>
+                    <p class="data">Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}</p>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
+                    <p>${endereco}</p>
+                </div>
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const src = document.getElementById('paciente_nicotina7_via1');
+        const tgt = document.getElementById('paciente_nicotina7_via2');
+        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
+    }
+
+    // ======================= RECEITA NICOTINA 14mg (2 VIAS - PAISAGEM) =======================
+    function renderNicotina14mg() {
+        const data = getDataAtual();
+        const endereco = getEnderecoPorUnidade();
+        const headerVia = renderHeaderVia();
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}
+                <div class="doc-title-via">RECEITUÁRIO</div>
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>NOME DO PACIENTE:</label>
+                    <input type="text" id="paciente_nicotina14_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>RECEITUÁRIO</strong></p>
+                    <p><strong>1. Nicotina Adesivo Transdérmico 14mg</strong> ______ 30Un</p>
+                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
+                </div>
+                
+                <div class="orientacoes">
+                    <p><strong>ORIENTAÇÕES:</strong></p>
+                    <p>- Não fumar durante o uso do adesivo</p>
+                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
+                    <p>- Não cortar o adesivo</p>
+                </div>
+                
+                <div class="assinatura">
+                    <p>Assinatura / Carimbo</p>
+                    <div class="linha"></div>
+                    <p class="data">Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}</p>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
+                    <p>${endereco}</p>
+                </div>
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const src = document.getElementById('paciente_nicotina14_via1');
+        const tgt = document.getElementById('paciente_nicotina14_via2');
+        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
+    }
+
+    // ======================= RECEITA NICOTINA 21mg (2 VIAS - PAISAGEM) =======================
+    function renderNicotina21mg() {
+        const data = getDataAtual();
+        const endereco = getEnderecoPorUnidade();
+        const headerVia = renderHeaderVia();
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}
+                <div class="doc-title-via">RECEITUÁRIO</div>
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>NOME DO PACIENTE:</label>
+                    <input type="text" id="paciente_nicotina21_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>RECEITUÁRIO</strong></p>
+                    <p><strong>1. Nicotina Adesivo Transdérmico 21mg</strong> ______ 30Un</p>
+                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
+                </div>
+                
+                <div class="orientacoes">
+                    <p><strong>ORIENTAÇÕES:</strong></p>
+                    <p>- Não fumar durante o uso do adesivo</p>
+                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
+                    <p>- Não cortar o adesivo</p>
+                </div>
+                
+                <div class="assinatura">
+                    <p>Assinatura / Carimbo</p>
+                    <div class="linha"></div>
+                    <p class="data">Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}</p>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
+                    <p>${endereco}</p>
+                </div>
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const src = document.getElementById('paciente_nicotina21_via1');
+        const tgt = document.getElementById('paciente_nicotina21_via2');
+        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
+    }
+
     function renderizar() {
         switch(currentDoc) {
             case "controleEspecial": renderControleEspecial(); break;
@@ -1400,7 +1376,7 @@ HD: Rotina / rastreamento`;
             case "nicotina7mg": renderNicotina7mg(); break;
             case "nicotina14mg": renderNicotina14mg(); break;
             case "nicotina21mg": renderNicotina21mg(); break;
-            default: renderPrescricao();
+            default: renderControleEspecial();
         }
     }
 
@@ -1416,7 +1392,7 @@ HD: Rotina / rastreamento`;
             window.print();
             style.remove();
         } else {
-            // Todos os outros (2 vias ou prescrição padrão) - paisagem
+            // Todos os outros (2 vias) - paisagem
             const style = document.createElement('style');
             style.textContent = `@page { size: A4 landscape; margin: 0.3cm; }`;
             document.head.appendChild(style);
