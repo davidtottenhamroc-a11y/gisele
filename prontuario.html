@@ -77,7 +77,7 @@
             font-family: 'Times New Roman', Times, serif;
         }
 
-        /* CABEÇALHO */
+        /* CABEÇALHO PADRÃO */
         .header-via {
             text-align: center;
             margin-bottom: 4px;
@@ -132,6 +132,43 @@
             display: inline-block;
             padding: 1px 6px;
             border-radius: 15px;
+        }
+
+        /* CABEÇALHO ESPECÍFICO PARA LAUDO DE PROCEDIMENTO (SUS) */
+        .laudo-procedimento-header {
+            text-align: center;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #f8f9fa;
+        }
+        .laudo-procedimento-header h1 {
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .laudo-procedimento-header h2 {
+            font-size: 0.85rem;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+        .laudo-procedimento-header .sus-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .laudo-procedimento-header .sus-logo div {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .laudo-procedimento-header .linha-dupla {
+            border-top: 2px solid #000;
+            border-bottom: 1px solid #000;
+            height: 3px;
+            margin: 5px 0;
         }
 
         .doc-title-via {
@@ -517,13 +554,89 @@
             padding-top: 6px;
         }
 
+        /* Estilos para Laudo de Procedimento */
+        .laudo-procedimento {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .laudo-procedimento .secao {
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #fefefe;
+            border-radius: 4px;
+        }
+        .laudo-procedimento .secao-titulo {
+            font-weight: bold;
+            font-size: 10pt;
+            margin-bottom: 8px;
+            background: #e9ecef;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .laudo-procedimento .campo-linha {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .laudo-procedimento .campo-linha label {
+            font-weight: bold;
+            font-size: 10pt;
+            min-width: 250px;
+        }
+        .laudo-procedimento .campo-linha input {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #000;
+            border-radius: 0;
+            padding: 4px 0;
+            font-size: 10pt;
+            font-weight: bold;
+            background: transparent;
+        }
+        .laudo-procedimento .campo-linha-full {
+            margin-bottom: 8px;
+        }
+        .laudo-procedimento .campo-linha-full label {
+            font-weight: bold;
+            font-size: 10pt;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .laudo-procedimento .campo-linha-full input,
+        .laudo-procedimento .campo-linha-full textarea {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #000;
+            border-radius: 0;
+            padding: 4px 0;
+            font-size: 10pt;
+            font-weight: bold;
+            background: transparent;
+        }
+        .laudo-procedimento .assinatura-area {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .laudo-procedimento .data-area {
+            margin-top: 15px;
+            text-align: right;
+        }
+        .laudo-procedimento .data-area input {
+            border: none;
+            border-bottom: 1px solid #000;
+            border-radius: 0;
+            padding: 4px 0;
+            font-size: 10pt;
+            font-weight: bold;
+            background: transparent;
+            width: auto;
+            min-width: 200px;
+            text-align: center;
+        }
+
         /* IMPRESSÃO */
         @media print {
-            @page {
-                size: A4 landscape;
-                margin: 0.2cm;
-            }
-            
             .toolbar, .no-print, .btn-group, .btn, select, #printBtn {
                 display: none !important;
             }
@@ -533,16 +646,11 @@
                 max-width: 100%;
                 margin: 0;
             }
-            .two-ways {
-                gap: 6px;
-            }
-            .way {
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
-            .single-way-horizontal {
-                break-inside: avoid;
-                page-break-inside: avoid;
+            .single-way {
+                min-height: 27cm;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
             }
             input, textarea {
                 border: 1px solid #aaa !important;
@@ -554,113 +662,10 @@
             .print-show-line {
                 display: block !important;
             }
-            .exames-grid {
-                display: grid !important;
-                grid-template-columns: repeat(4, 1fr) !important;
-                gap: 1px 3px !important;
-                overflow: visible !important;
-            }
-            .presc-table textarea {
-                min-height: 25px;
-                max-height: 60px;
-            }
-            
-            .receita-content .campo-medicamento textarea {
-                min-height: 150px !important;
-                height: auto !important;
-                max-height: 180px !important;
-            }
-            
-            .laudo-content .campo-descricao textarea {
-                min-height: 100px !important;
-                height: auto !important;
-                max-height: 140px !important;
-            }
-            
-            .single-way {
-                min-height: 27cm;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-            }
-            .single-way-horizontal {
-                min-height: auto;
-            }
-            .atestado-content {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-            }
-            .atestado-texto {
-                flex: 1;
-            }
-            .maisvida-prescricao textarea {
-                max-height: 400px !important;
-            }
-            .evolucao-content .campo-evolucao textarea {
-                max-height: 300px !important;
-            }
-            .way .campo textarea {
-                max-height: 60px !important;
-            }
-            
-            .receita-nicotina .paciente-linha input,
-            .receita-nicotina .data input {
+            .laudo-procedimento input, 
+            .laudo-procedimento textarea {
                 border-bottom: 1px solid #000 !important;
             }
-            input, textarea {
-                font-size: 11pt !important;
-                font-weight: bold !important;
-            }
-            .campo label {
-                font-size: 11pt !important;
-                font-weight: bold !important;
-            }
-        }
-        
-        /* IMPRESSÃO VERTICAL */
-        @media print and (body.evolucao-printing) {
-            @page {
-                size: A4 portrait;
-                margin: 0.3cm;
-            }
-        }
-        
-        .receita-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .receita-content .campo-medicamento {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 3px;
-        }
-        .receita-content .campo-medicamento textarea {
-            flex: 1;
-            min-height: 100px;
-            max-height: 250px;
-        }
-        
-        .laudo-content .campo-descricao textarea {
-            min-height: 80px;
-            max-height: 250px;
-        }
-        
-        .evolucao-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .evolucao-content .campo-evolucao textarea {
-            min-height: 180px;
-            max-height: 450px;
-        }
-        
-        .way .campo textarea {
-            min-height: 40px;
-            max-height: 120px;
         }
     </style>
 </head>
@@ -687,6 +692,7 @@
                 <option value="nicotina7mg">🚬 Nicotina Adesivo 7mg</option>
                 <option value="nicotina14mg">🚬 Nicotina Adesivo 14mg</option>
                 <option value="nicotina21mg">🚬 Nicotina Adesivo 21mg</option>
+                <option value="laudoProcedimento">📄 Laudo para Solicitação de Procedimento</option>
             </select>
             <button id="printBtn" class="btn btn-primary">🖨️ IMPRIMIR</button>
         </div>
@@ -695,7 +701,7 @@
 </div>
 
 <script>
-    let currentDoc = "nicotina7mg";
+    let currentDoc = "laudoProcedimento";
     let currentUnidade = "CAPS";
 
     const docContainer = document.getElementById("documentoRender");
@@ -774,6 +780,22 @@
         `;
     }
 
+    // CABEÇALHO ESPECÍFICO PARA LAUDO DE PROCEDIMENTO (SUS)
+    function renderLaudoProcedimentoHeader() {
+        return `
+            <div class="laudo-procedimento-header">
+                <div class="sus-logo">
+                    <div>MINISTÉRIO DA SAÚDE</div>
+                    <div>SUS - SISTEMA ÚNICO DE SAÚDE</div>
+                </div>
+                <div class="linha-dupla"></div>
+                <h1>LAUDO PARA SOLICITAÇÃO/AUTORIZAÇÃO DE PROCEDIMENTO AMBULATORIAL</h1>
+                <h2>PORTARIA SAS/MS Nº 01/2025</h2>
+                <div class="linha-dupla"></div>
+            </div>
+        `;
+    }
+
     function getEnderecoPorUnidade() {
         if (currentUnidade === "MAISVIDA") {
             return "Rua Professor Arnaldo de Berros Barro Moreira nº 193, Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608";
@@ -790,174 +812,6 @@
         } else {
             return "MAIS VIDA - SERVIÇOS MÉDICOS EIRELLI";
         }
-    }
-
-    // ======================= RECEITA NICOTINA 7mg =======================
-    function renderNicotina7mg() {
-        const data = getDataAtual();
-        const endereco = getEnderecoPorUnidade();
-        const headerVia = renderHeaderVia();
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}
-                <div class="doc-title-via">RECEITUÁRIO</div>
-                <div class="way-title">${viaNome}</div>
-                
-                <div class="paciente-linha">
-                    <label>NOME DO PACIENTE:</label>
-                    <input type="text" id="paciente_nicotina7_${suffix}" placeholder="_________________________">
-                </div>
-                
-                <div class="medicamento">
-                    <p><strong>RECEITUÁRIO</strong></p>
-                    <p><strong>1. Nicotina Adesivo Transdérmico 07mg</strong> ______ 30Un</p>
-                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
-                </div>
-                
-                <div class="orientacoes">
-                    <p><strong>ORIENTAÇÕES:</strong></p>
-                    <p>- Não fumar durante o uso do adesivo</p>
-                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
-                    <p>- Não cortar o adesivo</p>
-                </div>
-                
-                <div class="assinatura">
-                    <p>Assinatura / Carimbo</p>
-                    <div class="linha"></div>
-                    <div class="data">
-                        <p>Data: <input type="text" id="data_nicotina7_${suffix}" value="${data.dataExtenso}" style="display: inline-block; width: auto; min-width: 200px;"></p>
-                    </div>
-                </div>
-                
-                <div class="rodape">
-                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
-                    <p>${endereco}</p>
-                </div>
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
-        
-        const src = document.getElementById('paciente_nicotina7_via1');
-        const tgt = document.getElementById('paciente_nicotina7_via2');
-        const srcData = document.getElementById('data_nicotina7_via1');
-        const tgtData = document.getElementById('data_nicotina7_via2');
-        
-        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
-        if (srcData && tgtData) srcData.addEventListener('input', () => tgtData.value = srcData.value);
-    }
-
-    // ======================= RECEITA NICOTINA 14mg =======================
-    function renderNicotina14mg() {
-        const data = getDataAtual();
-        const endereco = getEnderecoPorUnidade();
-        const headerVia = renderHeaderVia();
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}
-                <div class="doc-title-via">RECEITUÁRIO</div>
-                <div class="way-title">${viaNome}</div>
-                
-                <div class="paciente-linha">
-                    <label>NOME DO PACIENTE:</label>
-                    <input type="text" id="paciente_nicotina14_${suffix}" placeholder="_________________________">
-                </div>
-                
-                <div class="medicamento">
-                    <p><strong>RECEITUÁRIO</strong></p>
-                    <p><strong>1. Nicotina Adesivo Transdérmico 14mg</strong> ______ 30Un</p>
-                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
-                </div>
-                
-                <div class="orientacoes">
-                    <p><strong>ORIENTAÇÕES:</strong></p>
-                    <p>- Não fumar durante o uso do adesivo</p>
-                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
-                    <p>- Não cortar o adesivo</p>
-                </div>
-                
-                <div class="assinatura">
-                    <p>Assinatura / Carimbo</p>
-                    <div class="linha"></div>
-                    <div class="data">
-                        <p>Data: <input type="text" id="data_nicotina14_${suffix}" value="${data.dataExtenso}" style="display: inline-block; width: auto; min-width: 200px;"></p>
-                    </div>
-                </div>
-                
-                <div class="rodape">
-                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
-                    <p>${endereco}</p>
-                </div>
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
-        
-        const src = document.getElementById('paciente_nicotina14_via1');
-        const tgt = document.getElementById('paciente_nicotina14_via2');
-        const srcData = document.getElementById('data_nicotina14_via1');
-        const tgtData = document.getElementById('data_nicotina14_via2');
-        
-        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
-        if (srcData && tgtData) srcData.addEventListener('input', () => tgtData.value = srcData.value);
-    }
-
-    // ======================= RECEITA NICOTINA 21mg =======================
-    function renderNicotina21mg() {
-        const data = getDataAtual();
-        const endereco = getEnderecoPorUnidade();
-        const headerVia = renderHeaderVia();
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}
-                <div class="doc-title-via">RECEITUÁRIO</div>
-                <div class="way-title">${viaNome}</div>
-                
-                <div class="paciente-linha">
-                    <label>NOME DO PACIENTE:</label>
-                    <input type="text" id="paciente_nicotina21_${suffix}" placeholder="_________________________">
-                </div>
-                
-                <div class="medicamento">
-                    <p><strong>RECEITUÁRIO</strong></p>
-                    <p><strong>1. Nicotina Adesivo Transdérmico 21mg</strong> ______ 30Un</p>
-                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
-                </div>
-                
-                <div class="orientacoes">
-                    <p><strong>ORIENTAÇÕES:</strong></p>
-                    <p>- Não fumar durante o uso do adesivo</p>
-                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
-                    <p>- Não cortar o adesivo</p>
-                </div>
-                
-                <div class="assinatura">
-                    <p>Assinatura / Carimbo</p>
-                    <div class="linha"></div>
-                    <div class="data">
-                        <p>Data: <input type="text" id="data_nicotina21_${suffix}" value="${data.dataExtenso}" style="display: inline-block; width: auto; min-width: 200px;"></p>
-                    </div>
-                </div>
-                
-                <div class="rodape">
-                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
-                    <p>${endereco}</p>
-                </div>
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
-        
-        const src = document.getElementById('paciente_nicotina21_via1');
-        const tgt = document.getElementById('paciente_nicotina21_via2');
-        const srcData = document.getElementById('data_nicotina21_via1');
-        const tgtData = document.getElementById('data_nicotina21_via2');
-        
-        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
-        if (srcData && tgtData) srcData.addEventListener('input', () => tgtData.value = srcData.value);
     }
 
     // ======================= CONTROLE ESPECIAL =======================
@@ -1015,9 +869,9 @@
         const tabelaPrescricao = () => {
             let rows = '';
             for (let i = 0; i < 5; i++) {
-                rows += `<tr><td style="width:70%;"><textarea rows="1" placeholder="Medicamento / Via / Posologia" id="med_${i}"></textarea></table><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${dataAtual}" id="data_${i}"></input></td></tr>`;
+                rows += `<tr><td style="width:70%;"><textarea rows="1" placeholder="Medicamento / Via / Posologia" id="med_${i}"></textarea></td><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${dataAtual}" id="data_${i}"></input></td></tr>`;
             }
-            return `<table class="presc-table"><thead><tr><th>MEDICAMENTO / VIA / POSOLOGIA</th><th>DATA</th></tr></thead><tbody>${rows}</tbody></table>`;
+            return `<table class="presc-table"><thead><tr><th>MEDICAMENTO / VIA / POSOLOGIA</th><th>DATA</th></tr></thead><tbody>${rows}</tbody><table>`;
         };
         
         const html = `
@@ -1387,6 +1241,282 @@
         docContainer.innerHTML = html;
     }
 
+    // ======================= RECEITA NICOTINA 7mg =======================
+    function renderNicotina7mg() {
+        const data = getDataAtual();
+        const endereco = getEnderecoPorUnidade();
+        const headerVia = renderHeaderVia();
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}
+                <div class="doc-title-via">RECEITUÁRIO</div>
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>NOME DO PACIENTE:</label>
+                    <input type="text" id="paciente_nicotina7_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>RECEITUÁRIO</strong></p>
+                    <p><strong>1. Nicotina Adesivo Transdérmico 07mg</strong> ______ 30Un</p>
+                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
+                </div>
+                
+                <div class="orientacoes">
+                    <p><strong>ORIENTAÇÕES:</strong></p>
+                    <p>- Não fumar durante o uso do adesivo</p>
+                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
+                    <p>- Não cortar o adesivo</p>
+                </div>
+                
+                <div class="assinatura">
+                
+                    <div class="linha"></div>
+                    <div class="data">
+                        <p>Data: <input type="text" id="data_nicotina7_${suffix}" value="${data.dataExtenso}" style="display: inline-block; width: auto; min-width: 200px;"></p>
+                    </div>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
+                    <p>${endereco}</p>
+                </div>
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const src = document.getElementById('paciente_nicotina7_via1');
+        const tgt = document.getElementById('paciente_nicotina7_via2');
+        const srcData = document.getElementById('data_nicotina7_via1');
+        const tgtData = document.getElementById('data_nicotina7_via2');
+        
+        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
+        if (srcData && tgtData) srcData.addEventListener('input', () => tgtData.value = srcData.value);
+    }
+
+    // ======================= RECEITA NICOTINA 14mg =======================
+    function renderNicotina14mg() {
+        const data = getDataAtual();
+        const endereco = getEnderecoPorUnidade();
+        const headerVia = renderHeaderVia();
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}
+                <div class="doc-title-via">RECEITUÁRIO</div>
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>NOME DO PACIENTE:</label>
+                    <input type="text" id="paciente_nicotina14_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>RECEITUÁRIO</strong></p>
+                    <p><strong>1. Nicotina Adesivo Transdérmico 14mg</strong> ______ 30Un</p>
+                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
+                </div>
+                
+                <div class="orientacoes">
+                    <p><strong>ORIENTAÇÕES:</strong></p>
+                    <p>- Não fumar durante o uso do adesivo</p>
+                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
+                    <p>- Não cortar o adesivo</p>
+                </div>
+                
+                <div class="assinatura">
+    
+                    <div class="linha"></div>
+                    <div class="data">
+                        <p>Data: <input type="text" id="data_nicotina14_${suffix}" value="${data.dataExtenso}" style="display: inline-block; width: auto; min-width: 200px;"></p>
+                    </div>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
+                    <p>${endereco}</p>
+                </div>
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const src = document.getElementById('paciente_nicotina14_via1');
+        const tgt = document.getElementById('paciente_nicotina14_via2');
+        const srcData = document.getElementById('data_nicotina14_via1');
+        const tgtData = document.getElementById('data_nicotina14_via2');
+        
+        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
+        if (srcData && tgtData) srcData.addEventListener('input', () => tgtData.value = srcData.value);
+    }
+
+    // ======================= RECEITA NICOTINA 21mg =======================
+    function renderNicotina21mg() {
+        const data = getDataAtual();
+        const endereco = getEnderecoPorUnidade();
+        const headerVia = renderHeaderVia();
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}
+                <div class="doc-title-via">RECEITUÁRIO</div>
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>NOME DO PACIENTE:</label>
+                    <input type="text" id="paciente_nicotina21_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>RECEITUÁRIO</strong></p>
+                    <p><strong>1. Nicotina Adesivo Transdérmico 21mg</strong> ______ 30Un</p>
+                    <p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas:</p>
+                </div>
+                
+                <div class="orientacoes">
+                    <p><strong>ORIENTAÇÕES:</strong></p>
+                    <p>- Não fumar durante o uso do adesivo</p>
+                    <p>- Retirar à noite se houver insônia ou sonhos vividos.</p>
+                    <p>- Não cortar o adesivo</p>
+                </div>
+                
+                <div class="assinatura">
+                    
+                    <div class="linha"></div>
+                    <div class="data">
+                        <p>Data: <input type="text" id="data_nicotina21_${suffix}" value="${data.dataExtenso}" style="display: inline-block; width: auto; min-width: 200px;"></p>
+                    </div>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
+                    <p>${endereco}</p>
+                </div>
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA - Paciente / Drogaria", "via1")}${viaContent("2ª VIA - Paciente (Retenção)", "via2")}</div>`;
+        
+        const src = document.getElementById('paciente_nicotina21_via1');
+        const tgt = document.getElementById('paciente_nicotina21_via2');
+        const srcData = document.getElementById('data_nicotina21_via1');
+        const tgtData = document.getElementById('data_nicotina21_via2');
+        
+        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
+        if (srcData && tgtData) srcData.addEventListener('input', () => tgtData.value = srcData.value);
+    }
+
+    // ======================= LAUDO PARA SOLICITAÇÃO DE PROCEDIMENTO =======================
+    function renderLaudoProcedimento() {
+        const data = getDataAtual();
+        
+        const html = `
+            <div class="single-way laudo-procedimento">
+                ${renderLaudoProcedimentoHeader()}
+                
+                <div class="secao">
+                    <div class="secao-titulo">IDENTIFICAÇÃO DO ESTABELECIMENTO DE SAÚDE (SOLICITANTE)</div>
+                    <div class="campo-linha">
+                        <label>1. NOME DO ESTABELECIMENTO DE SAÚDE SOLICITANTE:</label>
+                        <input type="text" id="estabelecimento_nome" placeholder="_________________________________________">
+                    </div>
+                    <div class="campo-linha">
+                        <label>2. CNPJ:</label>
+                        <input type="text" id="estabelecimento_cnpj" placeholder="__.___.___/____-__">
+                    </div>
+                </div>
+                
+                <div class="secao">
+                    <div class="secao-titulo">IDENTIFICAÇÃO DO PACIENTE</div>
+                    <div class="campo-linha">
+                        <label>1. NOME DO PACIENTE:</label>
+                        <input type="text" id="paciente_nome" placeholder="_________________________________________">
+                    </div>
+                    <div class="campo-linha">
+                        <label>2. CARTÃO NACIONAL DE SAÚDE (CNS):</label>
+                        <input type="text" id="paciente_cns" placeholder="___ ____ ____ _____">
+                    </div>
+                    <div class="campo-linha">
+                        <label>3. DATA DE NASCIMENTO:</label>
+                        <input type="text" id="paciente_nascimento" placeholder="__/__/____">
+                    </div>
+                    <div class="campo-linha">
+                        <label>4. SEXO:</label>
+                        <input type="text" id="paciente_sexo" placeholder="( ) Masculino ( ) Feminino">
+                    </div>
+                    <div class="campo-linha">
+                        <label>5. NOME DA MÃE:</label>
+                        <input type="text" id="paciente_mae" placeholder="_________________________________________">
+                    </div>
+                    <div class="campo-linha">
+                        <label>6. NOME DO PAI:</label>
+                        <input type="text" id="paciente_pai" placeholder="_________________________________________">
+                    </div>
+                    <div class="campo-linha">
+                        <label>7. RG:</label>
+                        <input type="text" id="paciente_rg" placeholder="_________________">
+                    </div>
+                    <div class="campo-linha">
+                        <label>8. CPF:</label>
+                        <input type="text" id="paciente_cpf" placeholder="___.___.___-__">
+                    </div>
+                    <div class="campo-linha">
+                        <label>9. ENDEREÇO COMPLETO:</label>
+                        <input type="text" id="paciente_endereco" placeholder="Rua, número, bairro, cidade, CEP">
+                    </div>
+                    <div class="campo-linha">
+                        <label>10. TELEFONE:</label>
+                        <input type="text" id="paciente_telefone" placeholder="(__) _____-____">
+                    </div>
+                </div>
+                
+                <div class="secao">
+                    <div class="secao-titulo">DADOS DO PROCEDIMENTO SOLICITADO</div>
+                    <div class="campo-linha">
+                        <label>PROCEDIMENTO SOLICITADO:</label>
+                        <input type="text" id="procedimento_nome" placeholder="_________________________________________">
+                    </div>
+                    <div class="campo-linha">
+                        <label>CID (Código Internacional de Doença):</label>
+                        <input type="text" id="procedimento_cid" placeholder="______">
+                    </div>
+                    <div class="campo-linha-full">
+                        <label>JUSTIFICATIVA CLÍNICA:</label>
+                        <textarea id="procedimento_justificativa" rows="4" placeholder="Descrever a justificativa para a solicitação do procedimento..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="secao">
+                    <div class="secao-titulo">DADOS DO MÉDICO SOLICITANTE</div>
+                    <div class="campo-linha">
+                        <label>NOME DO MÉDICO:</label>
+                        <input type="text" id="medico_nome" placeholder="_________________________________________">
+                    </div>
+                    <div class="campo-linha">
+                        <label>CRM:</label>
+                        <input type="text" id="medico_crm" placeholder="______-UF">
+                    </div>
+                    <div class="campo-linha">
+                        <label>ESPECIALIDADE:</label>
+                        <input type="text" id="medico_especialidade" placeholder="_________________________________________">
+                    </div>
+                </div>
+                
+                <div class="data-area">
+                    <p>Data: <input type="text" id="data_laudo_procedimento" value="${data.dataExtenso}" style="display: inline-block; width: auto; min-width: 250px;"></p>
+                </div>
+                
+                <div class="assinatura-area">
+                    ${getAssinaturaComponent("Assinatura do Médico / Carimbo")}
+                </div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
+    }
+
     function renderizar() {
         switch(currentDoc) {
             case "controleEspecial": renderControleEspecial(); break;
@@ -1402,26 +1532,17 @@
             case "nicotina7mg": renderNicotina7mg(); break;
             case "nicotina14mg": renderNicotina14mg(); break;
             case "nicotina21mg": renderNicotina21mg(); break;
-            default: renderNicotina7mg();
+            case "laudoProcedimento": renderLaudoProcedimento(); break;
+            default: renderLaudoProcedimento();
         }
     }
 
     function handlePrint() {
-        const documentosRetrato = ["evolucao", "atestado", "maisvida", "maisvidaPrescricao", "maisvidaAtestado"];
-        
-        if (documentosRetrato.includes(currentDoc)) {
-            const style = document.createElement('style');
-            style.textContent = `@page { size: A4 portrait; margin: 0.4cm; }`;
-            document.head.appendChild(style);
-            window.print();
-            style.remove();
-        } else {
-            const style = document.createElement('style');
-            style.textContent = `@page { size: A4 landscape; margin: 0.2cm; }`;
-            document.head.appendChild(style);
-            window.print();
-            style.remove();
-        }
+        const style = document.createElement('style');
+        style.textContent = `@page { size: A4 portrait; margin: 0.4cm; }`;
+        document.head.appendChild(style);
+        window.print();
+        style.remove();
     }
 
     unidadeSelect.addEventListener("change", () => { currentUnidade = unidadeSelect.value; renderizar(); });
