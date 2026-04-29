@@ -236,17 +236,17 @@
         .exames-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2px 4px;
-            margin: 4px 0;
+            gap: 2px 6px;
+            margin: 5px 0;
             background: #fefcf5;
-            padding: 3px;
+            padding: 4px;
             border: 1px solid #e2e8f0;
             font-size: 9pt;
         }
         .exames-grid label {
             display: flex;
             align-items: center;
-            gap: 2px;
+            gap: 3px;
             font-weight: bold;
             cursor: pointer;
             font-size: 9pt;
@@ -375,6 +375,11 @@
             font-size: 0.8rem;
             font-weight: normal;
             margin-top: 3px;
+        }
+        .maisvida-header .cnpj-maisvida {
+            font-size: 0.65rem;
+            color: #888;
+            margin-top: 2px;
         }
         .maisvida-header h3 {
             font-size: 0.8rem;
@@ -636,6 +641,10 @@
             .laudo-procedimento .secao {
                 break-inside: avoid;
             }
+            .exames-grid {
+                max-height: none;
+                overflow: visible;
+            }
         }
     </style>
 </head>
@@ -671,13 +680,29 @@
 </div>
 
 <script>
-    let currentDoc = "controleEspecial";
+    let currentDoc = "exames";
     let currentUnidade = "CAPS";
 
     const docContainer = document.getElementById("documentoRender");
     const unidadeSelect = document.getElementById("unidadeSelect");
     const docSelector = document.getElementById("docSelector");
     const printBtn = document.getElementById("printBtn");
+
+    // CNPJ do Mais Vida conforme imagem
+    const CNPJ_MAISVIDA = "40.132.734/0001-49";
+
+    // LISTA COMPLETA DE EXAMES
+    const examesCompletos = [
+        "Hemograma", "Coagulograma", "Tipagem Sanguínea", "Sódio e Potássio", "Ureia", "Creatinina",
+        "Glicemia de Jejum", "Teste de Tolerância a Glicose", "Hemoglobina Glicada", "Colesterol Total e Frações",
+        "Triglicerídios", "CPK", "Gama GT", "Bilirrubinas Total e Frações", "TGO / TGP", "Amilase / Lipase",
+        "Fosfatase Alcalina", "Proteinas Totais e Frações", "Ferro, Ferritina e Transferrina", "Cálcio Total",
+        "Cálcio Ionizado", "Se, Mg, P", "Ácido Úrico", "PCR", "VHS", "PSA", "FAN", "Vitamina D", "Vitamina B12",
+        "Dosagem de Ácido Fólico", "Sorologia para_____", "T3 Total", "T4 Livre", "TSH Ultra.", "FSH", "LH",
+        "Estradiol", "FR", "Anti CCP", "Rubéola", "Citomegalovirus", "Toxoplasm.", "Eletroforese de Proteínas",
+        "Eletroforese de Hemoglobina", "EAS", "Cultura de Urina", "Clearance de Creatinina - Urina de 24h",
+        "Parasitológico de Fezes", "Sangue Oculto nas Fezes"
+    ];
 
     function getDataAtual() {
         const hoje = new Date();
@@ -718,7 +743,7 @@
         }
         
         if (currentUnidade === "MAISVIDA") {
-            return `<div class="header-via" style="border-bottom:none;"><div class="logo-area-via"><div class="pref-text-via" style="text-align:center; width:100%;"><div class="pref-name-via" style="font-size:0.9rem;">MAIS VIDA</div><div class="secretaria-via" style="font-size:0.7rem;">SERVIÇOS MÉDICOS EIRELLI</div></div></div><hr /></div>`;
+            return `<div class="header-via" style="border-bottom:none;"><div class="logo-area-via"><div class="pref-text-via" style="text-align:center; width:100%;"><div class="pref-name-via" style="font-size:0.9rem;">MAIS VIDA</div><div class="secretaria-via" style="font-size:0.7rem;">SERVIÇOS MÉDICOS EIRELLI</div><div class="cnpj-maisvida" style="font-size:0.6rem; color:#888; margin-top:2px;">CNPJ: ${CNPJ_MAISVIDA}</div></div></div><hr /></div>`;
         }
         
         return `
@@ -750,6 +775,46 @@
         if (currentUnidade === "AME") return "AMBULATÓRIO DE ESPECIALIDADES - AME";
         if (currentUnidade === "CAPS") return "CAPS AD III REGIONAL VALE DO MAMANGUAPE";
         return "MAIS VIDA - SERVIÇOS MÉDICOS EIRELLI";
+    }
+
+    // ======================= SOLICITAÇÃO DE EXAMES (1 VIA - PAISAGEM) COM LISTA COMPLETA =======================
+    function renderSolicitacaoExames() {
+        const data = getDataAtual();
+        
+        function gerarCheckboxes() {
+            let grid = '<div class="exames-grid">';
+            examesCompletos.forEach(exame => {
+                grid += `<label><input type="checkbox" class="exame-cb"> ${exame}</label>`;
+            });
+            grid += '</div>';
+            return grid;
+        }
+        
+        const html = `
+            <div class="single-way-horizontal">
+                ${renderHeaderVia()}
+                <div class="doc-title-via">SOLICITAÇÃO DE EXAMES LABORATORIAIS</div>
+                <div class="campo-inline"><div class="campo"><label>Unidade de Saúde:</label><input type="text" id="unidade_exames" placeholder="Unidade solicitante"></div><div class="campo"><label>Nº Cartão do SUS:</label><input type="text" id="sus_exames" placeholder="Número do Cartão SUS"></div></div>
+                <div class="campo"><label>Nome do Usuário:</label><input type="text" id="nome_exames" placeholder="Nome completo"></div>
+                <div class="campo-inline">
+                    <div class="campo"><label>Data de Nascimento:</label><input type="text" id="nasc_exames" placeholder="dd/mm/aaaa"></div>
+                    <div class="campo"><label>Sexo:</label><div class="radio-group"><label><input type="radio" name="sexo_exames" value="MAS"> MAS</label><label><input type="radio" name="sexo_exames" value="FEM"> FEM</label></div></div>
+                    <div class="campo"><label>Telefone:</label><input type="text" id="telefone_exames" placeholder="(83) 9xxxx-xxxx"></div>
+                </div>
+                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_exames" placeholder="Rua, nº, bairro, cidade"></div>
+                <div class="campo"><label>Dados Clínicos:</label><textarea rows="2" id="clinicos_exames" placeholder="Queixas, hipóteses diagnósticas, comorbidades..."></textarea></div>
+                <div class="campo"><label>Material a Examinar (ex.: urina, sangue):</label><input type="text" id="material_exames" placeholder="Tipo de material"></div>
+                ${gerarCheckboxes()}
+                <div class="campo"><label>Outros exames não listados:</label><textarea rows="2" id="outros_exames" placeholder="Especificar outros exames solicitados..."></textarea></div>
+                <div class="campo-inline">
+                    <div class="campo"><label>Médico Solicitante / CRM:</label><input type="text" id="medico_exames" placeholder="Nome e ${data.crm}"></div>
+                    <div class="campo"><label>Data da solicitação:</label><input type="text" id="data_exames" value="${data.dataNumerica}" style="width:100px"></div>
+                </div>
+                ${getAssinaturaComponent("Carimbo e Assinatura")}
+                <div style="margin-top:5px; text-align:center; font-size:9pt;">${data.crm} _________________________</div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
     }
 
     // ======================= CONTROLE ESPECIAL =======================
@@ -811,7 +876,7 @@
                 <div class="doc-title-via">PRESCRIÇÃO MÉDICA</div>
                 <div class="campo-inline"><div class="campo" style="flex:2;"><label>PACIENTE:</label><input type="text" id="paciente_presc" placeholder="Nome completo"></div><div class="campo" style="flex:1;"><label>CPF:</label><input type="text" id="cpf_presc" placeholder="000.000.000-00"></div></div>
                 <div class="campo"><label>DATA:</label><input type="text" id="data_presc" value="${data.dataNumerica}"></div>
-                <table class="presc-table"><thead><tr><th>MEDICAMENTO / VIA / POSOLOGIA</th><th>DATA</th></tr></thead><tbody>${rows}</tbody></table>
+                <table class="presc-table"><thead><tr><th>MEDICAMENTO / VIA / POSOLOGIA</th><th>DATA</th></td></thead><tbody>${rows}</tbody></table>
                 <div class="campo"><label>Anotações:</label><textarea rows="1" id="anotacoes_presc"></textarea></div>
                 ${getAssinaturaComponent("Carimbo e Assinatura do Médico")}
                 <div style="margin-top:5px; text-align:center; font-size:9pt;">${data.crm} _________________________</div>
@@ -852,32 +917,6 @@
                 <div class="campo"><label>Descrição:</label><textarea rows="8" id="descricao_laudo"></textarea></div>
                 <div class="campo"><label>Data:</label><input type="text" id="data_laudo" value="${data.dataNumerica}"></div>
                 ${getAssinaturaComponent("Médico Responsável")}
-                <div style="margin-top:5px; text-align:center; font-size:9pt;">${data.crm} _________________________</div>
-            </div>
-        `;
-        docContainer.innerHTML = html;
-    }
-
-    // ======================= SOLICITAÇÃO DE EXAMES (1 VIA - PAISAGEM) =======================
-    function renderSolicitacaoExames() {
-        const data = getDataAtual();
-        const exames = ["Hemograma","Coagulograma","Tipagem Sanguínea","Sódio e Potássio","Ureia","Creatinina","Glicemia","Hemoglobina Glicada","Colesterol Total","Triglicerídios","TGO/TGP","Amilase/Lipase","Fosfatase Alcalina","PCR","VHS","PSA","Vitamina D","Vitamina B12","TSH","T4 Livre","EAS","Cultura de Urina"];
-        let grid = '<div class="exames-grid">';
-        exames.forEach(e => grid += `<label><input type="checkbox" class="exame-cb"> ${e}</label>`);
-        grid += '</div>';
-        const html = `
-            <div class="single-way-horizontal">
-                ${renderHeaderVia()}
-                <div class="doc-title-via">SOLICITAÇÃO DE EXAMES LABORATORIAIS</div>
-                <div class="campo-inline"><div class="campo"><label>Unidade:</label><input type="text" id="unidade_exames"></div><div class="campo"><label>SUS:</label><input type="text" id="sus_exames"></div></div>
-                <div class="campo"><label>Paciente:</label><input type="text" id="nome_exames"></div>
-                <div class="campo-inline"><div class="campo"><label>Nasc.:</label><input type="text" id="nasc_exames"></div><div class="campo"><label>Sexo:</label><div class="radio-group"><label><input type="radio" name="sexo" value="M"> M</label><label><input type="radio" name="sexo" value="F"> F</label></div></div><div class="campo"><label>Telefone:</label><input type="text" id="telefone_exames"></div></div>
-                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_exames"></div>
-                <div class="campo"><label>Dados Clínicos:</label><textarea rows="1" id="clinicos_exames"></textarea></div>
-                ${grid}
-                <div class="campo"><label>Outros:</label><textarea rows="1" id="outros_exames"></textarea></div>
-                <div class="campo-inline"><div class="campo"><label>Médico:</label><input type="text" id="medico_exames" placeholder="Nome e ${data.crm}"></div><div class="campo"><label>Data:</label><input type="text" id="data_exames" value="${data.dataNumerica}"></div></div>
-                ${getAssinaturaComponent("Carimbo e Assinatura")}
                 <div style="margin-top:5px; text-align:center; font-size:9pt;">${data.crm} _________________________</div>
             </div>
         `;
@@ -925,12 +964,17 @@
         docContainer.innerHTML = html;
     }
 
-    // ======================= MAIS VIDA =======================
+    // ======================= MAIS VIDA - RECEITUÁRIO MÉDICO =======================
     function renderMaisVida() {
         const data = getDataAtual();
         const html = `
             <div class="maisvida-container"><div class="single-way">
-                <div class="maisvida-header"><h1>MAIS VIDA</h1><h2>SERVIÇOS MÉDICOS EIRELLI</h2><h3>RECEITUÁRIO MÉDICO</h3></div>
+                <div class="maisvida-header">
+                    <h1>MAIS VIDA</h1>
+                    <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
+                    <div class="cnpj-maisvida">CNPJ: ${CNPJ_MAISVIDA}</div>
+                    <h3>RECEITUÁRIO MÉDICO</h3>
+                </div>
                 <div class="campo" style="margin-bottom:10px;"><label style="font-weight:bold;">PACIENTE:</label><input type="text" id="paciente_mv" style="width:100%; border:none; border-bottom:1px solid #000;"></div>
                 <div class="maisvida-prescricao"><label style="font-weight:bold;">PRESCRIÇÃO:</label><textarea id="prescricao_mv" rows="12" style="background:#e8f5e9; font-family:'Courier New'; font-weight:bold;">RX\n\nVIA ORAL\n\nFORXIGA 10 MG ______01 CX\n1 comprimido/dia\n\nATENOLOL 25MG ______01 CX\n\nBESILATO DE ANLODIPINO 5MG ______01 CX\n\nGLIFAGE XR 500MG ______01 CX\n1 comprimido a noite</textarea></div>
                 <div class="maisvida-data"><span class="data-label">JOÃO PESSOA,</span><input type="text" id="data_mv" value="${data.dataExtenso}"></div>
@@ -946,7 +990,12 @@
         const data = getDataAtual();
         const html = `
             <div class="maisvida-container"><div class="single-way">
-                <div class="maisvida-header"><h1>MAIS VIDA</h1><h2>SERVIÇOS MÉDICOS EIRELLI</h2><h3>SOLICITAÇÃO DE EXAMES</h3></div>
+                <div class="maisvida-header">
+                    <h1>MAIS VIDA</h1>
+                    <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
+                    <div class="cnpj-maisvida">CNPJ: ${CNPJ_MAISVIDA}</div>
+                    <h3>SOLICITAÇÃO DE EXAMES</h3>
+                </div>
                 <div class="campo" style="margin-bottom:10px;"><label style="font-weight:bold;">PACIENTE:</label><input type="text" id="paciente_mv_exames" style="width:100%; border:none; border-bottom:1px solid #000;"></div>
                 <div class="maisvida-prescricao"><label style="font-weight:bold;">EXAMES SOLICITADOS:</label><textarea id="prescricao_mv_exames" rows="10" style="background:#e8f5e9; font-family:'Courier New'; font-weight:bold;">Solicito:\n\nHemograma completo, vitamina D,\nvitamina B12, magnesio, ferro serico,\nferritina, saturacao de transferrina, sodio,\npotsio\n\nHD: Rotina / rastreamento</textarea></div>
                 <div class="maisvida-data"><span class="data-label">JOÃO PESSOA,</span><input type="text" id="data_mv_exames" value="${data.dataExtenso}"></div>
@@ -962,12 +1011,17 @@
         const data = getDataAtual();
         const html = `
             <div class="maisvida-container"><div class="single-way">
-                <div class="maisvida-header"><h1>MAIS VIDA</h1><h2>SERVIÇOS MÉDICOS EIRELLI</h2><h3>ATESTADO MÉDICO</h3></div>
+                <div class="maisvida-header">
+                    <h1>MAIS VIDA</h1>
+                    <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
+                    <div class="cnpj-maisvida">CNPJ: ${CNPJ_MAISVIDA}</div>
+                    <h3>ATESTADO MÉDICO</h3>
+                </div>
                 <div class="maisvida-atestado-campos">
                     <div class="maisvida-atestado-linha"><label>PACIENTE:</label><input type="text" id="paciente_atestado_mv" placeholder="Nome do paciente"></div>
                     <div class="maisvida-atestado-linha"><label>DIAS DE AFASTAMENTO:</label><input type="text" id="dias_atestado_mv" placeholder="1" class="dias-input"></div>
                     <div class="maisvida-atestado-linha"><label>CID:</label><input type="text" id="cid_atestado_mv" placeholder="M50" class="cid-input"></div>
-                     <div class="campo"><label>Usuário autoriza CID:</label><input type="text" id="autoriza_cid" style="width:250px; border-bottom:1px solid #000;"></div>
+                    <div class="campo"><label>Usuário autoriza CID:</label><input type="text" id="autoriza_cid" style="width:250px; border-bottom:1px solid #000;"></div>
                 </div>
                 <div class="maisvida-data"><span class="data-label">JOÃO PESSOA,</span><input type="text" id="data_atestado_mv" value="${data.dataExtenso}"></div>
                 <div class="maisvida-assinatura"><div class="assinatura-linha"></div><p><strong>Dra. Gisele Lima</strong></p><p>${data.crm} 13564</p></div>
@@ -986,7 +1040,7 @@
                 <div class="paciente-linha"><label>PACIENTE:</label><input type="text" id="paciente_nic${dosagem}_${suffix}"></div>
                 <div class="medicamento"><p><strong>Nicotina Adesivo Transdérmico ${dosagem}mg</strong> ______ 30Un</p><p>Aplicar 01 adesivo pela manhã, em pele limpa, trocar local diariamente, por 04 semanas</p></div>
                 <div class="orientacoes"><p><strong>ORIENTAÇÕES:</strong></p><p>- Não fumar durante o uso</p><p>- Retirar à noite se houver insônia</p><p>- Não cortar o adesivo</p></div>
-                <div class="assinatura"><p>Assinatura / Carimbo</p><div class="linha"></div><div class="data"><p>Data: <input type="text" id="data_nic${dosagem}_${suffix}" value="${data.dataExtenso}"></p></div></div>
+                <div class="assinatura"><div class="linha"></div><div class="data"><p>Data: <input type="text" id="data_nic${dosagem}_${suffix}" value="${data.dataExtenso}"></p></div></div>
                 <div class="rodape"><p>RECEITUÁRIO – ${getNomeUnidade()}</p><p>${getEnderecoPorUnidade().substring(0,70)}</p></div>
             </div>
         `;
@@ -1059,7 +1113,7 @@
             case "nicotina14mg": renderNicotina14mg(); break;
             case "nicotina21mg": renderNicotina21mg(); break;
             case "laudoProcedimento": renderLaudoProcedimento(); break;
-            default: renderControleEspecial();
+            default: renderSolicitacaoExames();
         }
     }
 
