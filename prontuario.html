@@ -77,7 +77,6 @@
             font-family: 'Times New Roman', Times, serif;
         }
 
-        /* CABEÇALHO PADRÃO */
         .header-via {
             text-align: center;
             margin-bottom: 4px;
@@ -132,43 +131,6 @@
             display: inline-block;
             padding: 1px 6px;
             border-radius: 15px;
-        }
-
-        /* CABEÇALHO ESPECÍFICO PARA LAUDO DE PROCEDIMENTO (SUS) */
-        .laudo-procedimento-header {
-            text-align: center;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            padding: 8px;
-            background: #f8f9fa;
-        }
-        .laudo-procedimento-header h1 {
-            font-size: 0.85rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 3px;
-        }
-        .laudo-procedimento-header h2 {
-            font-size: 0.7rem;
-            font-weight: normal;
-            margin-bottom: 3px;
-        }
-        .laudo-procedimento-header .sus-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 5px;
-        }
-        .laudo-procedimento-header .sus-logo div {
-            font-weight: bold;
-            font-size: 0.75rem;
-        }
-        .laudo-procedimento-header .linha-dupla {
-            border-top: 2px solid #000;
-            border-bottom: 1px solid #000;
-            height: 2px;
-            margin: 3px 0;
         }
 
         .doc-title-via {
@@ -686,13 +648,13 @@
             <select id="docSelector">
                 <option value="controleEspecial">📋 Controle Especial</option>
                 <option value="prescricao">💊 Prescrição Médica</option>
-                <option value="receitaSimples">📄 Receita Simples</option>
+                <option value="receitaSimples">📄 Receituário</option>
                 <option value="laudo">📑 Laudo Médico</option>
                 <option value="exames">🔬 Solicitação de Exames</option>
                 <option value="evolucao">📝 Evolução Clínica</option>
                 <option value="atestado">📋 Atestado Médico</option>
-                <option value="maisvida">🏥 Mais Vida - Receituário</option>
-                <option value="maisvidaPrescricao">🏥 Mais Vida - Prescrição Médica</option>
+                <option value="maisvida">🏥 Mais Vida - Receituário Médico</option>
+                <option value="maisvidaPrescricao">🏥 Mais Vida - Solicitação de Exames</option>
                 <option value="maisvidaAtestado">📋 Mais Vida - Atestado Médico</option>
                 <option value="nicotina7mg">🚬 Nicotina Adesivo 7mg</option>
                 <option value="nicotina14mg">🚬 Nicotina Adesivo 14mg</option>
@@ -706,7 +668,7 @@
 </div>
 
 <script>
-    let currentDoc = "laudoProcedimento";
+    let currentDoc = "laudo";
     let currentUnidade = "CAPS";
 
     const docContainer = document.getElementById("documentoRender");
@@ -727,7 +689,8 @@
             mesExtenso: meses[hoje.getMonth()],
             mesNumero: mes,
             ano: ano,
-            cidade: "JOÃO PESSOA"
+            cidade: "JOÃO PESSOA",
+            crm: "CRM-PB"
         };
     }
 
@@ -785,22 +748,6 @@
         `;
     }
 
-    // CABEÇALHO ESPECÍFICO PARA LAUDO DE PROCEDIMENTO (SUS) - VERSÃO COMPACTA
-    function renderLaudoProcedimentoHeader() {
-        return `
-            <div class="laudo-procedimento-header">
-                <div class="sus-logo">
-                    <div>MINISTÉRIO DA SAÚDE</div>
-                    <div>SUS - SISTEMA ÚNICO DE SAÚDE</div>
-                </div>
-                <div class="linha-dupla"></div>
-                <h1>LAUDO PARA SOLICITAÇÃO/AUTORIZAÇÃO DE PROCEDIMENTO AMBULATORIAL</h1>
-                <h2>PORTARIA SAS/MS Nº 01/2025</h2>
-                <div class="linha-dupla"></div>
-            </div>
-        `;
-    }
-
     function getEnderecoPorUnidade() {
         if (currentUnidade === "MAISVIDA") {
             return "Rua Professor Arnaldo de Berros Barro Moreira nº 193, Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608";
@@ -821,7 +768,7 @@
 
     // ======================= CONTROLE ESPECIAL =======================
     function renderControleEspecial() {
-        const dataAtual = getDataAtual().dataNumerica;
+        const data = getDataAtual();
         const headerVia = renderHeaderVia();
         const titulo = "RECEITUÁRIO DE CONTROLE ESPECIAL";
         
@@ -839,7 +786,7 @@
                     <div class="campo"><label>Nome / Razão Social:</label><input type="text" id="forn_nome_${suffix}"></div>
                     <div class="campo-inline"><div class="campo"><label>CNPJ:</label><input type="text" id="forn_cnpj_${suffix}"></div><div class="campo"><label>CRF:</label><input type="text" id="forn_crf_${suffix}"></div></div>
                     <div class="campo"><label>Endereço:</label><input type="text" id="forn_end_${suffix}"></div>
-                    <div>Data: <input type="text" id="forn_data_${suffix}" value="${dataAtual}" style="width:70px"></div>
+                    <div>Data: <input type="text" id="forn_data_${suffix}" value="${data.dataNumerica}" style="width:70px"></div>
                 </div>
             </div>
         `;
@@ -851,7 +798,7 @@
                 <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}"></div>
                 <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}"></div>
                 <div class="campo"><label>Prescrição:</label><textarea rows="2" id="prescricao_${suffix}" placeholder="Medicamento, dosagem, posologia..."></textarea></div>
-                <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
+                <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${data.dataNumerica}"></div>
                 ${getAssinaturaComponent("CARIMBO E ASSINATURA DO MÉDICO(A)")}
                 ${compradorFornecedorHTML(suffix)}
             </div>
@@ -865,16 +812,16 @@
         compFields.forEach(f => { const s = document.getElementById(`${f}_via1`), t = document.getElementById(`${f}_via2`); if(s&&t) s.addEventListener('input',()=>t.value=s.value); });
     }
 
-    // ======================= PRESCRIÇÃO MÉDICA =======================
+    // ======================= PRESCRIÇÃO MÉDICA (1 VIA - PAISAGEM) =======================
     function renderPrescricao() {
-        const dataAtual = getDataAtual().dataNumerica;
+        const data = getDataAtual();
         const headerVia = renderHeaderVia();
         const titulo = "PRESCRIÇÃO MÉDICA";
         
         const tabelaPrescricao = () => {
             let rows = '';
-            for (let i = 0; i < 5; i++) {
-                rows += `<td><td style="width:70%;"><textarea rows="1" placeholder="Medicamento / Via / Posologia" id="med_${i}"></textarea></td><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${dataAtual}" id="data_${i}"></input></td></tr>`;
+            for (let i = 0; i < 6; i++) {
+                rows += `<tr><td style="width:70%;"><textarea rows="1" placeholder="Medicamento / Via / Posologia" id="med_${i}"></textarea></td><td style="width:30%;"><input type="text" placeholder="__/__/____" value="${data.dataNumerica}" id="data_${i}"></input></td></tr>`;
             }
             return `<table class="presc-table"><thead><tr><th>MEDICAMENTO / VIA / POSOLOGIA</th><th>DATA</th></tr></thead><tbody>${rows}</tbody></table>`;
         };
@@ -887,21 +834,27 @@
                     <div class="campo" style="flex: 2;"><label>PACIENTE:</label><input type="text" id="paciente_presc" placeholder="Nome completo do paciente"></div>
                     <div class="campo" style="flex: 1;"><label>CPF:</label><input type="text" id="cpf_presc" placeholder="000.000.000-00"></div>
                 </div>
-                <div class="campo"><label>DATA:</label><input type="text" id="data_presc" value="${dataAtual}"></div>
+                <div class="campo"><label>DATA:</label><input type="text" id="data_presc" value="${data.dataNumerica}"></div>
                 ${tabelaPrescricao()}
                 <div class="campo"><label>Anotações / Observações:</label><textarea rows="1" id="anotacoes_presc" placeholder="Informações adicionais..."></textarea></div>
-                ${getAssinaturaComponent("Carimbo e Assinatura do Médico")}
+                <div class="assinatura-container">
+                    <div class="print-hide-text" style="font-size:9pt; font-weight:bold; text-align:center;">Carimbo e Assinatura do Médico</div>
+                    <div class="print-show-line" style="text-align:center; margin-top:2px;">
+                        <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
+                    </div>
+                </div>
+                <div style="margin-top:5px; text-align:center; font-size:9pt;">${data.crm} _________________________</div>
             </div>
         `;
         
         docContainer.innerHTML = html;
     }
 
-    // ======================= RECEITA SIMPLES =======================
+    // ======================= RECEITUÁRIO (antiga Receita Simples - 2 vias) =======================
     function renderReceitaSimples() {
-        const dataAtual = getDataAtual().dataNumerica;
+        const data = getDataAtual();
         const headerVia = renderHeaderVia();
-        const titulo = "RECEITA SIMPLES";
+        const titulo = "RECEITUÁRIO";
         
         const viaContent = (viaNome, suffix) => `
             <div class="way">
@@ -913,13 +866,19 @@
                     <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}" placeholder="Rua, número, bairro, cidade"></div>
                     <div class="campo-medicamento" style="display:flex; flex-direction:column;">
                         <label>Medicamento(s) / Descrição:</label>
-                        <textarea id="medicamento_${suffix}" placeholder="Descrever medicamentos, posologia, duração do tratamento, orientações importantes..." rows="3"></textarea>
+                        <textarea id="medicamento_${suffix}" placeholder="Descrever medicamentos, posologia..." rows="4"></textarea>
                     </div>
                     <div class="campo-inline">
-                        <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
+                        <div class="campo"><label>Data:</label><input type="text" id="data_${suffix}" value="${data.dataNumerica}"></div>
                         <div class="campo"><label>Validade:</label><input type="text" id="validade_${suffix}" placeholder="__/__/____"></div>
                     </div>
-                    ${getAssinaturaComponent("Carimbo e Assinatura do Médico")}
+                    <div class="assinatura-container">
+                        <div class="print-hide-text" style="font-size:9pt; font-weight:bold; text-align:center;">Carimbo e Assinatura do Médico</div>
+                        <div class="print-show-line" style="text-align:center; margin-top:2px;">
+                            <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top:5px; text-align:center; font-size:9pt;">${data.crm} _________________________</div>
                 </div>
             </div>
         `;
@@ -934,112 +893,98 @@
         });
     }
 
-    // ======================= LAUDO MÉDICO =======================
+    // ======================= LAUDO MÉDICO (1 VIA - RETRATO) =======================
     function renderLaudo() {
-        const dataAtual = getDataAtual().dataNumerica;
+        const data = getDataAtual();
         const headerVia = renderHeaderVia();
         const titulo = "LAUDO MÉDICO";
         
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
+        const html = `
+            <div class="single-way">
                 ${headerVia}
                 <div class="doc-title-via">${titulo}</div>
-                <div class="way-title">${viaNome}</div>
-                <div class="laudo-content" style="display:flex; flex-direction:column;">
-                    <div class="campo"><label>Paciente:</label><input type="text" id="paciente_${suffix}" placeholder="Nome completo"></div>
-                    <div class="campo"><label>Data de Nascimento:</label><input type="text" id="nascimento_${suffix}" placeholder="dd/mm/aaaa"></div>
-                    <div class="campo"><label>Diagnóstico / CID:</label><input type="text" id="cid_${suffix}" placeholder="CID-10"></div>
-                    <div class="campo-descricao">
-                        <label>Descrição do Laudo:</label>
-                        <textarea id="descricao_${suffix}" placeholder="Justificativa clínica, evolução, parecer técnico, conclusão..." rows="4"></textarea>
-                    </div>
-                    <div class="campo"><label>Data do Laudo:</label><input type="text" id="data_${suffix}" value="${dataAtual}"></div>
-                    ${getAssinaturaComponent("Médico Responsável / CRM")}
+                <div class="campo"><label>Paciente:</label><input type="text" id="paciente_laudo" placeholder="Nome completo"></div>
+                <div class="campo"><label>Data de Nascimento:</label><input type="text" id="nascimento_laudo" placeholder="dd/mm/aaaa"></div>
+                <div class="campo"><label>Diagnóstico / CID:</label><input type="text" id="cid_laudo" placeholder="CID-10"></div>
+                <div class="campo-descricao">
+                    <label>Descrição do Laudo:</label>
+                    <textarea id="descricao_laudo" rows="8" placeholder="Justificativa clínica, evolução, parecer técnico, conclusão..."></textarea>
                 </div>
+                <div class="campo"><label>Data do Laudo:</label><input type="text" id="data_laudo" value="${data.dataNumerica}"></div>
+                <div class="assinatura-container">
+                    <div class="print-hide-text" style="font-size:9pt; font-weight:bold; text-align:center;">Médico Responsável</div>
+                    <div class="print-show-line" style="text-align:center; margin-top:2px;">
+                        <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
+                    </div>
+                </div>
+                <div style="margin-top:5px; text-align:center; font-size:9pt;">${data.crm} _________________________</div>
             </div>
         `;
-        
-        docContainer.innerHTML = `<div class="two-ways laudo-page">${viaContent("1ª VIA - Laudo / Paciente", "via1")}${viaContent("2ª VIA - Prontuário / Unidade", "via2")}</div>`;
-        
-        const campos = ['paciente', 'nascimento', 'cid', 'descricao', 'data'];
-        campos.forEach(campo => {
-            const src = document.getElementById(`${campo}_via1`);
-            const tgt = document.getElementById(`${campo}_via2`);
-            if (src && tgt) src.addEventListener('input', () => { tgt.value = src.value; });
-        });
+        docContainer.innerHTML = html;
     }
 
-    // ======================= SOLICITAÇÃO DE EXAMES =======================
+    // ======================= SOLICITAÇÃO DE EXAMES (1 VIA - PAISAGEM) =======================
     function renderSolicitacaoExames() {
-        const dataAtual = getDataAtual().dataNumerica;
+        const data = getDataAtual();
         const headerVia = renderHeaderVia();
         const titulo = "SOLICITAÇÃO DE EXAMES LABORATORIAIS";
         
         const examesLista = [
             "Hemograma", "Coagulograma", "Tipagem Sanguínea", "Sódio e Potássio", "Ureia", "Creatinina",
-            "Glicemia de Jejum", "Tolerância a Glicose", "Hemoglobina Glicada", "Colesterol Total",
+            "Glicemia de Jejum", "Teste de Tolerância a Glicose", "Hemoglobina Glicada", "Colesterol Total",
             "Triglicerídios", "CPK", "Gama GT", "Bilirrubinas", "TGO/TGP", "Amilase/Lipase",
             "Fosfatase Alcalina", "Proteinas Totais", "Ferro, Ferritina", "Cálcio Total", "Ácido Úrico",
-            "PCR", "VHS", "PSA", "Vitamina D", "Vitamina B12", "TSH", "T4 Livre", "EAS", "Cultura"
+            "PCR", "VHS", "PSA", "Vitamina D", "Vitamina B12", "TSH", "T4 Livre", "EAS", "Cultura de Urina",
+            "Sorologia", "Eletrocardiograma", "Raio-X", "Ultrassonografia", "Ressonância"
         ];
         
-        function gerarCheckboxes(suffix) {
+        function gerarCheckboxes() {
             let grid = '<div class="exames-grid">';
             examesLista.forEach(exame => {
-                grid += `<label><input type="checkbox" class="exame-cb-${suffix}"> ${exame}</label>`;
+                grid += `<label><input type="checkbox" class="exame-cb"> ${exame}</label>`;
             });
             grid += '</div>';
             return grid;
         }
         
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
+        const html = `
+            <div class="single-way-horizontal">
                 ${headerVia}
                 <div class="doc-title-via">${titulo}</div>
-                <div class="way-title">${viaNome}</div>
-                <div class="campo"><label>Unidade de Saúde:</label><input type="text" id="unidade_${suffix}"></div>
-                <div class="campo"><label>SUS:</label><input type="text" id="sus_${suffix}"></div>
-                <div class="campo"><label>Paciente:</label><input type="text" id="nome_${suffix}"></div>
                 <div class="campo-inline">
-                    <div class="campo"><label>Nasc.:</label><input type="text" id="nasc_${suffix}"></div>
-                    <div class="campo"><label>Sexo:</label><div class="radio-group"><label><input type="radio" name="sexo_${suffix}" value="MAS"> M</label><label><input type="radio" name="sexo_${suffix}" value="FEM"> F</label></div></div>
-                    <div class="campo"><label>Telefone:</label><input type="text" id="telefone_${suffix}"></div>
+                    <div class="campo"><label>Unidade de Saúde:</label><input type="text" id="unidade_exames" placeholder="Unidade"></div>
+                    <div class="campo"><label>SUS:</label><input type="text" id="sus_exames" placeholder="Nº Cartão SUS"></div>
                 </div>
-                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_${suffix}"></div>
-                <div class="campo"><label>Material:</label><input type="text" id="material_${suffix}"></div>
-                ${gerarCheckboxes(suffix)}
-                <div class="campo"><label>Outros:</label><textarea rows="1" id="outros_${suffix}"></textarea></div>
-                <div class="campo"><label>Médico:</label><input type="text" id="medico_${suffix}"></div>
-                <div>Data: <input type="text" id="dataExames_${suffix}" value="${dataAtual}" style="width:80px"></div>
-                ${getAssinaturaComponent("Carimbo e Assinatura")}
+                <div class="campo"><label>Nome do Usuário:</label><input type="text" id="nome_exames" placeholder="Nome completo"></div>
+                <div class="campo-inline">
+                    <div class="campo"><label>Data Nasc.:</label><input type="text" id="nasc_exames" placeholder="dd/mm/aaaa"></div>
+                    <div class="campo"><label>Sexo:</label><div class="radio-group"><label><input type="radio" name="sexo_exames" value="MAS"> MAS</label><label><input type="radio" name="sexo_exames" value="FEM"> FEM</label></div></div>
+                    <div class="campo"><label>Telefone:</label><input type="text" id="telefone_exames" placeholder="(83) 9xxxx-xxxx"></div>
+                </div>
+                <div class="campo"><label>Endereço:</label><input type="text" id="endereco_exames" placeholder="Rua, nº, bairro"></div>
+                <div class="campo"><label>Dados Clínicos:</label><textarea rows="1" id="clinicos_exames" placeholder="Queixas, hipóteses diagnósticas..."></textarea></div>
+                <div class="campo"><label>Material a Examinar:</label><input type="text" id="material_exames" placeholder="ex.: sangue, urina"></div>
+                ${gerarCheckboxes()}
+                <div class="campo"><label>Outros exames:</label><textarea rows="1" id="outros_exames" placeholder="Especificar outros exames..."></textarea></div>
+                <div class="campo-inline">
+                    <div class="campo"><label>Médico Solicitante:</label><input type="text" id="medico_exames" placeholder="Nome e ${data.crm}"></div>
+                    <div class="campo"><label>Data:</label><input type="text" id="dataExames" value="${data.dataNumerica}" style="width:100px"></div>
+                </div>
+                <div class="assinatura-container">
+                    <div class="print-hide-text" style="font-size:9pt; font-weight:bold; text-align:center;">Carimbo e Assinatura</div>
+                    <div class="print-show-line" style="text-align:center; margin-top:2px;">
+                        <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
+                    </div>
+                </div>
+                <div style="margin-top:5px; text-align:center; font-size:9pt;">${data.crm} _________________________</div>
             </div>
         `;
-        
-        docContainer.innerHTML = `<div class="two-ways">${viaContent("1ª VIA - Laboratório", "via1")}${viaContent("2ª VIA - Prontuário", "via2")}</div>`;
-        
-        const campos = ['unidade', 'sus', 'nome', 'nasc', 'telefone', 'endereco', 'material', 'outros', 'medico', 'dataExames'];
-        campos.forEach(campo => {
-            const src = document.getElementById(`${campo}_via1`);
-            const tgt = document.getElementById(`${campo}_via2`);
-            if (src && tgt) src.addEventListener('input', () => { tgt.value = src.value; });
-        });
-        
-        const radios1 = document.querySelectorAll('input[name="sexo_via1"]');
-        const radios2 = document.querySelectorAll('input[name="sexo_via2"]');
-        radios1.forEach(r => r.addEventListener('change', () => { radios2.forEach(r2 => { if(r2.value === r.value) r2.checked = true; }); }));
-        radios2.forEach(r => r.addEventListener('change', () => { radios1.forEach(r1 => { if(r1.value === r.value) r1.checked = true; }); }));
-        
-        const cb1 = document.querySelectorAll('.exame-cb-via1');
-        const cb2 = document.querySelectorAll('.exame-cb-via2');
-        if(cb1.length === cb2.length) {
-            cb1.forEach((cb, i) => cb.addEventListener('change', () => cb2[i].checked = cb.checked));
-            cb2.forEach((cb, i) => cb.addEventListener('change', () => cb1[i].checked = cb.checked));
-        }
+        docContainer.innerHTML = html;
     }
 
     // ======================= EVOLUÇÃO CLÍNICA =======================
     function renderEvolucao() {
-        const dataAtual = getDataAtual().dataNumerica;
+        const data = getDataAtual();
         const headerVia = renderHeaderVia();
         const titulo = "EVOLUÇÃO CLÍNICA E PSIQUIÁTRICA";
         
@@ -1048,16 +993,19 @@
                 <div class="single-way">
                     ${headerVia}
                     <div class="doc-title-via">${titulo}</div>
-                    <div class="evolucao-content" style="display:flex; flex-direction:column;">
-                        <div class="campo"><label>Paciente:</label><input type="text" id="paciente_evolucao" placeholder="Nome"></div>
-                        <div class="campo"><label>Data:</label><input type="text" id="data_evolucao" value="${dataAtual}"></div>
-                        <div class="campo-evolucao" style="flex:1; display:flex; flex-direction:column;">
-                            <label>Descrição:</label>
-                            <textarea id="descricao_evolucao" placeholder="Evolução clínica..." rows="8"></textarea>
-                        </div>
-                        ${getAssinaturaComponent("Carimbo e Assinatura do Profissional")}
-                        <div style="margin-top:8px; text-align:center;">_________________________________</div>
+                    <div class="campo"><label>Paciente / Prontuário:</label><input type="text" id="paciente_evolucao" placeholder="Nome completo e número do prontuário"></div>
+                    <div class="campo"><label>Data da Evolução:</label><input type="text" id="data_evolucao" value="${data.dataNumerica}"></div>
+                    <div class="campo-evolucao" style="flex:1; display:flex; flex-direction:column;">
+                        <label>Descrição (Evolução, queixas, exame psíquico, conduta):</label>
+                        <textarea id="descricao_evolucao" placeholder="Registro detalhado da evolução clínica e psiquiátrica..." rows="10"></textarea>
                     </div>
+                    <div class="assinatura-container">
+                        <div class="print-hide-text" style="font-size:9pt; font-weight:bold; text-align:center;">Carimbo e Assinatura do Profissional</div>
+                        <div class="print-show-line" style="text-align:center; margin-top:2px;">
+                            <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top:5px; text-align:center; font-size:9pt;">${data.crm} _________________________</div>
                 </div>
             </div>
         `;
@@ -1083,17 +1031,24 @@
                             <p>compareceu a consulta médica nesta data, permanecendo sob atendimento.</p>
                             <p>Em decorrência de avaliação clínica, foi necessário afastamento por <input type="text" id="dias_afastamento" placeholder="___" style="display:inline-block; width:45px; text-align:center; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:2px 0;"> dia(s).</p>
                             <p>CID: <input type="text" id="cid_atestado" placeholder="CID-10" style="display:inline-block; width:90px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:2px 0;"></p>
-                            <p>Paciente encontra-se <strong>temporariamente inapto(a)</strong> para suas atividades.</p>
+                            <p><strong>Usuário autoriza CID:</strong> <input type="text" id="autoriza_cid" placeholder="Assinatura do Usuário" style="display:inline-block; width:200px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:2px 0;"></p>
+                            <p>Declaro que, durante o período mencionado, o(a) paciente encontra-se <strong>temporariamente inapto(a)</strong> para suas atividades.</p>
                         </div>
                         
                         <div class="atestado-assinatura" style="margin-top:15px; text-align:center;">
                             <p>Data: ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
-                            ${getAssinaturaComponent("Assinatura/Carimbo")}
+                            <div class="assinatura-container">
+                                <div class="print-hide-text" style="font-size:9pt; font-weight:bold; text-align:center;">Assinatura/Carimbo</div>
+                                <div class="print-show-line" style="text-align:center; margin-top:2px;">
+                                    <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top:5px; font-size:9pt;">${data.crm} _________________________</div>
                         </div>
                         
                         <div class="atestado-rodape" style="margin-top:15px; text-align:center; font-size:7pt; border-top:1px solid #ccc; padding-top:6px;">
-                            <p><strong>CAPS AD III REGIONAL VALE DO MAMANGUAPE</strong></p>
-                            <p>Rua Fátio Barbosa Vaz, Campo, Mamanguape/PB, 58280-000</p>
+                            <p><strong>${getNomeUnidade()}</strong></p>
+                            <p>${getEnderecoPorUnidade().substring(0, 80)}</p>
                         </div>
                     </div>
                 </div>
@@ -1114,7 +1069,7 @@
                         <div class="maisvida-header">
                             <h1>MAIS VIDA</h1>
                             <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
-                            <h3>RECEITA</h3>
+                            <h3>RECEITUÁRIO MÉDICO</h3>
                         </div>
                         <div class="campo" style="margin-bottom: 10px;">
                             <label style="font-size: 10pt; font-weight: bold;">PACIENTE:</label>
@@ -1125,7 +1080,11 @@
                             <textarea id="prescricao_maisvida" rows="12" style="background:#e8f5e9; font-family:'Courier New',monospace; font-size:10pt; font-weight:bold; line-height:1.4;">${textoPadrao}</textarea>
                         </div>
                         <div class="maisvida-data"><p>JOÃO PESSOA, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p></div>
-                        <div class="maisvida-assinatura"><div class="assinatura-linha"></div><p><strong>Dra. Gisele Lima</strong></p><p>CRM 13564</p></div>
+                        <div class="maisvida-assinatura">
+                            <div class="assinatura-linha"></div>
+                            <p><strong>Dra. Gisele Lima</strong></p>
+                            <p>${data.crm} 13564</p>
+                        </div>
                         <div class="maisvida-endereco"><p>Rua Professor Arnaldo de Berros Barro Moreira nº 193, Mangabeira - JP - PB</p></div>
                     </div>
                 </div>
@@ -1134,6 +1093,7 @@
         docContainer.innerHTML = html;
     }
 
+    // ======================= MAIS VIDA - SOLICITAÇÃO DE EXAMES =======================
     function renderMaisVidaPrescricao() {
         const data = getDataAtual();
         const textoPadrao = `Solicito:\n\nHemograma completo, vitamina D,\nvitamina B12, magnesio, ferro serico,\nferritina, saturacao de transferrina, sodio,\npotassio\n\nHD: Rotina / rastreamento`;
@@ -1145,17 +1105,22 @@
                         <div class="maisvida-header">
                             <h1>MAIS VIDA</h1>
                             <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
-                            <h3>PRESCRIÇÃO MÉDICA</h3>
+                            <h3>SOLICITAÇÃO DE EXAMES</h3>
                         </div>
                         <div class="campo" style="margin-bottom: 10px;">
                             <label style="font-size:10pt; font-weight:bold;">PACIENTE:</label>
-                            <input type="text" id="paciente_maisvida_presc" placeholder="VALDECI PAIVA DA SILVA" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;">
+                            <input type="text" id="paciente_maisvida_presc" placeholder="Nome do paciente" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;">
                         </div>
                         <div class="maisvida-prescricao">
-                            <label style="font-size:10pt; font-weight:bold; margin-bottom:4px; display:block;">DESCRIÇÃO:</label>
+                            <label style="font-size:10pt; font-weight:bold; margin-bottom:4px; display:block;">DESCRIÇÃO DOS EXAMES:</label>
                             <textarea id="prescricao_maisvida_presc" rows="10" style="background:#e8f5e9; font-family:'Courier New',monospace; font-size:10pt; font-weight:bold; line-height:1.4;">${textoPadrao}</textarea>
                         </div>
-                        <div class="maisvida-assinatura"><div class="assinatura-linha"></div><p><strong>Dra. Gisele Lima</strong></p><p>CRM 13564</p></div>
+                        <div class="maisvida-data"><p>JOÃO PESSOA, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p></div>
+                        <div class="maisvida-assinatura">
+                            <div class="assinatura-linha"></div>
+                            <p><strong>Dra. Gisele Lima</strong></p>
+                            <p>${data.crm} 13564</p>
+                        </div>
                         <div class="maisvida-endereco"><p>Rua Professor Arnaldo de Berros Barro Moreira nº 193, Mangabeira - JP - PB</p></div>
                     </div>
                 </div>
@@ -1164,6 +1129,7 @@
         docContainer.innerHTML = html;
     }
 
+    // ======================= MAIS VIDA - ATESTADO =======================
     function renderMaisVidaAtestado() {
         const data = getDataAtual();
         const html = `
@@ -1175,11 +1141,15 @@
                             <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
                             <h3>ATESTADO MÉDICO</h3>
                         </div>
-                        <div class="campo" style="margin-bottom:10px;"><label style="font-size:10pt; font-weight:bold;">PACIENTE:</label><input type="text" id="paciente_atestado_mv" placeholder="David Lucas" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;"></div>
-                        <div class="campo" style="margin-bottom:10px;"><label style="font-size:10pt; font-weight:bold;">CID:</label><input type="text" id="cid_atestado_mv" placeholder="M50" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;"></div>
-                        <div class="campo" style="margin-bottom:10px;"><label style="font-size:10pt; font-weight:bold;">DIAS:</label><input type="text" id="dias_atestado_mv" placeholder="1" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;"></div>
+                        <div class="campo" style="margin-bottom:10px;"><label style="font-size:10pt; font-weight:bold;">PACIENTE:</label><input type="text" id="paciente_atestado_mv" placeholder="Nome do paciente" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;"></div>
+                        <div class="campo" style="margin-bottom:10px;"><label style="font-size:10pt; font-weight:bold;">CID:</label><input type="text" id="cid_atestado_mv" placeholder="CID-10" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;"></div>
+                        <div class="campo" style="margin-bottom:10px;"><label style="font-size:10pt; font-weight:bold;">DIAS DE AFASTAMENTO:</label><input type="text" id="dias_atestado_mv" placeholder="1" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;"></div>
                         <div class="maisvida-data"><p>JOÃO PESSOA, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p></div>
-                        <div class="maisvida-assinatura"><div class="assinatura-linha"></div><p><strong>Dra. Gisele Lima</strong></p><p>CRM 13564</p></div>
+                        <div class="maisvida-assinatura">
+                            <div class="assinatura-linha"></div>
+                            <p><strong>Dra. Gisele Lima</strong></p>
+                            <p>${data.crm} 13564</p>
+                        </div>
                         <div class="maisvida-endereco"><p>Rua Professor Arnaldo de Berros Barro Moreira nº 193, Mangabeira - JP - PB</p></div>
                     </div>
                 </div>
@@ -1189,7 +1159,11 @@
     }
 
     // ======================= RECEITA NICOTINA =======================
-    function renderNicotina7mg() {
+    function renderNicotina7mg() { renderTemplateNicotina("07"); }
+    function renderNicotina14mg() { renderTemplateNicotina("14"); }
+    function renderNicotina21mg() { renderTemplateNicotina("21"); }
+    
+    function renderTemplateNicotina(dosagem) {
         const data = getDataAtual();
         const endereco = getEnderecoPorUnidade();
         const headerVia = renderHeaderVia();
@@ -1199,76 +1173,20 @@
                 ${headerVia}
                 <div class="doc-title-via">RECEITUÁRIO</div>
                 <div class="way-title">${viaNome}</div>
-                <div class="paciente-linha"><label>PACIENTE:</label><input type="text" id="paciente_nicotina7_${suffix}" placeholder="________"></div>
-                <div class="medicamento"><p><strong>1. Nicotina Adesivo Transdérmico 07mg</strong> ______ 30Un</p><p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas</p></div>
+                <div class="paciente-linha"><label>PACIENTE:</label><input type="text" id="paciente_nicotina${dosagem}_${suffix}" placeholder="________"></div>
+                <div class="medicamento"><p><strong>1. Nicotina Adesivo Transdérmico ${dosagem}mg</strong> ______ 30Un</p><p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas</p></div>
                 <div class="orientacoes"><p><strong>ORIENTAÇÕES:</strong></p><p>- Não fumar durante o uso</p><p>- Retirar à noite se houver insônia</p><p>- Não cortar o adesivo</p></div>
-                <div class="assinatura"><div class="linha"></div><div class="data"><p>Data: <input type="text" id="data_nicotina7_${suffix}" value="${data.dataExtenso}" style="display:inline-block; width:auto; min-width:180px;"></p></div></div>
+                <div class="assinatura"><div class="linha"></div><div class="data"><p>Data: <input type="text" id="data_nicotina${dosagem}_${suffix}" value="${data.dataExtenso}" style="display:inline-block; width:auto; min-width:180px;"></p></div></div>
                 <div class="rodape"><p>RECEITUÁRIO – ${getNomeUnidade()}</p><p>${endereco.substring(0, 80)}</p></div>
             </div>
         `;
         
         docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA", "via1")}${viaContent("2ª VIA", "via2")}</div>`;
         
-        const src = document.getElementById('paciente_nicotina7_via1');
-        const tgt = document.getElementById('paciente_nicotina7_via2');
-        const srcData = document.getElementById('data_nicotina7_via1');
-        const tgtData = document.getElementById('data_nicotina7_via2');
-        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
-        if (srcData && tgtData) srcData.addEventListener('input', () => tgtData.value = srcData.value);
-    }
-
-    function renderNicotina14mg() {
-        const data = getDataAtual();
-        const endereco = getEnderecoPorUnidade();
-        const headerVia = renderHeaderVia();
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}
-                <div class="doc-title-via">RECEITUÁRIO</div>
-                <div class="way-title">${viaNome}</div>
-                <div class="paciente-linha"><label>PACIENTE:</label><input type="text" id="paciente_nicotina14_${suffix}" placeholder="________"></div>
-                <div class="medicamento"><p><strong>1. Nicotina Adesivo Transdérmico 14mg</strong> ______ 30Un</p><p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas</p></div>
-                <div class="orientacoes"><p><strong>ORIENTAÇÕES:</strong></p><p>- Não fumar durante o uso</p><p>- Retirar à noite se houver insônia</p><p>- Não cortar o adesivo</p></div>
-                <div class="assinatura"><div class="linha"></div><div class="data"><p>Data: <input type="text" id="data_nicotina14_${suffix}" value="${data.dataExtenso}" style="display:inline-block; width:auto; min-width:180px;"></p></div></div>
-                <div class="rodape"><p>RECEITUÁRIO – ${getNomeUnidade()}</p><p>${endereco.substring(0, 80)}</p></div>
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA", "via1")}${viaContent("2ª VIA", "via2")}</div>`;
-        
-        const src = document.getElementById('paciente_nicotina14_via1');
-        const tgt = document.getElementById('paciente_nicotina14_via2');
-        const srcData = document.getElementById('data_nicotina14_via1');
-        const tgtData = document.getElementById('data_nicotina14_via2');
-        if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
-        if (srcData && tgtData) srcData.addEventListener('input', () => tgtData.value = srcData.value);
-    }
-
-    function renderNicotina21mg() {
-        const data = getDataAtual();
-        const endereco = getEnderecoPorUnidade();
-        const headerVia = renderHeaderVia();
-        
-        const viaContent = (viaNome, suffix) => `
-            <div class="way">
-                ${headerVia}
-                <div class="doc-title-via">RECEITUÁRIO</div>
-                <div class="way-title">${viaNome}</div>
-                <div class="paciente-linha"><label>PACIENTE:</label><input type="text" id="paciente_nicotina21_${suffix}" placeholder="________"></div>
-                <div class="medicamento"><p><strong>1. Nicotina Adesivo Transdérmico 21mg</strong> ______ 30Un</p><p>Aplicar 01 adesivo pela manhã, em pele limpa e seca, trocar o local diariamente, por 04 semanas</p></div>
-                <div class="orientacoes"><p><strong>ORIENTAÇÕES:</strong></p><p>- Não fumar durante o uso</p><p>- Retirar à noite se houver insônia</p><p>- Não cortar o adesivo</p></div>
-                <div class="assinatura"><div class="linha"></div><div class="data"><p>Data: <input type="text" id="data_nicotina21_${suffix}" value="${data.dataExtenso}" style="display:inline-block; width:auto; min-width:180px;"></p></div></div>
-                <div class="rodape"><p>RECEITUÁRIO – ${getNomeUnidade()}</p><p>${endereco.substring(0, 80)}</p></div>
-            </div>
-        `;
-        
-        docContainer.innerHTML = `<div class="two-ways receita-nicotina">${viaContent("1ª VIA", "via1")}${viaContent("2ª VIA", "via2")}</div>`;
-        
-        const src = document.getElementById('paciente_nicotina21_via1');
-        const tgt = document.getElementById('paciente_nicotina21_via2');
-        const srcData = document.getElementById('data_nicotina21_via1');
-        const tgtData = document.getElementById('data_nicotina21_via2');
+        const src = document.getElementById(`paciente_nicotina${dosagem}_via1`);
+        const tgt = document.getElementById(`paciente_nicotina${dosagem}_via2`);
+        const srcData = document.getElementById(`data_nicotina${dosagem}_via1`);
+        const tgtData = document.getElementById(`data_nicotina${dosagem}_via2`);
         if (src && tgt) src.addEventListener('input', () => tgt.value = src.value);
         if (srcData && tgtData) srcData.addEventListener('input', () => tgtData.value = srcData.value);
     }
@@ -1279,7 +1197,13 @@
         
         const html = `
             <div class="single-way laudo-procedimento">
-                ${renderLaudoProcedimentoHeader()}
+                <div class="laudo-procedimento-header">
+                    <div class="sus-logo"><div>MINISTÉRIO DA SAÚDE</div><div>SUS - SISTEMA ÚNICO DE SAÚDE</div></div>
+                    <div class="linha-dupla"></div>
+                    <h1>LAUDO PARA SOLICITAÇÃO/AUTORIZAÇÃO DE PROCEDIMENTO AMBULATORIAL</h1>
+                    <h2>PORTARIA SAS/MS Nº 01/2025</h2>
+                    <div class="linha-dupla"></div>
+                </div>
                 
                 <div class="secao">
                     <div class="secao-titulo">IDENTIFICAÇÃO DO ESTABELECIMENTO DE SAÚDE (SOLICITANTE)</div>
@@ -1310,12 +1234,20 @@
                 <div class="secao">
                     <div class="secao-titulo">DADOS DO MÉDICO SOLICITANTE</div>
                     <div class="campo-linha"><label>NOME DO MÉDICO:</label><input type="text" id="medico_nome" placeholder="_________________________________"></div>
-                    <div class="campo-linha"><label>CRM:</label><input type="text" id="medico_crm" placeholder="______-UF"></div>
+                    <div class="campo-linha"><label>CRM:</label><input type="text" id="medico_crm" placeholder="______-PB"></div>
                     <div class="campo-linha"><label>ESPECIALIDADE:</label><input type="text" id="medico_especialidade" placeholder="_________________________________"></div>
                 </div>
                 
                 <div class="data-area"><p>Data: <input type="text" id="data_laudo_procedimento" value="${data.dataExtenso}" style="display:inline-block; width:auto; min-width:200px;"></p></div>
-                <div class="assinatura-area">${getAssinaturaComponent("Assinatura do Médico / Carimbo")}</div>
+                <div class="assinatura-area">
+                    <div class="assinatura-container">
+                        <div class="print-hide-text" style="font-size:9pt; font-weight:bold; text-align:center;">Assinatura do Médico / Carimbo</div>
+                        <div class="print-show-line" style="text-align:center; margin-top:2px;">
+                            <div style="display:inline-block; width:60%; border-bottom:1px solid #000;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top:5px; font-size:9pt;">${data.crm} _________________________</div>
+                </div>
             </div>
         `;
         docContainer.innerHTML = html;
@@ -1337,16 +1269,27 @@
             case "nicotina14mg": renderNicotina14mg(); break;
             case "nicotina21mg": renderNicotina21mg(); break;
             case "laudoProcedimento": renderLaudoProcedimento(); break;
-            default: renderLaudoProcedimento();
+            default: renderLaudo();
         }
     }
 
     function handlePrint() {
-        const style = document.createElement('style');
-        style.textContent = `@page { size: A4 portrait; margin: 0.3cm; }`;
-        document.head.appendChild(style);
-        window.print();
-        style.remove();
+        const documentosRetrato = ["evolucao", "atestado", "laudo", "maisvida", "maisvidaPrescricao", "maisvidaAtestado", "laudoProcedimento"];
+        const documentosPaisagem = ["prescricao", "exames", "controleEspecial", "receitaSimples", "nicotina7mg", "nicotina14mg", "nicotina21mg"];
+        
+        if (documentosPaisagem.includes(currentDoc)) {
+            const style = document.createElement('style');
+            style.textContent = `@page { size: A4 landscape; margin: 0.3cm; }`;
+            document.head.appendChild(style);
+            window.print();
+            style.remove();
+        } else {
+            const style = document.createElement('style');
+            style.textContent = `@page { size: A4 portrait; margin: 0.3cm; }`;
+            document.head.appendChild(style);
+            window.print();
+            style.remove();
+        }
     }
 
     unidadeSelect.addEventListener("change", () => { currentUnidade = unidadeSelect.value; renderizar(); });
