@@ -1129,9 +1129,10 @@
         docContainer.innerHTML = html;
     }
 
-    // ======================= MAIS VIDA - ATESTADO =======================
+    // ======================= MAIS VIDA - ATESTADO ======================
     function renderMaisVidaAtestado() {
         const data = getDataAtual();
+        
         const html = `
             <div class="maisvida-container">
                 <div class="single-way">
@@ -1141,17 +1142,38 @@
                             <h2>SERVIÇOS MÉDICOS EIRELLI</h2>
                             <h3>ATESTADO MÉDICO</h3>
                         </div>
-                        <div class="campo" style="margin-bottom:10px;"><label style="font-size:10pt; font-weight:bold;">PACIENTE:</label><input type="text" id="paciente_atestado_mv" placeholder="Nome do paciente" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;"></div>
-                        <div class="campo" style="margin-bottom:10px;"><label style="font-size:10pt; font-weight:bold;">CID:</label><input type="text" id="cid_atestado_mv" placeholder="CID-10" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;"></div>
-                        <p><strong>Usuário autoriza CID:</strong> <input type="text" id="autoriza_cid" placeholder="Assinatura do Usuário" style="display:inline-block; width:200px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:2px 0;"></p>
-                        <div class="campo" style="margin-bottom:10px;"><label style="font-size:10pt; font-weight:bold;">DIAS DE AFASTAMENTO:</label><input type="text" id="dias_atestado_mv" placeholder="1" style="width:100%; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:4px 0;"></div>
-                        <div class="maisvida-data"><p>JOÃO PESSOA, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p></div>
+                        
+                        <div class="campo" style="margin-bottom: 15px;">
+                            <label style="font-size: 10pt; font-weight: bold;">PACIENTE:</label>
+                            <input type="text" id="paciente_atestado_mv" placeholder="Nome do paciente" style="width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 0; font-size: 10pt; font-weight: bold; padding: 4px 0;">
+                        </div>
+                        
+                        <div class="maisvida-atestado-campos">
+                            <div class="campo">
+                                <label>DIAS DE AFASTAMENTO:</label>
+                                <input type="text" id="dias_atestado_mv" placeholder="1">
+                            </div>
+                            <div class="campo">
+                                <label>CID:</label>
+                                <input type="text" id="cid_atestado_mv" placeholder="M50">
+                            </div>
+                            <p><strong>Usuário autoriza CID:</strong> <input type="text" id="autoriza_cid" placeholder="Assinatura do Usuário" style="display:inline-block; width:200px; border:none; border-bottom:1px solid #000; border-radius:0; font-size:10pt; font-weight:bold; padding:2px 0;"></p>
+                        </div>
+                        
+                        <div class="maisvida-data">
+                            <p>JOÃO PESSOA, ${data.dia} de ${data.mesExtenso} de ${data.ano}.</p>
+                        </div>
+                        
                         <div class="maisvida-assinatura">
                             <div class="assinatura-linha"></div>
                             <p><strong>Dra. Gisele Lima</strong></p>
                             <p>${data.crm} 13564</p>
                         </div>
-                        <div class="maisvida-endereco"><p>Rua Professor Arnaldo de Berros Barro Moreira nº 193, Mangabeira - JP - PB</p></div>
+                        
+                        <div class="maisvida-endereco">
+                            <p>Rua Professor Arnaldo de Berros Barro Moreira nº 193,</p>
+                            <p>Mangabeira - João Pessoa - PB CEP 58055-620 - Telefone (83) 98731-7608</p>
+                        </div>
                     </div>
                 </div>
             </div>
