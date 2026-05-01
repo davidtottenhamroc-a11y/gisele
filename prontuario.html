@@ -238,19 +238,6 @@
         .receita-simples-modelo {
             font-family: 'Times New Roman', Times, serif;
         }
-        .receita-simples-modelo .header-receita {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        .receita-simples-modelo .header-receita h1 {
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .receita-simples-modelo .header-receita h2 {
-            font-size: 0.75rem;
-            font-weight: normal;
-        }
         .receita-simples-modelo .paciente-linha {
             margin: 15px 0;
             display: flex;
@@ -314,42 +301,25 @@
             padding-top: 8px;
         }
 
-        /* RECEITUÁRIO DE CONTROLE ESPECIAL (MODELO 2) */
-        .receita-controle-modelo {
+        /* RECEITUÁRIO DE CONTROLE ESPECIAL (MODELO 2) e AZITROMICINA */
+        .receita-controle-modelo, .receita-azitromicina-modelo {
             font-family: 'Times New Roman', Times, serif;
         }
-        .receita-controle-modelo .header-receita {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .receita-controle-modelo .header-receita h1 {
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .receita-controle-modelo .header-receita h2 {
-            font-size: 0.7rem;
-            font-weight: normal;
-        }
-        .receita-controle-modelo .header-receita .endereco-emitente {
-            font-size: 0.65rem;
-            margin-top: 3px;
-        }
-        .receita-controle-modelo .way {
+        .receita-controle-modelo .way, .receita-azitromicina-modelo .way {
             padding: 8px;
         }
-        .receita-controle-modelo .paciente-linha {
+        .receita-controle-modelo .paciente-linha, .receita-azitromicina-modelo .paciente-linha {
             margin: 8px 0;
             display: flex;
             align-items: baseline;
             gap: 8px;
             flex-wrap: wrap;
         }
-        .receita-controle-modelo .paciente-linha label {
+        .receita-controle-modelo .paciente-linha label, .receita-azitromicina-modelo .paciente-linha label {
             font-weight: bold;
             font-size: 9pt;
         }
-        .receita-controle-modelo .paciente-linha input {
+        .receita-controle-modelo .paciente-linha input, .receita-azitromicina-modelo .paciente-linha input {
             flex: 1;
             border: none;
             border-bottom: 1px solid #000;
@@ -359,24 +329,24 @@
             font-weight: bold;
             background: transparent;
         }
-        .receita-controle-modelo .medicamento {
+        .receita-controle-modelo .medicamento, .receita-azitromicina-modelo .medicamento {
             margin: 10px 0;
             font-size: 9pt;
             line-height: 1.4;
         }
-        .receita-controle-modelo .medicamento p {
+        .receita-controle-modelo .medicamento p, .receita-azitromicina-modelo .medicamento p {
             margin-bottom: 5px;
         }
-        .receita-controle-modelo .assinatura {
+        .receita-controle-modelo .assinatura, .receita-azitromicina-modelo .assinatura {
             margin-top: 15px;
             text-align: left;
         }
-        .receita-controle-modelo .assinatura .linha {
+        .receita-controle-modelo .assinatura .linha, .receita-azitromicina-modelo .assinatura .linha {
             width: 180px;
             border-bottom: 1px solid #000;
             margin: 5px 0;
         }
-        .receita-controle-modelo .data input {
+        .receita-controle-modelo .data input, .receita-azitromicina-modelo .data input {
             display: inline-block;
             width: auto;
             border: none;
@@ -387,18 +357,18 @@
             font-weight: bold;
             background: transparent;
         }
-        .receita-controle-modelo .identificacao {
+        .receita-controle-modelo .identificacao, .receita-azitromicina-modelo .identificacao {
             display: flex;
             gap: 10px;
             margin-top: 12px;
             flex-wrap: wrap;
         }
-        .receita-controle-modelo .identificacao .card {
+        .receita-controle-modelo .identificacao .card, .receita-azitromicina-modelo .identificacao .card {
             flex: 1;
             border: 1px solid #ccc;
             padding: 5px;
         }
-        .receita-controle-modelo .identificacao .card-title {
+        .receita-controle-modelo .identificacao .card-title, .receita-azitromicina-modelo .identificacao .card-title {
             font-weight: bold;
             text-align: center;
             background: #eef2fa;
@@ -406,10 +376,103 @@
             margin-bottom: 5px;
             font-size: 8pt;
         }
-        .receita-controle-modelo .identificacao input {
-            margin-bottom: 3px;
-            padding: 2px;
-            font-size: 8pt;
+
+        /* RECEITA TIAMINA 300mg - VERTICAL (A4 RETRATO) */
+        .receita-tiamina-modelo {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 27cm;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #a3b8d4;
+            background: #ffffff;
+            padding: 15px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .receita-tiamina-modelo .header-receita {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .receita-tiamina-modelo .paciente-linha {
+            margin: 15px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .receita-tiamina-modelo .paciente-linha label {
+            font-weight: bold;
+            font-size: 10pt;
+        }
+        .receita-tiamina-modelo .paciente-linha input {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #000;
+            border-radius: 0;
+            padding: 5px 0;
+            font-size: 10pt;
+            font-weight: bold;
+            background: transparent;
+        }
+        .receita-tiamina-modelo .uso-oral {
+            font-weight: bold;
+            margin: 10px 0 5px 0;
+            font-size: 10pt;
+        }
+        .receita-tiamina-modelo .medicamento {
+            margin: 20px 0;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+        .receita-tiamina-modelo .medicamento p {
+            margin-bottom: 8px;
+        }
+        .receita-tiamina-modelo .medicamento .med-item {
+            margin-left: 10px;
+        }
+        .receita-tiamina-modelo .assinatura {
+            margin-top: auto;
+            text-align: left;
+            padding-top: 40px;
+        }
+        .receita-tiamina-modelo .assinatura .linha {
+            width: 200px;
+            border-bottom: 1px solid #000;
+            margin: 10px 0;
+        }
+        .receita-tiamina-modelo .data {
+            margin: 15px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .receita-tiamina-modelo .data input {
+            border: none;
+            border-bottom: 1px solid #000;
+            border-radius: 0;
+            padding: 4px 0;
+            font-size: 10pt;
+            font-weight: bold;
+            background: transparent;
+            width: auto;
+        }
+        .receita-tiamina-modelo .rodape {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 7pt;
+            border-top: 1px solid #ccc;
+            padding-top: 8px;
+        }
+        .receita-tiamina-modelo .carimbo-area {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .receita-tiamina-modelo .carimbo-area .linha-carimbo {
+            width: 250px;
+            border-bottom: 1px solid #000;
+            margin: 10px auto;
         }
 
         /* GRADE DE EXAMES */
@@ -901,6 +964,10 @@
                 grid-template-columns: repeat(5, 1fr) !important;
                 font-size: 7.5pt !important;
             }
+            .receita-tiamina-modelo {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
         }
     </style>
 </head>
@@ -930,6 +997,8 @@
                 <option value="laudoProcedimento">📄 Laudo para Solicitação de Procedimento</option>
                 <option value="receitaSimplesModelo">📋 Receituário Simples (Dipirona/Paracetamol)</option>
                 <option value="receitaControleModelo">📋 Receituário de Controle Especial (Amoxicilina)</option>
+                <option value="azitromicinaModelo">💊 AZITROMICINA 500mg (Controle Especial)</option>
+                <option value="tiamina300mg">💊 TIAMINA 300mg (Uso Oral)</option>
             </select>
             <button id="printBtn" class="btn btn-primary">🖨️ IMPRIMIR</button>
         </div>
@@ -1037,7 +1106,7 @@
         return "MAIS VIDA - SERVIÇOS MÉDICOS EIRELLI";
     }
 
-    // ======================= RECEITUÁRIO SIMPLES (MODELO 1) =======================
+    // ======================= RECEITUÁRIO SIMPLES (MODELO 1) COM USO ORAL =======================
     function renderReceitaSimplesModelo() {
         const data = getDataAtual();
         const headerVia = renderHeaderVia();
@@ -1050,6 +1119,7 @@
                 </div>
                 
                 <div class="medicamento">
+                    <p><strong>USO ORAL</strong></p>
                     <p><strong>1. Dipirona 500mg ou Paracetamol 500mg</strong> ______ 01 cx</p>
                     <p class="med-item">Tomar 01 cp, de 6/6h, se febre ou dor.</p>
                     <p><strong>2. Vitamina C 500mg</strong> ______ 01 cx</p>
@@ -1079,7 +1149,7 @@
         docContainer.innerHTML = html;
     }
 
-    // ======================= RECEITUÁRIO DE CONTROLE ESPECIAL (MODELO 2) =======================
+    // ======================= RECEITUÁRIO DE CONTROLE ESPECIAL (MODELO 2 - AMOXICILINA) =======================
     function renderReceitaControleModelo() {
         const data = getDataAtual();
         const headerVia = renderHeaderVia();
@@ -1106,7 +1176,7 @@
                 </div>
                 
                 <div class="assinatura">
-                    <p>Assinatura / Carimbo do Médico</p>
+                    
                     <div class="linha"></div>
                     <div class="data">
                         <p>Data: <input type="text" id="data_controle_${suffix}" value="${data.dataExtenso}"></p>
@@ -1148,6 +1218,119 @@
         if(sPac && tPac) sPac.addEventListener('input', () => tPac.value = sPac.value);
         if(sEnd && tEnd) sEnd.addEventListener('input', () => tEnd.value = sEnd.value);
         if(sData && tData) sData.addEventListener('input', () => tData.value = sData.value);
+    }
+
+    // ======================= NOVA RECEITA: AZITROMICINA 500mg =======================
+    function renderAzitromicinaModelo() {
+        const data = getDataAtual();
+        const headerVia = renderHeaderVia();
+        
+        const viaContent = (viaNome, suffix) => `
+            <div class="way">
+                ${headerVia}
+                <div class="way-title">${viaNome}</div>
+                
+                <div class="paciente-linha">
+                    <label>PACIENTE:</label>
+                    <input type="text" id="paciente_azitromicina_${suffix}" placeholder="_________________________">
+                </div>
+                <div class="paciente-linha">
+                    <label>ENDEREÇO:</label>
+                    <input type="text" id="endereco_azitromicina_${suffix}" placeholder="_________________________">
+                </div>
+                
+                <div class="medicamento">
+                    <p><strong>USO ORAL</strong></p>
+                    <p><strong>1. Azitromicina 500mg</strong> ______ 05 cps</p>
+                    <p>Tomar 01 comprimido, uma vez ao dia, durante 05 dias</p>
+                    <p>(Sugestão de horário: 08:00h / 20:00h)</p>
+                </div>
+                
+                <div class="assinatura">
+                    
+                    <div class="linha"></div>
+                    <div class="data">
+                        <p>Data: <input type="text" id="data_azitromicina_${suffix}" value="${data.dataExtenso}"></p>
+                    </div>
+                </div>
+                
+                <div class="identificacao">
+                    <div class="card">
+                        <div class="card-title">IDENTIFICAÇÃO DO COMPRADOR</div>
+                        <input type="text" placeholder="Nome">
+                        <input type="text" placeholder="Idade">
+                        <input type="text" placeholder="Sexo">
+                        <div style="display:flex; gap:5px;">
+                            <input type="text" placeholder="Cidade" style="flex:2;">
+                            <input type="text" placeholder="UF" style="flex:1;">
+                        </div>
+                        <input type="text" placeholder="Telefone">
+                    </div>
+                    <div class="card">
+                        <div class="card-title">IDENTIFICAÇÃO DO FORNECEDOR</div>
+                        <input type="text" placeholder="Nome do Fornecedor">
+                        <input type="text" placeholder="CNPJ">
+                        <input type="text" placeholder="CRF">
+                        <input type="text" placeholder="Assinatura">
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        docContainer.innerHTML = `<div class="two-ways receita-azitromicina-modelo">${viaContent("1ª VIA - FARMÁCIA", "via1")}${viaContent("2ª VIA - PACIENTE", "via2")}</div>`;
+        
+        const sPac = document.getElementById('paciente_azitromicina_via1');
+        const tPac = document.getElementById('paciente_azitromicina_via2');
+        const sEnd = document.getElementById('endereco_azitromicina_via1');
+        const tEnd = document.getElementById('endereco_azitromicina_via2');
+        const sData = document.getElementById('data_azitromicina_via1');
+        const tData = document.getElementById('data_azitromicina_via2');
+        
+        if(sPac && tPac) sPac.addEventListener('input', () => tPac.value = sPac.value);
+        if(sEnd && tEnd) sEnd.addEventListener('input', () => tEnd.value = sEnd.value);
+        if(sData && tData) sData.addEventListener('input', () => tData.value = sData.value);
+    }
+
+    // ======================= TIAMINA 300mg - VERTICAL (A4 RETRATO) =======================
+    function renderTiamina300mg() {
+        const data = getDataAtual();
+        const headerVia = renderHeaderVia();
+        const html = `
+            <div class="receita-tiamina-modelo">
+                ${headerVia}
+                <div class="paciente-linha">
+                    <label>NOME:</label>
+                    <input type="text" id="paciente_tiamina" placeholder="_________________________">
+                </div>
+                
+                <div class="uso-oral">USO ORAL</div>
+                
+                <div class="medicamento">
+                    <p><strong>1. Tiamina 300mg</strong> ______ 30 cps</p>
+                    <p class="med-item">Tomar 01 comprimido ao dia.</p>
+                </div>
+                
+                <div class="assinatura">
+                    <div class="data">
+                        <span>Data: </span>
+                        <input type="text" id="data_dia_tiamina" value="${data.dia}" style="width:40px; display:inline-block;">
+                        <span> de </span>
+                        <input type="text" id="data_mes_tiamina" value="${data.mesExtenso}" style="width:100px; display:inline-block;">
+                        <span> de </span>
+                        <input type="text" id="data_ano_tiamina" value="${data.ano}" style="width:60px; display:inline-block;">
+                    </div>
+                    <div class="linha"></div>
+                    
+                    <div style="margin-top: 5px; font-size: 9pt;">${data.crm} _________________________</div>
+                </div>
+                
+                <div class="rodape">
+                    <p>RECEITUÁRIO – ${getNomeUnidade()}</p>
+                    <p>${getEnderecoPorUnidade()}</p>
+                </div>
+            </div>
+        `;
+        docContainer.innerHTML = html;
     }
 
     // ======================= CONTROLE ESPECIAL (PADRÃO) =======================
@@ -1493,12 +1676,16 @@
             case "laudoProcedimento": renderLaudoProcedimento(); break;
             case "receitaSimplesModelo": renderReceitaSimplesModelo(); break;
             case "receitaControleModelo": renderReceitaControleModelo(); break;
+            case "azitromicinaModelo": renderAzitromicinaModelo(); break;
+            case "tiamina300mg": renderTiamina300mg(); break;
             default: renderReceitaSimplesModelo();
         }
     }
 
     function handlePrint() {
-        const paisagem = ["prescricao", "exames", "controleEspecial", "receitaSimples", "nicotina7mg", "nicotina14mg", "nicotina21mg", "laudo", "receitaSimplesModelo", "receitaControleModelo"];
+        const paisagem = ["prescricao", "exames", "controleEspecial", "receitaSimples", "nicotina7mg", "nicotina14mg", "nicotina21mg", "laudo", "receitaSimplesModelo", "receitaControleModelo", "azitromicinaModelo"];
+        const retrato = ["tiamina300mg", "atestado", "evolucao", "maisvida", "maisvidaPrescricao", "maisvidaAtestado", "laudoProcedimento"];
+        
         const style = document.createElement('style');
         if (paisagem.includes(currentDoc)) {
             style.textContent = `@page { size: A4 landscape; margin: 0.2cm; }`;
